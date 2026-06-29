@@ -1,0 +1,8 @@
+# 舊版本
+福岡六天五夜_v*.html
+
+# 其他
+*.png
+*.psd
+Thumbs.db
+.DS_Store
