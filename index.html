@@ -397,9 +397,22 @@ body{
   .ov-day{font-size:9.5px;}
   .ov-name{font-size:11px;}
 }
+
+/* ── VERSION SWITCH ── */
+.version-switch{
+  position:fixed; left:16px; bottom:calc(16px + env(safe-area-inset-bottom,0px)); z-index:300;
+  display:flex; align-items:center; gap:6px;
+  background:var(--surface); border:1px solid var(--border); border-radius:100px;
+  padding:9px 16px; font-size:12.5px; font-weight:600; color:var(--text);
+  text-decoration:none; box-shadow:0 6px 20px rgba(0,0,0,.12);
+  transition:transform .15s;
+}
+.version-switch:active{ transform:scale(.95); }
 </style>
 </head>
 <body>
+
+<a href="index-iphone.html" class="version-switch">📱 手機閱讀版</a>
 
 <!-- ═══ HERO ═══ -->
 <header class="hero">
