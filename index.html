@@ -153,12 +153,13 @@ body{
   border-radius:var(--r);padding:16px 12px 0;
   text-align:center;text-decoration:none;color:var(--text);
   transition:box-shadow .2s,transform .2s;overflow:hidden;
+  display:flex;flex-direction:column;
 }
 .ov-card:hover{box-shadow:0 4px 20px rgba(0,0,0,.08);transform:translateY(-2px);}
 .ov-day{font-size:10px;letter-spacing:.1em;color:var(--text-muted);margin-bottom:8px;}
 .ov-icon{font-size:22px;margin-bottom:8px;display:block;}
 .ov-name{font-size:11.5px;font-weight:600;line-height:1.4;padding-bottom:14px;}
-.ov-strip{height:3px;margin:0 -12px;}
+.ov-strip{height:3px;margin:auto -12px 0;}
 .ov-tag{
   display:inline-block;font-size:9px;
   background:rgba(135,82,24,.1);color:#7a4a10;
@@ -482,7 +483,6 @@ body{
     <a href="#day5" class="ov-card">
       <div class="ov-day">Day 5  12/29 (二)</div>
       <span class="ov-icon">🏔</span>
-      <div class="ov-tag">全天</div>
       <div class="ov-name">高千穗峽 KKday</div>
       <div class="ov-strip" style="background:var(--c5)"></div>
     </a>
@@ -937,13 +937,13 @@ body{
       <div class="day-info">
         <div class="di-loc">📍 別府退房 → 博多 → 太宰府市</div>
         <div class="di-title">返博多 × 太宰府天滿宮 × 梅枝餅 × 隈研吾設計星巴克</div>
-        <div class="di-sub">上午從別府搭巴士返博多，下午直奔太宰府——千年學問神社 × 現烤梅枝餅 × 建築大師設計的星巴克，2–3 小時玩透</div>
+        <div class="di-sub">上午從別府搭JR特急返博多，下午轉地鐵＋西鐵電車直奔太宰府——千年學問神社 × 現烤梅枝餅 × 建築大師設計的星巴克，2–3 小時玩透</div>
       </div>
     </div>
     <div class="day-body">
       <div class="route-bar">
-        <span>別府駅</span><span class="rt-arrow">→</span><span class="rt-mode">高速巴士 2h</span><span class="rt-arrow">→</span>
-        <span>博多</span><span class="rt-arrow">→</span><span class="rt-mode">旅人巴士 40min</span><span class="rt-arrow">→</span>
+        <span>別府駅</span><span class="rt-arrow">→</span><span class="rt-mode">JR特急 2h</span><span class="rt-arrow">→</span>
+        <span>博多</span><span class="rt-arrow">→</span><span class="rt-mode">地鐵+西鐵電車 35min</span><span class="rt-arrow">→</span>
         <span>太宰府</span><span class="rt-arrow">→</span>
         <span>參道 × 天滿宮</span><span class="rt-arrow">→</span>
         <span>博多</span>
@@ -953,38 +953,38 @@ body{
           <div class="tl-item">
             <div class="tl-dot" style="color:var(--c4)"></div>
             <div class="tl-time">09:00 — 出發</div>
-            <div class="tl-name">別府退房 → 搭高速巴士返博多</div>
-            <div class="tl-desc">別府駅前巴士總站 搭乘高速巴士，直達 博多駅（約 2 小時）。早上旅館早餐後退房出發。</div>
+            <div class="tl-name">別府退房 → 搭JR特急返博多</div>
+            <div class="tl-desc">別府駅 搭乘 <strong>JR 特急「ソニック」</strong>直達 博多駅（約 2 小時），建議先在 JR 九州官網或 Eki-Net 劃指定席，假日座位較搶手。早上旅館早餐後退房出發。</div>
           </div>
           <div class="tl-item">
             <div class="tl-dot" style="color:var(--c4)"></div>
-            <div class="tl-time">11:30</div>
+            <div class="tl-time">11:00</div>
             <div class="tl-name">抵博多 → 飯店寄行李（行李寄放）</div>
             <div class="tl-desc">返回 Airbnb 辦理 check-in（若可提前入住）或請飯店先行保管行李，輕裝出發太宰府。</div>
           </div>
           <div class="tl-item">
             <div class="tl-dot" style="color:var(--c4)"></div>
-            <div class="tl-time">12:10 — 出發</div>
-            <div class="tl-name">搭太宰府直達巴士「旅人」</div>
-            <div class="tl-desc">從<strong>博多巴士總站</strong>搭乘直達太宰府的「旅人」巴士（約 40 分，大人 620 円），免換乘最方便。約 12:50 抵達太宰府。<br><br>📺 <a href="https://www.youtube.com/shorts/Xk3Ite-yi4w" target="_blank" rel="noopener" style="color:var(--c4);font-weight:600;text-decoration:underline;text-underline-offset:3px;">太宰府 參考影片（YT Shorts）↗</a></div>
+            <div class="tl-time">11:40 — 出發</div>
+            <div class="tl-name">搭地鐵轉西鐵電車前往太宰府</div>
+            <div class="tl-desc">博多駅 搭<strong>福岡市地下鐵空港線</strong>（約 5 分）到 天神駅，出站步行至<strong>西鐵福岡（天神）駅</strong>，轉乘<strong>西鐵天神大牟田線</strong>特急到 西鐵二日市駅，再轉<strong>太宰府線</strong>直達 太宰府駅（全程含轉乘約 30–35 分，票價合計約 420 円）。約 12:15 抵達太宰府。<br><br>📺 <a href="https://www.youtube.com/shorts/Xk3Ite-yi4w" target="_blank" rel="noopener" style="color:var(--c4);font-weight:600;text-decoration:underline;text-underline-offset:3px;">太宰府 參考影片（YT Shorts）↗</a></div>
           </div>
           <div class="tl-item">
             <div class="tl-dot" style="color:var(--c4)"></div>
-            <div class="tl-time">12:50</div>
+            <div class="tl-time">12:15</div>
             <div class="tl-name">① 參道 — 梅枝餅 × 隈研吾設計星巴克</div>
             <div class="tl-desc">參道兩側多家現烤<strong>梅枝餅</strong>，外皮微焦紅豆餡，150 円一個，太宰府必啃。<br><br>別忘了參道中段的 <strong>星巴克太宰府天滿宮表參道店</strong>，由日本建築大師<strong>隈研吾</strong>設計——外牆與室內天花板以數千根木棒交錯疊砌，像森林又像一座裝置藝術。就算不喝咖啡，進去看一眼也值得。</div>
           </div>
           <div class="tl-item">
             <div class="tl-dot" style="color:var(--c4)"></div>
-            <div class="tl-time">14:00</div>
+            <div class="tl-time">13:30</div>
             <div class="tl-name">② 太宰府天滿宮 — 千年學問神社</div>
             <div class="tl-desc">全日本 12,000 座天滿宮總本社，供奉學問・藝術之神菅原道真公。太鼓橋、飛梅傳說、境內神牛像一一到訪。2023 年起本殿整修，但莊嚴假殿同樣充滿千年靈氣。</div>
           </div>
           <div class="tl-item">
             <div class="tl-dot" style="color:var(--c4)"></div>
             <div class="tl-time">16:00 — 返博多</div>
-            <div class="tl-name">搭巴士返博多 → 晚餐</div>
-            <div class="tl-desc">原路搭旅人巴士返回博多（約 40 分）。晚餐可選博多牛雜鍋、博多水炊雞肉鍋，或在藥院屋台再戰一回。明天 Day 5 是 KKday 全天行程，今晚早點休息。</div>
+            <div class="tl-name">搭西鐵電車轉地鐵返博多 → 晚餐</div>
+            <div class="tl-desc">原路搭<strong>太宰府線</strong>轉<strong>西鐵天神大牟田線</strong>回天神駅，再轉<strong>福岡市地下鐵空港線</strong>返博多駅（全程約 35 分）。晚餐可選博多牛雜鍋、博多水炊雞肉鍋，或在藥院屋台再戰一回。明天 Day 5 是 KKday 全天行程，今晚早點休息。</div>
           </div>
         </div>
         <div class="side-panel">
@@ -1170,7 +1170,7 @@ body{
         <ul>
           <li>Day 2：JR 特急 + 渡輪 + JR</li>
           <li>Day 3：ゆふいんの森（需提前 1 個月訂）</li>
-          <li>Day 4：高速バス（別府→博多）+ 旅人バス→太宰府</li>
+          <li>Day 4：JR特急（別府→博多）+ 地鐵/西鐵電車→太宰府</li>
           <li>Day 5：KKday 高千穗一日遊（需提前預約）</li>
         </ul>
       </div>
