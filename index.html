@@ -167,6 +167,30 @@ body{
   margin-bottom:5px;font-weight:600;letter-spacing:.05em;
 }
 
+/* ── LODGING CANDIDATES ── */
+.lodging-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+.lodging-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;}
+.lodging-photo{
+  aspect-ratio:4/3;background:var(--bg);border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--text-muted);font-size:12px;text-align:center;
+}
+.lodging-info{padding:14px;}
+.lodging-period{font-size:11.5px;color:var(--text-muted);margin-bottom:5px;}
+.lodging-name{font-size:13.5px;font-weight:700;color:var(--text-muted);}
+.lodging-addr{font-size:11px;color:var(--text-muted);margin-top:4px;line-height:1.4;}
+.lodging-carousel{
+  aspect-ratio:4/3;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling:touch;scrollbar-width:none;border-bottom:1px solid var(--border);
+}
+.lodging-carousel::-webkit-scrollbar{display:none;}
+.lodging-carousel img{
+  width:100%;height:100%;object-fit:cover;flex-shrink:0;scroll-snap-align:center;
+}
+@media(max-width:720px){
+  .lodging-grid{grid-template-columns:1fr;}
+}
+
 /* ── CONTAINER ── */
 .container{max-width:960px;margin:0 auto;padding:40px 24px 60px;}
 
@@ -442,6 +466,7 @@ body{
   <div class="day-nav-inner">
     <a href="#flights" class="nav-item"><span class="nav-dot" style="background:#888"></span>✈ 航班資訊</a>
     <a href="#pretrip" class="nav-item"><span class="nav-dot" style="background:#888"></span>📝 行前備忘錄</a>
+    <a href="#lodging" class="nav-item"><span class="nav-dot" style="background:#a86a22"></span>🏨 住宿候選</a>
     <a href="#booking" class="nav-item"><span class="nav-dot" style="background:#c084fc"></span>📅 預訂備忘</a>
     <a href="#day1" class="nav-item"><span class="nav-dot" style="background:var(--c1)"></span>Day 1（五）博多抵達</a>
     <a href="#day2" class="nav-item"><span class="nav-dot" style="background:var(--c2)"></span>Day 2（六）北九州一日</a>
@@ -570,6 +595,78 @@ body{
       <li style="font-size:13px;color:var(--text-sub);line-height:1.6;"><span style="display:inline-flex;align-items:center;gap:5px;padding:4px 11px;background:#fff3cd;border:1px solid #f5c842;border-radius:100px;font-size:12px;font-weight:600;color:#7a5800;">⚠ 西瓜卡（Suica）不適用此上限，請避免使用</span></li>
       <li style="font-size:13px;color:var(--text-sub);line-height:1.6;">Day 2 搭 JR 去門司港、Day 3 由布院 → 別府段搭 JR/巴士等日歸行程不在地鐵範圍內，需另購 JR 車票或 SUGOCA IC 卡（<a href="https://www.instagram.com/reel/DZUem4XpnHn/?igsh=ZGx4dWZhNWw2ajkz" target="_blank" rel="noopener" style="color:inherit;font-weight:600;text-decoration:underline;text-underline-offset:2px;">參考影片說明 →</a>）</li>
     </ul>
+  </div>
+</section>
+
+<!-- ═══ LODGING CANDIDATES ═══ -->
+<section id="lodging" style="max-width:960px;margin:20px auto 0;padding:0 24px;">
+  <div class="ov-label">🏨 住宿候選</div>
+  <div class="lodging-grid">
+    <div class="lodging-card">
+      <div class="lodging-carousel">
+              <img src="D1-D3住宿/0d98d5ba-a4af-4e03-a573-b064761a438a.jpeg.avif" alt="住宿房型照片" loading="lazy">
+              <img src="D1-D3住宿/35c52a99-fb01-4235-a051-a4d10b8cf5c8.png.avif" alt="住宿房型照片" loading="lazy">
+              <img src="D1-D3住宿/123253ca-b63e-4657-b556-9ddf0d254cd5.jpeg.avif" alt="住宿房型照片" loading="lazy">
+              <img src="D1-D3住宿/26c12d9b-6908-4866-837b-4836415b777b.jpeg.avif" alt="住宿房型照片" loading="lazy">
+              <img src="D1-D3住宿/2c6c011d-a045-467b-b224-6a169228602a.jpeg.avif" alt="住宿房型照片" loading="lazy">
+              <img src="D1-D3住宿/2f688931-5a0f-44b5-beeb-5b278a69a096.jpeg.avif" alt="住宿房型照片" loading="lazy">
+              <img src="D1-D3住宿/42ba761c-31a2-4506-b54d-083a4dcc2266.jpeg.avif" alt="住宿房型照片" loading="lazy">
+              <img src="D1-D3住宿/4cb113f6-54d1-4e49-b674-e6c46558b2cf.jpeg.avif" alt="住宿房型照片" loading="lazy">
+              <img src="D1-D3住宿/6687e33b-72b5-40ef-8357-7eb9bb1b843b.jpeg.avif" alt="住宿房型照片" loading="lazy">
+              <img src="D1-D3住宿/74759bf3-e072-481b-bc1f-a201a73c5c70.jpeg.avif" alt="住宿房型照片" loading="lazy">
+              <img src="D1-D3住宿/77b2f22b-aa9f-4d2a-bab1-4ef513ad7e3a.jpeg.avif" alt="住宿房型照片" loading="lazy">
+              <img src="D1-D3住宿/7807d951-be42-4a03-b836-6b315a491515.jpeg.avif" alt="住宿房型照片" loading="lazy">
+              <img src="D1-D3住宿/9425d19d-bbed-475a-bd74-b85a9d81b3b0.jpeg.avif" alt="住宿房型照片" loading="lazy">
+              <img src="D1-D3住宿/96152f8d-538c-4260-95fa-df8428ada1be.jpeg.avif" alt="住宿房型照片" loading="lazy">
+              <img src="D1-D3住宿/a42d75d3-7202-48d4-947d-979bd07d4215.jpeg" alt="住宿房型照片" loading="lazy">
+              <img src="D1-D3住宿/aa3d8b83-246f-47e7-ae36-5116b13631f3.jpeg.avif" alt="住宿房型照片" loading="lazy">
+              <img src="D1-D3住宿/b44329cb-3b43-4c39-b3d3-0122e6c918aa.jpeg.avif" alt="住宿房型照片" loading="lazy">
+              <img src="D1-D3住宿/cd8d0b30-e7f8-4f26-b1c8-ea3d512fd815.jpeg.avif" alt="住宿房型照片" loading="lazy">
+              <img src="D1-D3住宿/f3a1207d-0119-4f34-864b-1982b58a7145.jpeg.avif" alt="住宿房型照片" loading="lazy">
+              <img src="D1-D3住宿/f6226c1a-3383-4cfb-a9fc-2079fccdbb7c.jpeg.avif" alt="住宿房型照片" loading="lazy">
+      </div>
+      <div class="lodging-info">
+        <div class="lodging-period">Day 1 → Day 3（2 晚）</div>
+        <div class="lodging-name">Airbnb</div>
+        <div class="lodging-addr"><a href="https://www.google.com/maps/dir/日本福岡縣福岡市博多區+博多駅中央街1,+博多/Yakiniku+AGITO+HIRAO,+2+Chome-15-1+Hirao,+Chuo+Ward,+Fukuoka,+810-0014日本/@33.5807986,130.3599462,14z/data=!4m14!4m13!1m5!1m1!1s0x354191c7e6f9b375:0x2ee22b3d45b98b90!2m2!1d130.4207274!2d33.5897275!1m5!1m1!1s0x35419176ea988645:0xc85d44e30f4c60fa!2m2!1d130.4044217!2d33.5732744!3e3?authuser=0&entry=ttu&g_ep=EgoyMDI2MDgwNS4xIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">1-chōme-12-19 Hirao アールユー101号室, 福岡市, Fukuoka 810-0014, 日本</a></div>
+      </div>
+    </div>
+    <div class="lodging-card">
+      <div class="lodging-carousel">
+              <img src="D3-D4住宿/503931128.jpg" alt="住宿房型照片" loading="lazy">
+              <img src="D3-D4住宿/503932325.jpg" alt="住宿房型照片" loading="lazy">
+              <img src="D3-D4住宿/503933064.jpg" alt="住宿房型照片" loading="lazy">
+              <img src="D3-D4住宿/503933071.jpg" alt="住宿房型照片" loading="lazy">
+              <img src="D3-D4住宿/503935074.jpg" alt="住宿房型照片" loading="lazy">
+              <img src="D3-D4住宿/503935141.jpg" alt="住宿房型照片" loading="lazy">
+              <img src="D3-D4住宿/503935270.jpg" alt="住宿房型照片" loading="lazy">
+              <img src="D3-D4住宿/503935584.jpg" alt="住宿房型照片" loading="lazy">
+              <img src="D3-D4住宿/503935640.jpg" alt="住宿房型照片" loading="lazy">
+              <img src="D3-D4住宿/503936430.jpg" alt="住宿房型照片" loading="lazy">
+              <img src="D3-D4住宿/503936473.jpg" alt="住宿房型照片" loading="lazy">
+              <img src="D3-D4住宿/503936519.jpg" alt="住宿房型照片" loading="lazy">
+              <img src="D3-D4住宿/503936621.jpg" alt="住宿房型照片" loading="lazy">
+              <img src="D3-D4住宿/503936745.jpg" alt="住宿房型照片" loading="lazy">
+              <img src="D3-D4住宿/574898412.jpg" alt="住宿房型照片" loading="lazy">
+              <img src="D3-D4住宿/901264520.jpg" alt="住宿房型照片" loading="lazy">
+              <img src="D3-D4住宿/901264613.jpg" alt="住宿房型照片" loading="lazy">
+              <img src="D3-D4住宿/901264633.jpg" alt="住宿房型照片" loading="lazy">
+              <img src="D3-D4住宿/901264682.jpg" alt="住宿房型照片" loading="lazy">
+              <img src="D3-D4住宿/901264776.jpg" alt="住宿房型照片" loading="lazy">
+      </div>
+      <div class="lodging-info">
+        <div class="lodging-period">Day 3 → Day 4（1 晚）</div>
+        <div class="lodging-name">御宿野乃 別府（暫訂: 無晚餐/有早餐）</div>
+        <div class="lodging-addr">別府駅 徒歩 1 分</div>
+      </div>
+    </div>
+    <div class="lodging-card">
+      <div class="lodging-photo">🖼 圖片待補</div>
+      <div class="lodging-info">
+        <div class="lodging-period">Day 4 → Day 6（1 晚）</div>
+        <div class="lodging-name">飯店名稱待補</div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -715,7 +812,6 @@ body{
             <div class="c-title">💡 Tips</div>
             <ul class="c-list">
               <li>全程建議住在博多駅 800m 圈內，後幾天去門司港、由布院都從這裡出發</li>
-              <li>今天行程輕鬆，明天 Day 2 要早起!!</li>
               <li>博多站 B1 有置物櫃，晚到也可先寄行李再 check-in</li>
             </ul>
           </div>
@@ -802,6 +898,7 @@ body{
               <li>藍翼門司開橋時間固定，可提前在官網確認當日時刻</li>
               <li>Outlet 逛前先上官網查好目標品牌清單，省時省腳力</li>
               <li>回程新幹線小倉→博多只需 15 分，不用太早趕</li>
+              <li>⚠ 明天（Day 3）最晚 <strong>7:30</strong> 要出門 check-out，搭地鐵前往博多集合</li>
             </ul>
           </div>
         </div>
@@ -843,25 +940,25 @@ body{
             <div class="tl-dot" style="color:var(--c3)"></div>
             <div class="tl-time">10:30</div>
             <div class="tl-name">① 海地獄 — 夢幻鈷藍色溫泉地獄</div>
-            <div class="tl-desc">別府八大地獄中規模最大之一，約 1200 年前火山活動形成，池水呈夢幻瓷藍色，實際溫度高達約 98°C，景觀神秘壯觀（約 30–35 分鐘，門票自理：成人 500 円／兒童 250 円，以現場為準）。</div>
+            <div class="tl-desc">別府八大地獄中規模最大之一，約 1200 年前火山活動形成，池水呈夢幻瓷藍色，實際溫度高達約 98°C，景觀神秘壯觀<u>（約 30–35 分鐘，門票自理：成人 500 円／兒童 250 円，以現場為準）</u>。</div>
           </div>
           <div class="tl-item">
             <div class="tl-dot" style="color:var(--c3)"></div>
             <div class="tl-time">11:15</div>
             <div class="tl-name">② 爐地獄 — 高溫蒸氣噴射奇觀</div>
-            <div class="tl-desc">別府代表性地獄溫泉之一，以高溫蒸氣與噴射景觀聞名，泉溫約 90°C，名稱源自古時利用溫泉製作祭祀食物的習俗（約 30–35 分鐘，門票自理：成人 500 円／兒童 250 円，以現場為準）。</div>
+            <div class="tl-desc">別府代表性地獄溫泉之一，以高溫蒸氣與噴射景觀聞名，泉溫約 90°C，名稱源自古時利用溫泉製作祭祀食物的習俗<u>（約 30–35 分鐘，門票自理：成人 500 円／兒童 250 円，以現場為準）</u>。</div>
           </div>
           <div class="tl-item">
             <div class="tl-dot" style="color:var(--c3)"></div>
             <div class="tl-time">12:25</div>
             <div class="tl-name">③ 九州自然動物公園 — 叢林巴士近距離餵動物</div>
-            <div class="tl-desc">日本大型野生動物園之一，可搭乘叢林巴士近距離餵食獅子、大象、黑熊等動物，也能觀賞長頸鹿、斑馬等草原動物，並設有小動物互動區，適合親子同遊（約 80–90 分鐘，含午餐時間，費用自理：門票 2,600 円／叢林巴士 1,500 円，以現場為準）。<br><br>※冬季如遇封路或休園，將改前往大分海洋宮殿水族館。</div>
+            <div class="tl-desc">日本大型野生動物園之一，可搭乘叢林巴士近距離餵食獅子、大象、黑熊等動物，也能觀賞長頸鹿、斑馬等草原動物，並設有小動物互動區，適合親子同遊<u>（約 80–90 分鐘，含午餐時間，費用自理：門票 2,600 円／叢林巴士 1,500 円，以現場為準）</u>。<br><br>※冬季如遇封路或休園，將改前往大分海洋宮殿水族館。</div>
           </div>
           <div class="tl-item">
             <div class="tl-dot" style="color:var(--c3)"></div>
             <div class="tl-time">14:30</div>
             <div class="tl-name">④ 抵達由布院 — 自由活動 2 小時 20 分（於此脫團）</div>
-            <div class="tl-desc">跟團行程抵達由布院後即可自由活動，午餐自理。<strong>此站脫團</strong>，不搭乘 16:50 的原車返回博多，改自行前往別府。<br><br>推薦自由活動：<br>• <strong>湯之坪街道</strong> — 美食與伴手禮集中地，<strong>B-Speak</strong> 蛋糕卷、和牛可樂餅都在這一帶<br>• <strong>金鱗湖</strong> — 湖水因溫差常現夢幻霧氣景觀<br>• <strong>由布院花卉村</strong> — 英倫風格拍照景點</div>
+            <div class="tl-desc">跟團行程抵達由布院後即可自由活動，午餐自理。<strong>此站脫團，不搭乘 16:50 的原車返回博多，改自行前往別府。</strong><br><br>推薦自由活動：<br>• <strong>湯之坪街道</strong> — 美食與伴手禮集中地，<strong>B-Speak</strong> 蛋糕卷、和牛可樂餅都在這一帶<br>• <strong>金鱗湖</strong> — 湖水因溫差常現夢幻霧氣景觀<br>• <strong>由布院花卉村</strong> — 英倫風格拍照景點<br>• <strong>貓頭鷹之森</strong> — 近距離接觸貓頭鷹，可上手互動</div>
           </div>
           <div class="tl-item">
             <div class="tl-dot" style="color:var(--c3)"></div>
@@ -886,7 +983,7 @@ body{
                 </div>
                 <div>
                   <strong>🍜 消夜拉麵（宵夜蕎麥麵）</strong><br>
-                  22:00～23:00，醬油清湯半份，<strong>免費</strong>。評價：「比想像中好吃」
+                  22:00～23:00，醬油清湯拉麵，<strong>免費宵夜</strong>。
                 </div>
                 <div>
                   <strong>🍱 早餐 Buffet</strong><br>
@@ -895,7 +992,7 @@ body{
                 <div style="font-size:12px;color:var(--text-muted);">📍 別府駅 徒歩 1 分｜旁邊就是 Lawson</div>
               </div>
             </div>
-            <div class="tl-sub">🥩 若選外食晚餐：<strong><a href="https://www.google.com/maps/place/%E7%87%92%E8%82%89+%E5%86%86%E5%86%86/@33.2798296,131.500341,16.94z/data=!4m14!1m7!3m6!1s0x3546add74067b43b:0xfa3ac430742211d2!2z6JuL57OV5Y23IEIgU1BFQUsg5pys5bqX!8m2!3d33.2653853!4d131.3593844!16s%2Fg%2F11cn971wlq!3m5!1s0x3546a6dd20edebf3:0x222cf74f61f08e7f!8m2!3d33.279124!4d131.5036828!16s%2Fg%2F1w0h59ml?entry=ttu&g_ep=EgoyMDI2MDYyNC4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener" style="color:var(--c3);text-decoration:underline;text-underline-offset:3px;">燒肉 円円 ↗</a></strong>（別府燒肉名店）｜備案：<strong><a href="https://www.google.com/maps/place/Ichiriki/@33.2798296,131.500341,16.94z/data=!4m14!1m7!3m6!1s0x3546add74067b43b:0xfa3ac430742211d2!2z6JuL57OV5Y23IEIgU1BFQUsg5pys5bqX!8m2!3d33.2653853!4d131.3593844!16s%2Fg%2F11cn971wlq!3m5!1s0x3546a757f3e5846d:0x28d1349e346b33d6!8m2!3d33.2801097!4d131.5022881!16s%2Fg%2F1tct6j6_?entry=ttu&g_ep=EgoyMDI2MDYyNC4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener" style="color:var(--c3);text-decoration:underline;text-underline-offset:3px;">燒肉 Ichiriki ↗</a></strong></div>
+            <div class="tl-sub">🥩 若選外食晚餐：<strong><a href="https://www.google.com/maps/place/%E7%87%92%E8%82%89+%E5%86%86%E5%86%86/@33.2798296,131.500341,16.94z/data=!4m14!1m7!3m6!1s0x3546add74067b43b:0xfa3ac430742211d2!2z6JuL57OV5Y23IEIgU1BFQUsg5pys5bqX!8m2!3d33.2653853!4d131.3593844!16s%2Fg%2F11cn971wlq!3m5!1s0x3546a6dd20edebf3:0x222cf74f61f08e7f!8m2!3d33.279124!4d131.5036828!16s%2Fg%2F1w0h59ml?entry=ttu&g_ep=EgoyMDI2MDYyNC4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener" style="color:var(--c3);text-decoration:underline;text-underline-offset:3px;">燒肉 円円 ↗</a></strong>（別府燒肉名店）｜備案：<strong><a href="https://www.google.com/maps/place/Ichiriki/@33.2798296,131.500341,16.94z/data=!4m14!1m7!3m6!1s0x3546add74067b43b:0xfa3ac430742211d2!2z6JuL57OV5Y23IEIgU1BFQUsg5pys5bqX!8m2!3d33.2653853!4d131.3593844!16s%2Fg%2F11cn971wlq!3m5!1s0x3546a757f3e5846d:0x28d1349e346b33d6!8m2!3d33.2801097!4d131.5022881!16s%2Fg%2F1tct6j6_?entry=ttu&g_ep=EgoyMDI2MDYyNC4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener" style="color:var(--c3);text-decoration:underline;text-underline-offset:3px;">燒肉 Ichiriki ↗</a></strong><br><br>🍞 若晚上 <strong>18:00 前</strong>抵達別府，可以順道去<strong><a href="https://www.google.com/maps/place/%E5%8F%8B%E6%B0%B8%E9%BA%B5%E5%8C%85%E5%B1%8B/@33.2745879,131.504148,17z/data=!3m1!4b1!4m6!3m5!1s0x3546a6c3b67a8ff7:0x3feb11a15c177bc1!8m2!3d33.2745879!4d131.504148!16s%2Fg%2F1tg6shwq?authuser=0&entry=ttu&g_ep=EgoyMDI2MDgwNS4xIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener" style="color:var(--c3);text-decoration:underline;text-underline-offset:3px;">友永麵包屋 ↗</a></strong>——評價很高的老字號麵包店，值得買幾個當隔天早餐或路上點心。在地人美食，明星商品<strong>小狗麵包</strong>、<strong>紅豆麵包</strong>、<strong>蜜瓜麵包</strong>和<strong>奶油卷</strong>，早上 8:30 就開門了。</div>
           </div>
         </div>
         <div class="side-panel">
@@ -904,7 +1001,7 @@ body{
             <ul class="c-list">
               <li><strong>B-Speak 蛋糕卷</strong> — 一開門就去排，必買</li>
               <li><strong>和牛可樂餅</strong> — 九州和牛可樂餅，現炸最香</li>
-              <li><strong>旅館會席料理</strong>（含一泊二食）— 大分地產精華</li>
+              <li><strong>由布院 釜飯</strong> — 砂鍋現炊的日式炊飯，湯之坪街道一帶多家可選</li>
               <li><span><strong><a href="https://www.google.com/maps/place/%E7%87%92%E8%82%89+%E5%86%86%E5%86%86/@33.2798296,131.500341,16.94z/data=!4m14!1m7!3m6!1s0x3546add74067b43b:0xfa3ac430742211d2!2z6JuL57OV5Y23IEIgU1BFQUsg5pys5bqX!8m2!3d33.2653853!4d131.3593844!16s%2Fg%2F11cn971wlq!3m5!1s0x3546a6dd20edebf3:0x222cf74f61f08e7f!8m2!3d33.279124!4d131.5036828!16s%2Fg%2F1w0h59ml?entry=ttu&g_ep=EgoyMDI2MDYyNC4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener" style="color:var(--c3);text-decoration:underline;text-underline-offset:3px;">燒肉 円円 ↗</a></strong> — 別府燒肉名店｜備案：<strong><a href="https://www.google.com/maps/place/Ichiriki/@33.2798296,131.500341,16.94z/data=!4m14!1m7!3m6!1s0x3546add74067b43b:0xfa3ac430742211d2!2z6JuL57OV5Y23IEIgU1BFQUsg5pys5bqX!8m2!3d33.2653853!4d131.3593844!16s%2Fg%2F11cn971wlq!3m5!1s0x3546a757f3e5846d:0x28d1349e346b33d6!8m2!3d33.2801097!4d131.5022881!16s%2Fg%2F1tct6j6_?entry=ttu&g_ep=EgoyMDI2MDYyNC4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener" style="color:var(--c3);text-decoration:underline;text-underline-offset:3px;">燒肉 Ichiriki ↗</a></strong></span></li>
             </ul>
           </div>
@@ -915,7 +1012,7 @@ body{
               <a href="https://www.booking.com/hotel/jp/bie-fu-ba-tang-yu-su-ye-nai-bie-fu.zh-tw.html" target="_blank" rel="noopener" style="color:var(--c3);text-decoration:underline;text-underline-offset:3px;">Booking.com ↗</a>
             </div>
             <ul class="c-list">
-              <li>🛁 <strong>13F 天然大浴場</strong>（別府溫泉）＋貸切溫泉免費預約、三溫暖、泡完有冰淇淋</li>
+              <li>🛁 <strong>13F 天然大浴場</strong>（別府溫泉）＋貸切溫泉現場查看空位使用、三溫暖、泡完有冰淇淋</li>
               <li>🍜 <strong>消夜拉麵</strong> 22:00–23:00 免費，可直接去夾</li>
               <li>🍳 <strong>早餐 Buffet</strong> 大分炸雞・海鮮丼等大分鄉土料理，評價佳</li>
             </ul>
@@ -924,8 +1021,7 @@ body{
             <div class="c-title">💡 Tips</div>
             <ul class="c-list">
               <li>KKday《別府地獄與九州自然動物園一日遊》建議提前預約，名額有限</li>
-              <li>由布院自由活動僅 2 小時 20 分，湯之坪街道＋金鱗湖優先，B-Speak 記得先去排隊</li>
-              <li>御宿野乃別府可提前線上預約貸切溫泉時段，免費但名額有限</li>
+              <li>貸切溫泉不用線上預約：除男女裸湯外還有 7 間不同特色的私人湯屋，開放時間 15:00～隔天 10:00（半夜也能用），每次使用 45 分鐘，湯屋門口有牌子、有人使用就會亮燈，毛巾記得自己從房間帶</li>
               <li>B-Speak 常常開門不久就售完，建議抵達後第一件事先去排隊</li>
             </ul>
           </div>
@@ -978,7 +1074,7 @@ body{
             <div class="tl-dot" style="color:var(--c4)"></div>
             <div class="tl-time">12:15</div>
             <div class="tl-name">① 參道 — 梅枝餅 × 隈研吾設計星巴克</div>
-            <div class="tl-desc">參道兩側多家現烤<strong>梅枝餅</strong>，外皮微焦紅豆餡，150 円一個，太宰府必啃。<br><br>別忘了參道中段的 <strong>星巴克太宰府天滿宮表參道店</strong>，由日本建築大師<strong>隈研吾</strong>設計——外牆與室內天花板以數千根木棒交錯疊砌，像森林又像一座裝置藝術。就算不喝咖啡，進去看一眼也值得。</div>
+            <div class="tl-desc">參道兩側有多家老店現烤<strong>梅枝餅</strong>，外皮烤得微焦酥香，內餡是溫潤綿密的紅豆沙，一個 150 円，是來太宰府參拜時很值得一嚐的在地點心。<br><br>別忘了參道中段的 <strong>星巴克太宰府天滿宮表參道店</strong>，由日本建築大師<strong>隈研吾</strong>設計——外牆與室內天花板以數千根木棒交錯疊砌，像森林又像一座裝置藝術。就算不喝咖啡，進去看一眼也值得。</div>
           </div>
           <div class="tl-item">
             <div class="tl-dot" style="color:var(--c4)"></div>
@@ -990,7 +1086,13 @@ body{
             <div class="tl-dot" style="color:var(--c4)"></div>
             <div class="tl-time">16:00 — 返博多</div>
             <div class="tl-name">搭西鐵電車轉地鐵返博多 → 晚餐</div>
-            <div class="tl-desc">原路搭<strong>太宰府線</strong>轉<strong>西鐵天神大牟田線</strong>回天神駅，再轉<strong>福岡市地下鐵空港線</strong>返博多駅（全程約 35 分）。晚餐可選博多牛雜鍋、博多水炊雞肉鍋，或在藥院屋台再戰一回。明天 Day 5 是 KKday 全天行程，今晚早點休息。</div>
+            <div class="tl-desc">原路搭<strong>太宰府線</strong>轉<strong>西鐵天神大牟田線</strong>回天神駅，再轉<strong>福岡市地下鐵空港線</strong>返博多駅（全程約 35 分）。晚餐可選博多牛雜鍋、博多水炊雞肉鍋、<strong>黑田屋</strong>，或在藥院屋台再戰一回。明天 Day 5 是 KKday 全天行程，今晚早點休息。</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot" style="color:var(--c4)"></div>
+            <div class="tl-time">18:00</div>
+            <div class="tl-name">晚餐候選 すみ劇場 むさし坐（暫定，需訂位）</div>
+            <div class="tl-desc">位於裏天神（渡辺通）的居酒屋，以炭火燒烤原始風味的烤魚、烤雞聞名，店員上菜時的<strong>撒鹽表演</strong>是招牌看點，社群上討論度很高。營業至深夜，適合吃完太宰府後直接排進晚餐行程，但人氣高、建議提前訂位。</div>
           </div>
         </div>
         <div class="side-panel">
@@ -1019,7 +1121,6 @@ body{
     <div class="day-head" style="background:linear-gradient(135deg,#875218,#a86a22)">
       <div class="day-num-block">
         <span class="dn-label">DAY</span><span class="dn-num">05</span><span class="dn-weekday">週二 12/29</span>
-        <div class="flex-badge">全天</div>
       </div>
       <div class="day-info">
         <div class="di-loc">📍 宮崎縣 · 高千穗峽（KKday 接送一日遊，從博多出發）</div>
@@ -1164,7 +1265,7 @@ body{
         <h3>📅 行程日期對應</h3>
         <ul>
           <li>Day 1（五）博多抵達</li>
-          <li>Day 2（六）北九州跨海之旅 ✓</li>
+          <li>Day 2（六）北九州跨海之旅</li>
           <li>Day 3（日）別府地獄＋動物園 → 由布院 → 別府溫泉</li>
           <li>Day 4（一）太宰府（返博多下午）</li>
           <li>Day 5（二）高千穗峽 KKday 一日遊</li>
