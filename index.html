@@ -193,8 +193,32 @@ a{color:inherit;}
 .pshot-row{display:flex;gap:8px;overflow-x:auto;padding:2px 0 14px;scrollbar-width:none;}
 .pshot-row::-webkit-scrollbar{display:none;}
 .pshot{flex-shrink:0;width:104px;text-align:center;}
-.pshot img{width:104px;height:140px;object-fit:cover;border-radius:12px;display:block;border:1px solid var(--line);}
+.pshot img{width:104px;height:140px;object-fit:cover;border-radius:12px;display:block;border:1px solid var(--line);cursor:pointer;}
 .pshot figcaption{font-size:9.5px;color:var(--ink-mute);margin-top:5px;line-height:1.4;}
+
+/* ══ LIGHTBOX ══ */
+.lightbox{
+  position:fixed;inset:0;z-index:300;
+  background:rgba(0,0,0,.94);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;transition:opacity .2s ease;
+}
+.lightbox.open{opacity:1;pointer-events:auto;}
+.lightbox img{max-width:92vw;max-height:80vh;object-fit:contain;border-radius:10px;touch-action:pan-y;}
+.lightbox-close,.lightbox-nav{
+  position:absolute;display:flex;align-items:center;justify-content:center;
+  width:38px;height:38px;border-radius:50%;
+  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);
+  color:#fff;font-size:18px;line-height:1;cursor:pointer;
+}
+.lightbox-close{top:calc(14px + var(--safe-t));right:16px;font-size:16px;}
+.lightbox-nav{top:50%;transform:translateY(-50%);font-size:22px;}
+.lightbox-prev{left:10px;}
+.lightbox-next{right:10px;}
+.lightbox-count{
+  position:absolute;bottom:calc(18px + var(--safe-b));left:50%;transform:translateX(-50%);
+  color:rgba(255,255,255,.65);font-size:11.5px;letter-spacing:.06em;font-weight:600;
+}
 
 /* info blocks (食/宿/提醒) */
 .iblock{margin-bottom:12px;border-radius:14px;padding:12px 14px;background:var(--bg);}
@@ -758,8 +782,58 @@ a{color:inherit;}
   </a>
 </nav>
 
+<!-- ═══ LIGHTBOX ═══ -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" aria-label="關閉">✕</button>
+  <button class="lightbox-nav lightbox-prev" aria-label="上一張">‹</button>
+  <img id="lightbox-img" alt="">
+  <button class="lightbox-nav lightbox-next" aria-label="下一張">›</button>
+  <div class="lightbox-count" id="lightbox-count"></div>
+</div>
+
 <script>
 (function(){
+  // ── photo lightbox ──
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lightbox-img');
+  const lbCount = document.getElementById('lightbox-count');
+  let group = [], idx = 0;
+
+  function show(i){
+    idx = (i + group.length) % group.length;
+    lbImg.src = group[idx].src;
+    lbImg.alt = group[idx].alt || '';
+    lbCount.textContent = group.length > 1 ? (idx + 1) + ' / ' + group.length : '';
+  }
+  function openLB(imgs, startIdx){
+    group = imgs;
+    show(startIdx);
+    lb.classList.add('open');
+  }
+  function closeLB(){
+    lb.classList.remove('open');
+    lbImg.src = '';
+  }
+  document.querySelectorAll('.pshot-row').forEach(row => {
+    const imgs = Array.from(row.querySelectorAll('img'));
+    imgs.forEach((img, i) => img.addEventListener('click', () => openLB(imgs, i)));
+  });
+  lb.querySelector('.lightbox-close').addEventListener('click', closeLB);
+  lb.addEventListener('click', e => { if (e.target === lb) closeLB(); });
+  lb.querySelector('.lightbox-prev').addEventListener('click', () => show(idx - 1));
+  lb.querySelector('.lightbox-next').addEventListener('click', () => show(idx + 1));
+
+  // swipe left/right to navigate
+  let touchX = null;
+  lb.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, { passive: true });
+  lb.addEventListener('touchend', e => {
+    if (touchX === null) return;
+    const dx = e.changedTouches[0].clientX - touchX;
+    if (Math.abs(dx) > 40) show(idx + (dx < 0 ? 1 : -1));
+    touchX = null;
+  }, { passive: true });
+
+  // ── day tab bar ──
   const tabs = document.querySelectorAll('.tab');
   const targets = tabs.map(t => document.querySelector(t.getAttribute('href')));
   tabs.forEach(t => t.addEventListener('click', () => {
