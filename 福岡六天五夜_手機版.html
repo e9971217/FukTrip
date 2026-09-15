@@ -237,6 +237,7 @@ a{color:inherit;}
 .tip-row{display:flex;flex-wrap:wrap;gap:7px;padding-bottom:16px;}
 .tip-pill{font-size:11px;color:var(--ink-sub);background:var(--bg);padding:7px 11px;border-radius:11px;line-height:1.5;}
 .tip-pill b{color:var(--ink);}
+.warn-pill{display:flex;align-items:flex-start;gap:6px;font-size:11.5px;font-weight:700;color:#7a5800;background:#fff3cd;border:1px solid #f5c842;padding:8px 12px;border-radius:11px;line-height:1.5;margin-top:8px;}
 
 /* ══ FOOTER ══ */
 .foot{text-align:center;padding:26px 20px 8px;color:var(--ink-mute);font-size:10.5px;letter-spacing:.08em;}
@@ -617,14 +618,17 @@ a{color:inherit;}
 <!-- ═══ PRE-TRIP NOTES ═══ -->
 <div class="sec-label" id="sec-pretrip">📝 行前備忘錄</div>
 <div class="csec">
-  <div class="iblock" style="background:none;padding:0 0 14px;">
+  <div class="tip-row">
+    <div class="tip-pill">💴 帶一點日幣</div>
+    <div class="tip-pill">💳 出發前登入 Visa Japan</div>
+  </div>
+  <div class="iblock">
+    <div class="iblock-h">🚇 地鐵交通卡</div>
     <ul>
-      <li>帶一點日幣</li>
-      <li>出發前要登入 Visa Japan</li>
       <li>福岡地鐵（空港線／箱崎線／七隈線）可用 <b>NFC 信用卡</b>（Visa/Mastercard）感應過閘，單日達 <b>640 円</b>後當日免費，不需另購 IC 卡</li>
-      <li>⚠ <b>西瓜卡（Suica）不適用此上限</b>，請避免使用</li>
       <li>Day 2 去門司港、Day 3 由布院→別府段不在地鐵範圍內，需另購 JR 車票或 SUGOCA IC 卡</li>
     </ul>
+    <div class="warn-pill">⚠ 西瓜卡（Suica）不適用此上限，請避免使用</div>
   </div>
 </div>
 
