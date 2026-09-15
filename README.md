@@ -2,7 +2,11 @@
 
 A single-file HTML travel guide for a 6-day / 5-night trip to Fukuoka, Japan (Dec 25–30).
 
-**Live site:** https://e9971217.github.io/FukTrip/
+**Live site:** https://e9971217.github.io/FukTrip/ (full desktop/mobile-responsive version, `index.html`)
+
+**Files:**
+- `index.html` / `福岡六天五夜_v20.html` — full version (identical content), published to GitHub Pages
+- `福岡六天五夜_手機版.html` — iPhone/app-style version: image-led vertical cards, collapsed-by-default detail, Instagram-style day "stories" row, iOS-like bottom tab bar. Open on iPhone and "Add to Home Screen" for a fullscreen app feel. Cross-linked with the full version.
 
 ## Itinerary
 
