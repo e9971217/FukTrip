@@ -44,14 +44,18 @@ img{-webkit-user-drag:none;user-select:none;}
 a{color:inherit;}
 .serif{font-family:'Noto Serif TC',serif;}
 
-/* ══ TOP BAR ══ */
-.topbar{
+/* ══ STICKY HEADER (top bar + stories) ══ */
+.stickyhead{
   position:sticky;top:0;z-index:50;
-  padding:calc(10px + var(--safe-t)) 18px 10px;
-  background:rgba(244,241,236,.82);
+  background:rgba(244,241,236,.86);
   backdrop-filter:blur(18px) saturate(1.4);
   -webkit-backdrop-filter:blur(18px) saturate(1.4);
   border-bottom:1px solid rgba(0,0,0,.06);
+}
+
+/* ══ TOP BAR ══ */
+.topbar{
+  padding:calc(10px + var(--safe-t)) 18px 4px;
   display:flex;align-items:center;justify-content:space-between;
 }
 .topbar-title{display:flex;flex-direction:column;line-height:1.15;}
@@ -66,16 +70,16 @@ a{color:inherit;}
 
 /* ══ STORIES ROW (day jump) ══ */
 .stories{
-  display:flex;gap:14px;padding:14px 16px 16px;overflow-x:auto;
+  display:flex;gap:10px;padding:6px 16px 9px;overflow-x:auto;
   scrollbar-width:none;
 }
 .stories::-webkit-scrollbar{display:none;}
 .story{
-  flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:6px;
-  text-decoration:none;width:60px;
+  flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:4px;
+  text-decoration:none;min-width:54px;
 }
 .story-ring{
-  width:56px;height:56px;border-radius:50%;padding:2.5px;
+  width:46px;height:46px;border-radius:50%;padding:2.5px;
   background:conic-gradient(from -45deg,var(--rc1),var(--rc2));
   display:flex;align-items:center;justify-content:center;
 }
@@ -84,11 +88,12 @@ a{color:inherit;}
   background-size:cover;background-position:center;
   border:2px solid var(--bg);
 }
-.story-label{font-size:9.5px;font-weight:700;color:var(--ink-sub);letter-spacing:.02em;}
+.story-label{font-size:9.5px;font-weight:700;color:var(--ink-sub);letter-spacing:.02em;white-space:nowrap;}
 .story-label b{color:var(--ink);}
 
 /* ══ SECTION LABEL ══ */
 .sec-label{
+  scroll-margin-top:150px;
   padding:6px 18px 2px;font-size:11px;font-weight:800;letter-spacing:.14em;
   color:var(--ink-mute);text-transform:uppercase;
 }
@@ -129,7 +134,7 @@ a{color:inherit;}
   border-radius:26px;overflow:hidden;background:var(--card);
   box-shadow:0 1px 3px rgba(0,0,0,.04),0 10px 28px -12px rgba(0,0,0,.18);
   border:1px solid rgba(0,0,0,.04);
-  scroll-margin-top:96px;
+  scroll-margin-top:150px;
 }
 .dcard-media{position:relative;aspect-ratio:4/3;background:#111 center/cover no-repeat;}
 .dcard-media::after{
@@ -271,7 +276,7 @@ a{color:inherit;}
 .hotel-card a{font-size:10.5px;font-weight:700;color:var(--accent);text-decoration:underline;text-underline-offset:2px;white-space:nowrap;}
 
 /* ══ COMPACT SECTIONS (flights / booking / tips) ══ */
-.csec{margin:0 14px 16px;border-radius:22px;background:var(--card);border:1px solid rgba(0,0,0,.04);box-shadow:0 1px 3px rgba(0,0,0,.04),0 10px 28px -14px rgba(0,0,0,.15);padding:16px 16px 6px;scroll-margin-top:96px;}
+.csec{margin:0 14px 16px;border-radius:22px;background:var(--card);border:1px solid rgba(0,0,0,.04);box-shadow:0 1px 3px rgba(0,0,0,.04),0 10px 28px -14px rgba(0,0,0,.15);padding:16px 16px 6px;scroll-margin-top:150px;}
 .csec-h{display:flex;align-items:center;gap:7px;font-size:14px;font-weight:800;margin-bottom:12px;}
 .flight-mini{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:12px 4px;border-top:1px solid var(--line);}
 .flight-mini:first-of-type{border-top:none;}
@@ -328,7 +333,8 @@ a{color:inherit;}
 </head>
 <body>
 
-<!-- ═══ TOP BAR ═══ -->
+<!-- ═══ STICKY HEADER ═══ -->
+<div class="stickyhead">
 <div class="topbar">
   <div class="topbar-title"><b>福岡 六天五夜</b><span>2026.12.25 → 12.30 · FUKUOKA</span></div></div>
 
@@ -362,6 +368,7 @@ a{color:inherit;}
     <div class="story-ring"><div class="story-img" style="background-image:url('https://commons.wikimedia.org/wiki/Special:FilePath/Kushidajinjafukuoka01.jpg?width=200')"></div></div>
     <div class="story-label"><b>D6</b> 返台</div>
   </a>
+</div>
 </div>
 
 <!-- ═══ HERO ═══ -->
@@ -907,6 +914,24 @@ a{color:inherit;}
     });
   }, { rootMargin: '-45% 0px -45% 0px' });
   targets.forEach(el => el && io.observe(el));
+
+  // ── open the card you jump to (stories / tab bar) ──
+  document.querySelectorAll('a[href^="#day"]').forEach(a => a.addEventListener('click', () => {
+    const card = document.querySelector(a.getAttribute('href'));
+    if (card) card.classList.add('open');
+  }));
+
+  // ── during the trip (12/25–12/30), open only today's card ──
+  // ?date=2026-12-27 overrides "today" for testing
+  const q = new URLSearchParams(location.search).get('date');
+  const now = q ? new Date(q + 'T12:00:00') : new Date();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const dayNo = Math.round((today - new Date(2026, 11, 25)) / 86400000) + 1;
+  const todayCard = document.getElementById('day' + dayNo);
+  if (dayNo >= 1 && dayNo <= 6 && todayCard) {
+    document.querySelectorAll('.dcard').forEach(c => c.classList.toggle('open', c === todayCard));
+    if (!location.hash) todayCard.scrollIntoView();
+  }
 })();
 </script>
 </body>
