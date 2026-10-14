@@ -184,11 +184,12 @@ a{color:inherit;}
 .mtl-body b{font-size:13px;font-weight:700;display:block;line-height:1.4;margin-bottom:2px;}
 .mtl-body p{font-size:12px;color:var(--ink-sub);line-height:1.65;}
 .mtl-body a{color:var(--accent);font-weight:700;text-decoration:underline;text-underline-offset:2px;}
-.ptable{width:100%;border-collapse:collapse;margin-top:6px;font-size:11px;color:var(--ink-sub);background:var(--bg);border-radius:9px;overflow:hidden;}
-.ptable th,.ptable td{padding:5px 8px;text-align:left;border-top:1px solid var(--line);line-height:1.45;}
-.ptable tr:first-child th{border-top:none;}
-.ptable th{font-weight:700;color:var(--ink);}
-.ptable td:last-child{text-align:right;font-weight:700;color:var(--ink);white-space:nowrap;}
+.plist{margin-top:8px;background:var(--bg);border-radius:9px;padding:2px 10px;}
+.prow{display:flex;gap:10px;align-items:center;padding:7px 0;border-top:1px solid var(--line);}
+.prow:first-child{border-top:none;}
+.psz{flex-shrink:0;width:52px;font-size:11px;font-weight:700;color:var(--ink);line-height:1.3;}
+.psz b{display:block;font-size:14px;color:var(--accent);}
+.pdesc{font-size:11px;color:var(--ink-sub);line-height:1.55;}
 .mtl-note{
   margin-top:6px;font-size:11px;color:var(--ink-sub);
   background:var(--bg);padding:7px 10px;border-radius:9px;line-height:1.55;
@@ -617,12 +618,11 @@ a{color:inherit;}
       <div class="mtl">
         <div class="mtl-item"><div class="mtl-time">09:30</div><div class="mtl-body"><b>天神南森林 退房</b><p>拖行李步行到大丸（天神南駅旁，約 3 分）。</p></div></div>
         <div class="mtl-item"><div class="mtl-time">10:00</div><div class="mtl-body"><b>大丸福岡天神店 — 行李直送機場</b><p>本館 B1「CARGO PASS」櫃台（免稅櫃台旁），<b>10:00–12:00</b> 寄出，當天 14:00–19:30 在<b>福岡機場國際線 1F 入境大廳</b>領取。<a href="https://www.daimaru-fukuoka.jp/info/detail/?cd=001463" target="_blank" rel="noopener">大丸說明 ↗</a></p>
-            <table class="ptable">
-              <tr><th>尺寸</th><th>行李箱（三邊合計）</th><th>包包・後背包</th><th>價格</th></tr>
-              <tr><td><b>S</b></td><td>&lt; 120cm（登機箱）</td><td>&lt; 10kg</td><td>¥550</td></tr>
-              <tr><td><b>M</b></td><td>120–160cm 且 &lt; 20kg</td><td>10–20kg</td><td>¥1,100</td></tr>
-              <tr><td><b>L</b></td><td>≥ 160cm 或 ≥ 20kg</td><td>≥ 20kg</td><td>¥1,650</td></tr>
-            </table><div class="mtl-note">⚠ 貴重物品、生鮮、冷藏冷凍品不收；12/30 年末營業出發前再確認</div></div></div>
+            <div class="plist">
+              <div class="prow"><div class="psz"><b>S</b>¥550</div><div class="pdesc">行李箱 三邊 &lt;120cm（登機箱）<br>包包・後背包 &lt;10kg</div></div>
+              <div class="prow"><div class="psz"><b>M</b>¥1,100</div><div class="pdesc">行李箱 三邊 120–160cm 且 &lt;20kg<br>包包・後背包 10–20kg</div></div>
+              <div class="prow"><div class="psz"><b>L</b>¥1,650</div><div class="pdesc">行李箱 三邊 ≥160cm 或 ≥20kg<br>包包・後背包 ≥20kg</div></div>
+            </div><div class="mtl-note">⚠ 貴重物品、生鮮、冷藏冷凍品不收；12/30 年末營業出發前再確認</div></div></div>
         <div class="mtl-item"><div class="mtl-time">10:30</div><div class="mtl-body"><b>櫛田神社</b><p>七隈線天神南 → 櫛田神社前 2 站。博多の総鎮守，可近距離欣賞博多山笠裝飾台車。</p></div></div>
         <div class="mtl-item"><div class="mtl-time">11:15</div><div class="mtl-body"><b>川端通商店街</b><p>百年拱廊老街，與博多リバレイン連通，採購伴手禮好地點。</p></div></div>
         <div class="mtl-item"><div class="mtl-time">12:00</div><div class="mtl-body"><b>博多ラーメン STA.</b><p>出發前最後一碗豚骨。</p></div></div>
