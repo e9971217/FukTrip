@@ -341,6 +341,19 @@ a{color:inherit;}
 .food-head b{font-size:16px;font-weight:800;}
 .food-close{width:32px;height:32px;border-radius:50%;border:1px solid var(--line);background:var(--card);
   font-size:14px;color:var(--ink-sub);cursor:pointer;font-family:inherit;}
+.food-map-wrap{position:relative;height:34vh;min-height:200px;margin:4px 14px 0;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:#e8e4dc;flex-shrink:0;}
+#food-map{position:absolute;inset:0;}
+.food-locate{position:absolute;right:10px;bottom:10px;z-index:500;border:none;background:#fff;color:#1a73e8;
+  font-family:inherit;font-size:12px;font-weight:800;padding:8px 12px;border-radius:100px;box-shadow:0 2px 8px rgba(0,0,0,.25);cursor:pointer;}
+.food-map-msg{position:absolute;left:10px;right:10px;top:10px;z-index:500;font-size:11px;background:rgba(255,255,255,.95);
+  color:var(--ink-sub);padding:7px 10px;border-radius:10px;display:none;}
+.fpin{width:28px;height:28px;border-radius:50%;background:#fff;border:2px solid var(--ink);display:flex;align-items:center;justify-content:center;font-size:14px;box-shadow:0 1px 4px rgba(0,0,0,.3);}
+.fpin.on{border-color:#d93025;transform:scale(1.2);}
+.leaflet-popup-content{font-family:'Noto Sans TC',sans-serif;font-size:12px;margin:10px 12px;}
+.leaflet-popup-content b{display:block;font-size:13px;margin-bottom:3px;}
+.leaflet-popup-content a{color:#1a5c8a;font-weight:700;}
+.food-card{cursor:pointer;}
+.food-card.on{border-color:var(--ink);}
 .food-chips{display:flex;gap:7px;overflow-x:auto;padding:8px 16px 12px;scrollbar-width:none;flex-shrink:0;}
 .food-chips::-webkit-scrollbar{display:none;}
 .food-chip{flex-shrink:0;border:1px solid var(--line);background:var(--card);color:var(--ink-sub);
@@ -954,6 +967,7 @@ button.tab{font-size:inherit;}
 <div class="food-sheet" id="food-sheet" aria-hidden="true">
   <div class="food-panel" role="dialog" aria-label="美食清單">
     <div class="food-head"><b>🍴 美食清單</b><button class="food-close" type="button" aria-label="關閉">✕</button></div>
+    <div class="food-map-wrap"><div id="food-map"></div><div class="food-map-msg" id="food-map-msg"></div><button class="food-locate" type="button">📍 我的位置</button></div>
     <div class="food-chips" id="food-chips"></div>
     <div class="food-list" id="food-list"></div>
   </div>
@@ -1030,34 +1044,34 @@ button.tab{font-size:inherit;}
 
 
   // ── food list (bottom sheet) ──
-  // c: category, n: name, a: area, h: hours, d: note, day: itinerary tag, q: Google Maps query
+  // ll: [lat,lng], c: category, n: name, a: area, h: hours, d: note, day: itinerary tag, q: Google Maps query
   const FOOD = [
-    {c:'咖啡', n:'FUGLEN FUKUOKA', a:'博多駅附近', h:'週一–四 7:00–19:30｜週五 7:00–21:30｜週末 8:00–21:30', d:'挪威奧斯陸來的人氣咖啡，淺焙手沖', q:'FUGLEN FUKUOKA'},
-    {c:'咖啡', n:'REC COFFEE 天神南店', a:'天神南（住宿旁）', h:'10:00–22:00（週五、六至 24:00）', d:'福岡代表性精品咖啡，離天神南森林最近', q:'REC COFFEE 天神南店'},
-    {c:'咖啡', n:'REC COFFEE 藥院駅前店', a:'藥院', h:'平日 8:00–翌 1:00｜週末 10:00–翌 1:00', d:'REC 的老店，開到很晚', day:'Day 1', q:'REC COFFEE 薬院駅前店'},
-    {c:'咖啡', n:'NO COFFEE', a:'平尾（藥院步行約 8 分）', h:'10:00–18:00（公休日看 Instagram）', d:'平尾的街角咖啡站，周邊商品很受歡迎', q:'NO COFFEE 平尾'},
-    {c:'麵包店', n:'DACOMECCA', a:'博多駅博多口步行 3 分', h:'7:00–20:00（賣完為止，約 14:00 常售罄）', d:'像美術館的人氣烘焙坊，早上去品項最多', q:'DACOMECCA 博多'},
-    {c:'麵包店', n:'友永麵包屋', a:'別府', h:'', d:'老字號，小狗麵包、紅豆麵包、蜜瓜麵包', day:'Day 3', q:'友永パン屋 別府'},
-    {c:'拉麵', n:'ShinShin（KITTE 博多店）', a:'博多駅博多口', h:'11:00–24:00（L.O. 23:30）', d:'細麵清爽豚骨', day:'Day 2', q:'博多らーめん ShinShin KITTE博多店'},
-    {c:'拉麵', n:'博多一幸舎 總本店', a:'博多駅步行 5 分', h:'11:00–23:30', d:'泡系濃厚豚骨，デイトス 2F 也有分店', day:'Day 2', q:'博多一幸舎 総本店'},
-    {c:'拉麵', n:'麵屋兼虎（デイトス店）', a:'博多駅直通', h:'', d:'濃厚魚介豚骨沾麵', day:'Day 2', q:'麺や兼虎 博多デイトス店'},
-    {c:'拉麵', n:'屋台 小金ちゃん', a:'天神', h:'週四、日休', d:'炒拉麵元祖屋台', day:'Day 1', q:'屋台 小金ちゃん 天神'},
-    {c:'燒肉', n:'藥院燒肉 NIKUICHI', a:'藥院', h:'16:00–24:00（L.O. 23:30）', d:'和牛燒肉，需提前約 1 個月訂位', day:'Day 1', q:'薬院焼肉 NIKUICHI'},
-    {c:'燒肉', n:'大東園 本店', a:'上川端町（川端通旁）', h:'11:30–23:00', d:'博多老字號燒肉，熱門時段建議訂位', day:'Day 4', q:'大東園 本店 上川端町'},
-    {c:'燒肉', n:'肉の山翔', a:'藥院一帶', h:'', d:'NIKUICHI 備案', day:'Day 1', q:'Niku no Yamasho'},
-    {c:'燒肉', n:'肉屋肉一 博多店', a:'博多駅南', h:'', d:'NIKUICHI 備案', day:'Day 1', q:'肉屋肉一 博多店'},
-    {c:'燒肉', n:'燒肉 円円', a:'別府', h:'', d:'別府備選消夜（備案 Ichiriki）', day:'Day 3', q:'焼肉 円円 別府'},
-    {c:'海鮮', n:'唐戶市場「活跳跳馬關街」', a:'下關（門司港搭船 5 分）', h:'週末限定', d:'現場握壽司、河豚、蟹肉味噌湯', day:'Day 2', q:'唐戸市場'},
-    {c:'海鮮', n:'黑田飯（大名店）', a:'大名（天神南步行 5 分）', h:'11:00–20:30（L.O. 20:00），週二休', d:'對馬本鮪魚丼，最後加湯做茶泡飯', day:'Day 4', q:'マグロとご飯 黒田飯 大名'},
-    {c:'居酒屋', n:'かわ屋（博多駅筑紫口店）', a:'博多駅筑紫口', h:'17:00–翌 1:00', d:'招牌捲雞皮串，週末建議先訂位', day:'Day 2', q:'かわ屋 博多駅 筑紫口店'},
-    {c:'甜點', n:'B-Speak', a:'由布院', h:'', d:'招牌蛋糕卷，常常一開門就排隊', day:'Day 3', q:'B-speak 由布院'},
-    {c:'明太子', n:'ふくや', a:'博多・天神多處', h:'', d:'明太子元祖老店', day:'Day 6', q:'ふくや 博多'},
-    {c:'明太子', n:'椒房庵', a:'博多駅', h:'', d:'久原本家的明太子', day:'Day 6', q:'椒房庵 博多駅'},
-    {c:'明太子', n:'やまや', a:'博多駅', h:'', d:'人氣明太子品牌', day:'Day 6', q:'やまや 博多駅'},
-    {c:'伴手禮', n:'博多デイトス 伴手禮區', a:'博多駅', h:'', d:'博多通りもん、ひよ子、明太子一次買齊', day:'Day 6', q:'博多デイトス みやげもん市場'},
-    {c:'其他', n:'Princess Pipi', a:'門司港駅前', h:'', d:'王様燒咖哩、河豚炸魚薯條', day:'Day 2', q:'プリンセスピピ 門司港'},
-    {c:'其他', n:'博多牛まぶし 武蔵（天神店）', a:'今泉', h:'午餐 11:00–15:00（L.O. 14:30）', d:'黑毛和牛飯', day:'Day 4', q:'博多牛まぶし 武蔵 天神店 今泉'},
-    {c:'其他', n:'極味屋（Outlet）', a:'THE OUTLETS KITAKYUSHU', h:'', d:'福岡人氣漢堡排', day:'Day 2', q:'極味や THE OUTLETS KITAKYUSHU'}
+    {ll:[33.59005,130.425034], c:'咖啡', n:'FUGLEN FUKUOKA', a:'博多駅附近', h:'週一–四 7:00–19:30｜週五 7:00–21:30｜週末 8:00–21:30', d:'挪威奧斯陸來的人氣咖啡，淺焙手沖', q:'FUGLEN FUKUOKA'},
+    {ll:[33.589027,130.40416], c:'咖啡', n:'REC COFFEE 天神南店', a:'天神南（住宿旁）', h:'10:00–22:00（週五、六至 24:00）', d:'福岡代表性精品咖啡，離天神南森林最近', q:'REC COFFEE 天神南店'},
+    {ll:[33.581604,130.403534], c:'咖啡', n:'REC COFFEE 藥院駅前店', a:'藥院', h:'平日 8:00–翌 1:00｜週末 10:00–翌 1:00', d:'REC 的老店，開到很晚', day:'Day 1', q:'REC COFFEE 薬院駅前店'},
+    {ll:[33.576576,130.400223], c:'咖啡', n:'NO COFFEE', a:'平尾（藥院步行約 8 分）', h:'10:00–18:00（公休日看 Instagram）', d:'平尾的街角咖啡站，周邊商品很受歡迎', q:'NO COFFEE 平尾'},
+    {ll:[33.587479,130.419235], c:'麵包店', n:'DACOMECCA', a:'博多駅博多口步行 3 分', h:'7:00–20:00（賣完為止，約 14:00 常售罄）', d:'像美術館的人氣烘焙坊，早上去品項最多', q:'DACOMECCA 博多'},
+    {ll:[33.274574,131.504074], c:'麵包店', n:'友永麵包屋', a:'別府', h:'', d:'老字號，小狗麵包、紅豆麵包、蜜瓜麵包', day:'Day 3', q:'友永パン屋 別府'},
+    {ll:[33.58884,130.419357], c:'拉麵', n:'ShinShin（KITTE 博多店）', a:'博多駅博多口', h:'11:00–24:00（L.O. 23:30）', d:'細麵清爽豚骨', day:'Day 2', q:'博多らーめん ShinShin KITTE博多店'},
+    {ll:[33.588211,130.417114], c:'拉麵', n:'博多一幸舎 總本店', a:'博多駅步行 5 分', h:'11:00–23:30', d:'泡系濃厚豚骨，デイトス 2F 也有分店', day:'Day 2', q:'博多一幸舎 総本店'},
+    {ll:[33.589912,130.420395], c:'拉麵', n:'麵屋兼虎（デイトス店）', a:'博多駅直通', h:'', d:'濃厚魚介豚骨沾麵', day:'Day 2', q:'麺や兼虎 博多デイトス店'},
+    {ll:[33.590851,130.396027], c:'拉麵', n:'屋台 小金ちゃん', a:'天神', h:'週四、日休', d:'炒拉麵元祖屋台', day:'Day 1', q:'屋台 小金ちゃん 天神'},
+    {ll:[33.581239,130.398827], c:'燒肉', n:'藥院燒肉 NIKUICHI', a:'藥院', h:'16:00–24:00（L.O. 23:30）', d:'和牛燒肉，需提前約 1 個月訂位', day:'Day 1', q:'薬院焼肉 NIKUICHI'},
+    {ll:[33.59269,130.411545], c:'燒肉', n:'大東園 本店', a:'上川端町（川端通旁）', h:'11:30–23:00', d:'博多老字號燒肉，熱門時段建議訂位', day:'Day 4', q:'大東園 本店 上川端町'},
+    {ll:[33.585964,130.395604], c:'燒肉', n:'肉の山翔', a:'藥院一帶', h:'', d:'NIKUICHI 備案', day:'Day 1', q:'Niku no Yamasho'},
+    {ll:[33.586266,130.42186], c:'燒肉', n:'肉屋肉一 博多店', a:'博多駅南', h:'', d:'NIKUICHI 備案', day:'Day 1', q:'肉屋肉一 博多店'},
+    {ll:[33.278667,131.504868], c:'燒肉', n:'燒肉 円円', a:'別府北浜（地圖為約略位置）', h:'', d:'別府備選消夜（備案 Ichiriki）', day:'Day 3', q:'焼肉 円円 別府'},
+    {ll:[33.956585,130.943588], c:'海鮮', n:'唐戶市場「活跳跳馬關街」', a:'下關（門司港搭船 5 分）', h:'週末限定', d:'現場握壽司、河豚、蟹肉味噌湯', day:'Day 2', q:'唐戸市場'},
+    {ll:[33.5863,130.395447], c:'海鮮', n:'黑田飯（大名店）', a:'大名（天神南步行 5 分）', h:'11:00–20:30（L.O. 20:00），週二休', d:'對馬本鮪魚丼，最後加湯做茶泡飯', day:'Day 4', q:'マグロとご飯 黒田飯 大名'},
+    {ll:[33.58886,130.424103], c:'居酒屋', n:'かわ屋（博多駅筑紫口店）', a:'博多駅筑紫口', h:'17:00–翌 1:00', d:'招牌捲雞皮串，週末建議先訂位', day:'Day 2', q:'かわ屋 博多駅 筑紫口店'},
+    {ll:[33.265888,131.359161], c:'甜點', n:'B-Speak', a:'由布院', h:'', d:'招牌蛋糕卷，常常一開門就排隊', day:'Day 3', q:'B-speak 由布院'},
+    {ll:[33.589912,130.420395], c:'明太子', n:'ふくや', a:'博多・天神多處', h:'', d:'明太子元祖老店', day:'Day 6', q:'ふくや 博多'},
+    {ll:[33.589912,130.420395], c:'明太子', n:'椒房庵', a:'博多駅', h:'', d:'久原本家的明太子', day:'Day 6', q:'椒房庵 博多駅'},
+    {ll:[33.589912,130.420395], c:'明太子', n:'やまや', a:'博多駅', h:'', d:'人氣明太子品牌', day:'Day 6', q:'やまや 博多駅'},
+    {ll:[33.589912,130.420395], c:'伴手禮', n:'博多デイトス 伴手禮區', a:'博多駅', h:'', d:'博多通りもん、ひよ子、明太子一次買齊', day:'Day 6', q:'博多デイトス みやげもん市場'},
+    {ll:[33.945511,130.96109], c:'其他', n:'Princess Pipi', a:'門司港駅前', h:'', d:'王様燒咖哩、河豚炸魚薯條', day:'Day 2', q:'プリンセスピピ 門司港'},
+    {ll:[33.587162,130.399872], c:'其他', n:'博多牛まぶし 武蔵（天神店）', a:'今泉', h:'午餐 11:00–15:00（L.O. 14:30）', d:'黑毛和牛飯', day:'Day 4', q:'博多牛まぶし 武蔵 天神店 今泉'},
+    {ll:[33.874023,130.810654], c:'其他', n:'極味屋（Outlet）', a:'THE OUTLETS KITAKYUSHU', h:'', d:'福岡人氣漢堡排', day:'Day 2', q:'極味や THE OUTLETS KITAKYUSHU'}
   ];
   const CAT_ICON = {'咖啡':'☕','麵包店':'🥐','拉麵':'🍜','燒肉':'🥩','海鮮':'🐟','居酒屋':'🍢','甜點':'🍰','明太子':'🌶️','伴手禮':'🎁','其他':'🍽️'};
   const cats = ['全部', ...Object.keys(CAT_ICON).filter(c => FOOD.some(f => f.c === c))];
@@ -1073,12 +1087,13 @@ button.tab{font-size:inherit;}
       `<button class="food-chip${c === cur ? ' on' : ''}" type="button" data-c="${esc(c)}">${c === '全部' ? '全部' : CAT_ICON[c] + ' ' + c}</button>`).join('');
     const items = FOOD.filter(f => cur === '全部' || f.c === cur);
     listEl.innerHTML = items.map(f => `
-      <div class="food-card">
+      <div class="food-card" data-i="${FOOD.indexOf(f)}">
         <div class="fn">${CAT_ICON[f.c]} ${esc(f.n)}</div>
         <div class="fm">${esc(f.a)}${f.h ? '｜' + esc(f.h) : ''}</div>
         <div class="fd">${esc(f.d)}</div>
         <div class="ff">${f.day ? `<span class="fday">${esc(f.day)}</span>` : ''}<a class="fmap" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(f.q)}" target="_blank" rel="noopener">Maps ↗</a></div>
       </div>`).join('') + '<div class="food-note">營業時間以食べログ為主，出發前再確認</div>';
+    updateMap(items);
   }
   chipsEl.addEventListener('click', e => {
     const b = e.target.closest('.food-chip'); if (!b) return;
@@ -1086,8 +1101,89 @@ button.tab{font-size:inherit;}
     try { localStorage.setItem('foodCat', cur); } catch (err) {}
     renderFood(); listEl.scrollTop = 0;
   });
-  function openFood() { renderFood(); sheet.classList.add('open'); sheet.setAttribute('aria-hidden', 'false'); document.body.style.overflow = 'hidden'; }
-  function closeFood() { sheet.classList.remove('open'); sheet.setAttribute('aria-hidden', 'true'); document.body.style.overflow = ''; }
+
+  // ── map (Leaflet, loaded the first time the sheet opens) ──
+  let map = null, markers = [], meMarker = null, meCircle = null, watchId = null, leafletLoading = null;
+  const msgEl = document.getElementById('food-map-msg');
+  function showMsg(t) { msgEl.textContent = t; msgEl.style.display = t ? 'block' : 'none'; }
+  function loadLeaflet() {
+    if (window.L) return Promise.resolve();
+    if (leafletLoading) return leafletLoading;
+    leafletLoading = new Promise((ok, fail) => {
+      const css = document.createElement('link');
+      css.rel = 'stylesheet'; css.href = 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css';
+      document.head.appendChild(css);
+      const js = document.createElement('script');
+      js.src = 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js';
+      js.onload = ok; js.onerror = fail;
+      document.head.appendChild(js);
+    });
+    return leafletLoading;
+  }
+  function initMap() {
+    if (map) { map.invalidateSize(); return; }
+    map = L.map('food-map', { zoomControl: false, attributionControl: true });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19, attribution: '© OpenStreetMap'
+    }).addTo(map);
+    FOOD.forEach((f, i) => {
+      const icon = L.divIcon({ className: '', html: `<div class="fpin">${CAT_ICON[f.c]}</div>`, iconSize: [28, 28], iconAnchor: [14, 14] });
+      const mk = L.marker(f.ll, { icon }).bindPopup(
+        `<b>${esc(f.n)}</b>${esc(f.a)}<br><a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(f.q)}" target="_blank" rel="noopener">Google Maps ↗</a>`);
+      mk.on('click', () => highlightCard(i));
+      markers[i] = mk;
+    });
+  }
+  // Fukuoka city box: used to frame the "全部" view so far-away stops (Beppu, Mojiko) don't zoom the map out
+  const inCity = f => f.ll[0] > 33.55 && f.ll[0] < 33.62 && f.ll[1] > 130.36 && f.ll[1] < 130.45;
+  function updateMap(items) {
+    if (!map) return;
+    markers.forEach((mk, i) => { if (items.includes(FOOD[i])) mk.addTo(map); else mk.remove(); });
+    const frame = cur === '全部' ? items.filter(inCity) : items;
+    const pts = (frame.length ? frame : items).map(f => f.ll);
+    if (pts.length === 1) map.setView(pts[0], 15);
+    else if (pts.length) map.fitBounds(pts, { padding: [24, 24], maxZoom: 15 });
+  }
+  function highlightCard(i) {
+    listEl.querySelectorAll('.food-card.on').forEach(c => c.classList.remove('on'));
+    const card = listEl.querySelector(`.food-card[data-i="${i}"]`);
+    if (card) { card.classList.add('on'); card.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); }
+  }
+  listEl.addEventListener('click', e => {
+    if (e.target.closest('a')) return;
+    const card = e.target.closest('.food-card'); if (!card || !map) return;
+    const i = +card.dataset.i;
+    map.setView(FOOD[i].ll, Math.max(map.getZoom(), 16));
+    markers[i].openPopup();
+    highlightCard(i);
+  });
+  document.querySelector('.food-locate').addEventListener('click', () => {
+    if (!map) return;
+    if (!navigator.geolocation) { showMsg('這個瀏覽器不支援定位'); return; }
+    showMsg('定位中…');
+    let first = true;
+    if (watchId !== null) navigator.geolocation.clearWatch(watchId);
+    watchId = navigator.geolocation.watchPosition(pos => {
+      const ll = [pos.coords.latitude, pos.coords.longitude];
+      if (!meMarker) {
+        meCircle = L.circle(ll, { radius: pos.coords.accuracy, color: '#1a73e8', weight: 1, fillOpacity: .12 }).addTo(map);
+        meMarker = L.circleMarker(ll, { radius: 7, color: '#fff', weight: 2, fillColor: '#1a73e8', fillOpacity: 1 }).addTo(map);
+      } else { meMarker.setLatLng(ll); meCircle.setLatLng(ll).setRadius(pos.coords.accuracy); }
+      if (first) { map.setView(ll, Math.max(map.getZoom(), 15)); first = false; showMsg(''); }
+    }, err => {
+      showMsg(err.code === 1 ? '請在瀏覽器設定允許「位置」權限' : '暫時抓不到位置，稍後再試');
+    }, { enableHighAccuracy: true, maximumAge: 10000, timeout: 15000 });
+  });
+
+  function openFood() {
+    sheet.classList.add('open'); sheet.setAttribute('aria-hidden', 'false'); document.body.style.overflow = 'hidden';
+    renderFood();
+    loadLeaflet().then(() => { initMap(); renderFood(); setTimeout(() => { map.invalidateSize(); renderFood(); }, 300); }).catch(() => showMsg('地圖載入失敗，請確認網路'));
+  }
+  function closeFood() {
+    sheet.classList.remove('open'); sheet.setAttribute('aria-hidden', 'true'); document.body.style.overflow = '';
+    if (watchId !== null) { navigator.geolocation.clearWatch(watchId); watchId = null; }
+  }
   document.querySelector('.tab-food').addEventListener('click', openFood);
   sheet.querySelector('.food-close').addEventListener('click', closeFood);
   sheet.addEventListener('click', e => { if (e.target === sheet) closeFood(); });
