@@ -328,6 +328,35 @@ a{color:inherit;}
 /* ══ FOOTER ══ */
 .foot{text-align:center;padding:26px 20px 8px;color:var(--ink-mute);font-size:10.5px;letter-spacing:.08em;}
 
+
+/* ══ FOOD SHEET (opened from tab bar) ══ */
+.food-sheet{position:fixed;inset:0;z-index:250;display:flex;flex-direction:column;justify-content:flex-end;
+  background:rgba(0,0,0,.4);opacity:0;pointer-events:none;transition:opacity .2s ease;}
+.food-sheet.open{opacity:1;pointer-events:auto;}
+.food-panel{width:100%;max-width:560px;margin:0 auto;height:88vh;background:var(--bg);
+  border-radius:22px 22px 0 0;display:flex;flex-direction:column;overflow:hidden;
+  transform:translateY(30px);transition:transform .25s ease;}
+.food-sheet.open .food-panel{transform:none;}
+.food-head{display:flex;align-items:center;justify-content:space-between;padding:16px 18px 6px;}
+.food-head b{font-size:16px;font-weight:800;}
+.food-close{width:32px;height:32px;border-radius:50%;border:1px solid var(--line);background:var(--card);
+  font-size:14px;color:var(--ink-sub);cursor:pointer;font-family:inherit;}
+.food-chips{display:flex;gap:7px;overflow-x:auto;padding:8px 16px 12px;scrollbar-width:none;flex-shrink:0;}
+.food-chips::-webkit-scrollbar{display:none;}
+.food-chip{flex-shrink:0;border:1px solid var(--line);background:var(--card);color:var(--ink-sub);
+  font-family:inherit;font-size:12px;font-weight:700;padding:7px 12px;border-radius:100px;cursor:pointer;}
+.food-chip.on{background:var(--ink);border-color:var(--ink);color:#fff;}
+.food-list{flex:1;overflow-y:auto;padding:0 14px calc(18px + var(--safe-b));display:flex;flex-direction:column;gap:9px;}
+.food-card{background:var(--card);border:1px solid rgba(0,0,0,.05);border-radius:16px;padding:12px 14px;}
+.food-card .fn{font-size:13.5px;font-weight:800;color:var(--ink);}
+.food-card .fm{font-size:10.5px;color:var(--ink-mute);margin-top:2px;line-height:1.5;}
+.food-card .fd{font-size:11.5px;color:var(--ink-sub);margin-top:5px;line-height:1.6;}
+.food-card .ff{display:flex;align-items:center;gap:6px;margin-top:8px;flex-wrap:wrap;}
+.food-card .fday{font-size:10px;font-weight:800;color:var(--ink);background:var(--bg);border:1px solid var(--line);padding:2px 8px;border-radius:100px;}
+.food-card .fmap{font-size:11px;font-weight:700;color:var(--d2);text-decoration:underline;text-underline-offset:2px;margin-left:auto;}
+.food-note{font-size:10.5px;color:var(--ink-mute);text-align:center;padding:4px 0 2px;}
+button.tab{font-size:inherit;}
+
 /* ══ BOTTOM TAB BAR ══ */
 .tabbar{
   position:fixed;left:0;right:0;bottom:0;z-index:60;
@@ -911,11 +940,24 @@ a{color:inherit;}
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16"/><path d="M6 19v-5a6 6 0 0112 0v5"/><path d="M9 7c0-1.5 1-2 1-3.5" /><path d="M13 7c0-1.5 1-2 1-3.5"/></svg>
     <span>住宿</span>
   </a>
+  <button class="tab tab-food" type="button" aria-label="美食清單">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3v8a2 2 0 002 2v8"/><path d="M5 3v5M9 3v5"/><path d="M17 21V3c-2 0-3.5 2.5-3.5 6s1.5 4 3.5 4"/></svg>
+    <span>美食</span>
+  </button>
   <a class="tab" href="#sec-tips">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
     <span>清單</span>
   </a>
 </nav>
+
+<!-- ═══ FOOD SHEET ═══ -->
+<div class="food-sheet" id="food-sheet" aria-hidden="true">
+  <div class="food-panel" role="dialog" aria-label="美食清單">
+    <div class="food-head"><b>🍴 美食清單</b><button class="food-close" type="button" aria-label="關閉">✕</button></div>
+    <div class="food-chips" id="food-chips"></div>
+    <div class="food-list" id="food-list"></div>
+  </div>
+</div>
 
 <!-- ═══ LIGHTBOX ═══ -->
 <div class="lightbox" id="lightbox">
@@ -969,7 +1011,7 @@ a{color:inherit;}
   }, { passive: true });
 
   // ── day tab bar ──
-  const tabs = document.querySelectorAll('.tab');
+  const tabs = document.querySelectorAll('.tab[href]');
   const targets = Array.from(tabs).map(t => document.querySelector(t.getAttribute('href')));
   tabs.forEach(t => t.addEventListener('click', () => {
     tabs.forEach(x => x.classList.remove('active'));
@@ -985,6 +1027,71 @@ a{color:inherit;}
     });
   }, { rootMargin: '-45% 0px -45% 0px' });
   targets.forEach(el => el && io.observe(el));
+
+
+  // ── food list (bottom sheet) ──
+  // c: category, n: name, a: area, h: hours, d: note, day: itinerary tag, q: Google Maps query
+  const FOOD = [
+    {c:'咖啡', n:'FUGLEN FUKUOKA', a:'博多駅附近', h:'週一–四 7:00–19:30｜週五 7:00–21:30｜週末 8:00–21:30', d:'挪威奧斯陸來的人氣咖啡，淺焙手沖', q:'FUGLEN FUKUOKA'},
+    {c:'咖啡', n:'REC COFFEE 天神南店', a:'天神南（住宿旁）', h:'10:00–22:00（週五、六至 24:00）', d:'福岡代表性精品咖啡，離天神南森林最近', q:'REC COFFEE 天神南店'},
+    {c:'咖啡', n:'REC COFFEE 藥院駅前店', a:'藥院', h:'平日 8:00–翌 1:00｜週末 10:00–翌 1:00', d:'REC 的老店，開到很晚', day:'Day 1', q:'REC COFFEE 薬院駅前店'},
+    {c:'咖啡', n:'NO COFFEE', a:'平尾（藥院步行約 8 分）', h:'10:00–18:00（公休日看 Instagram）', d:'平尾的街角咖啡站，周邊商品很受歡迎', q:'NO COFFEE 平尾'},
+    {c:'麵包店', n:'DACOMECCA', a:'博多駅博多口步行 3 分', h:'7:00–20:00（賣完為止，約 14:00 常售罄）', d:'像美術館的人氣烘焙坊，早上去品項最多', q:'DACOMECCA 博多'},
+    {c:'麵包店', n:'友永麵包屋', a:'別府', h:'', d:'老字號，小狗麵包、紅豆麵包、蜜瓜麵包', day:'Day 3', q:'友永パン屋 別府'},
+    {c:'拉麵', n:'ShinShin（KITTE 博多店）', a:'博多駅博多口', h:'11:00–24:00（L.O. 23:30）', d:'細麵清爽豚骨', day:'Day 2', q:'博多らーめん ShinShin KITTE博多店'},
+    {c:'拉麵', n:'博多一幸舎 總本店', a:'博多駅步行 5 分', h:'11:00–23:30', d:'泡系濃厚豚骨，デイトス 2F 也有分店', day:'Day 2', q:'博多一幸舎 総本店'},
+    {c:'拉麵', n:'麵屋兼虎（デイトス店）', a:'博多駅直通', h:'', d:'濃厚魚介豚骨沾麵', day:'Day 2', q:'麺や兼虎 博多デイトス店'},
+    {c:'拉麵', n:'屋台 小金ちゃん', a:'天神', h:'週四、日休', d:'炒拉麵元祖屋台', day:'Day 1', q:'屋台 小金ちゃん 天神'},
+    {c:'燒肉', n:'藥院燒肉 NIKUICHI', a:'藥院', h:'16:00–24:00（L.O. 23:30）', d:'和牛燒肉，需提前約 1 個月訂位', day:'Day 1', q:'薬院焼肉 NIKUICHI'},
+    {c:'燒肉', n:'大東園 本店', a:'上川端町（川端通旁）', h:'11:30–23:00', d:'博多老字號燒肉，熱門時段建議訂位', day:'Day 4', q:'大東園 本店 上川端町'},
+    {c:'燒肉', n:'肉の山翔', a:'藥院一帶', h:'', d:'NIKUICHI 備案', day:'Day 1', q:'Niku no Yamasho'},
+    {c:'燒肉', n:'肉屋肉一 博多店', a:'博多駅南', h:'', d:'NIKUICHI 備案', day:'Day 1', q:'肉屋肉一 博多店'},
+    {c:'燒肉', n:'燒肉 円円', a:'別府', h:'', d:'別府備選消夜（備案 Ichiriki）', day:'Day 3', q:'焼肉 円円 別府'},
+    {c:'海鮮', n:'唐戶市場「活跳跳馬關街」', a:'下關（門司港搭船 5 分）', h:'週末限定', d:'現場握壽司、河豚、蟹肉味噌湯', day:'Day 2', q:'唐戸市場'},
+    {c:'海鮮', n:'黑田飯（大名店）', a:'大名（天神南步行 5 分）', h:'11:00–20:30（L.O. 20:00），週二休', d:'對馬本鮪魚丼，最後加湯做茶泡飯', day:'Day 4', q:'マグロとご飯 黒田飯 大名'},
+    {c:'居酒屋', n:'かわ屋（博多駅筑紫口店）', a:'博多駅筑紫口', h:'17:00–翌 1:00', d:'招牌捲雞皮串，週末建議先訂位', day:'Day 2', q:'かわ屋 博多駅 筑紫口店'},
+    {c:'甜點', n:'B-Speak', a:'由布院', h:'', d:'招牌蛋糕卷，常常一開門就排隊', day:'Day 3', q:'B-speak 由布院'},
+    {c:'明太子', n:'ふくや', a:'博多・天神多處', h:'', d:'明太子元祖老店', day:'Day 6', q:'ふくや 博多'},
+    {c:'明太子', n:'椒房庵', a:'博多駅', h:'', d:'久原本家的明太子', day:'Day 6', q:'椒房庵 博多駅'},
+    {c:'明太子', n:'やまや', a:'博多駅', h:'', d:'人氣明太子品牌', day:'Day 6', q:'やまや 博多駅'},
+    {c:'伴手禮', n:'博多デイトス 伴手禮區', a:'博多駅', h:'', d:'博多通りもん、ひよ子、明太子一次買齊', day:'Day 6', q:'博多デイトス みやげもん市場'},
+    {c:'其他', n:'Princess Pipi', a:'門司港駅前', h:'', d:'王様燒咖哩、河豚炸魚薯條', day:'Day 2', q:'プリンセスピピ 門司港'},
+    {c:'其他', n:'博多牛まぶし 武蔵（天神店）', a:'今泉', h:'午餐 11:00–15:00（L.O. 14:30）', d:'黑毛和牛飯', day:'Day 4', q:'博多牛まぶし 武蔵 天神店 今泉'},
+    {c:'其他', n:'極味屋（Outlet）', a:'THE OUTLETS KITAKYUSHU', h:'', d:'福岡人氣漢堡排', day:'Day 2', q:'極味や THE OUTLETS KITAKYUSHU'}
+  ];
+  const CAT_ICON = {'咖啡':'☕','麵包店':'🥐','拉麵':'🍜','燒肉':'🥩','海鮮':'🐟','居酒屋':'🍢','甜點':'🍰','明太子':'🌶️','伴手禮':'🎁','其他':'🍽️'};
+  const cats = ['全部', ...Object.keys(CAT_ICON).filter(c => FOOD.some(f => f.c === c))];
+  const sheet = document.getElementById('food-sheet');
+  const chipsEl = document.getElementById('food-chips');
+  const listEl = document.getElementById('food-list');
+  let cur = '全部';
+  try { const saved = localStorage.getItem('foodCat'); if (saved && cats.includes(saved)) cur = saved; } catch (e) {}
+
+  const esc = t => String(t).replace(/[&<>"]/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]));
+  function renderFood() {
+    chipsEl.innerHTML = cats.map(c =>
+      `<button class="food-chip${c === cur ? ' on' : ''}" type="button" data-c="${esc(c)}">${c === '全部' ? '全部' : CAT_ICON[c] + ' ' + c}</button>`).join('');
+    const items = FOOD.filter(f => cur === '全部' || f.c === cur);
+    listEl.innerHTML = items.map(f => `
+      <div class="food-card">
+        <div class="fn">${CAT_ICON[f.c]} ${esc(f.n)}</div>
+        <div class="fm">${esc(f.a)}${f.h ? '｜' + esc(f.h) : ''}</div>
+        <div class="fd">${esc(f.d)}</div>
+        <div class="ff">${f.day ? `<span class="fday">${esc(f.day)}</span>` : ''}<a class="fmap" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(f.q)}" target="_blank" rel="noopener">Maps ↗</a></div>
+      </div>`).join('') + '<div class="food-note">營業時間以食べログ為主，出發前再確認</div>';
+  }
+  chipsEl.addEventListener('click', e => {
+    const b = e.target.closest('.food-chip'); if (!b) return;
+    cur = b.dataset.c;
+    try { localStorage.setItem('foodCat', cur); } catch (err) {}
+    renderFood(); listEl.scrollTop = 0;
+  });
+  function openFood() { renderFood(); sheet.classList.add('open'); sheet.setAttribute('aria-hidden', 'false'); document.body.style.overflow = 'hidden'; }
+  function closeFood() { sheet.classList.remove('open'); sheet.setAttribute('aria-hidden', 'true'); document.body.style.overflow = ''; }
+  document.querySelector('.tab-food').addEventListener('click', openFood);
+  sheet.querySelector('.food-close').addEventListener('click', closeFood);
+  sheet.addEventListener('click', e => { if (e.target === sheet) closeFood(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeFood(); });
 
   // ── open the card you jump to (stories / tab bar) ──
   document.querySelectorAll('a[href^="#day"]').forEach(a => a.addEventListener('click', () => {
