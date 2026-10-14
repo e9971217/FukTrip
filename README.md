@@ -2,17 +2,12 @@
 
 A single-file HTML travel guide for a 6-day / 5-night trip to Fukuoka, Japan (Dec 25–30).
 
-**Live site:** https://e9971217.github.io/FukTrip/ — the root now serves the **app-style iPhone version** (see below). Link to the full version is in its top bar (💻 完整版).
+**Live site:** https://e9971217.github.io/FukTrip/ — redirects to the app-style iPhone version.
 
 **Files:**
-- `index.html` / `福岡六天五夜_手機版.html` — **app-style iPhone version** (identical content, kept in sync manually). Image-led vertical cards (real landmark/accommodation photos), collapsed-by-default detail, Instagram-style day "stories" row, iOS-like bottom tab bar. `index.html` is what GitHub Pages serves at the site root. Open on iPhone and "Add to Home Screen" for a fullscreen app feel.
-- `福岡六天五夜_完整版.html` — full detailed version (this used to be `index.html` before the root was switched to the app-style version). Source of truth for full itinerary text/links.
-- `index-iphone_new.html` — an earlier, different iPhone-responsive pass: same detailed content as the full version, squeezed into a collapsible mobile layout. Kept manually in sync with the full version by a different work session.
-- `index-iphone.html` — retired backup of an even older iPhone pass (pre-dates a Day 5 rework); kept for reference only.
-
-⚠️ **`index.html` changed meaning on 2026-09-15**: it used to mirror the full desktop itinerary, now it's the app-style mobile version. If you're used to editing `index.html` directly for itinerary changes, edit `福岡六天五夜_完整版.html` instead (and update `index.html` / `福岡六天五夜_手機版.html` to match, or ask to have them regenerated).
-
-⚠️ There are also two independent "iPhone version" lines (`index-iphone_new.html` and `福岡六天五夜_手機版.html`) from different work sessions — worth consolidating next time the itinerary changes, so only one mobile file needs updating.
+- `福岡六天五夜_手機版.html` — ✅ **the only maintained version** (since 2026-10-14). App-style iPhone layout: image-led day cards, collapsible detail, day "stories" row, bottom tab bar. All itinerary changes go here.
+- `index.html` — tiny redirect to `福岡六天五夜_手機版.html` (keeps the site root working; no content, no syncing needed).
+- `福岡六天五夜_完整版.html`, `index-iphone_new.html`, `index-iphone.html` — ⚠️ **no longer maintained**, kept for reference only. Their content may be out of date.
 
 ## Itinerary
 
