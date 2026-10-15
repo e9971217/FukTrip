@@ -765,6 +765,7 @@ button.tab{font-size:inherit;}
 
 
       <div class="mtl">
+        <div class="mtl-item"><div class="mtl-time">08:00<br><span style="font-weight:400;color:var(--ink-mute);">可選</span></div><div class="mtl-body"><b>早餐 — 炉端ノいとおかし <span class="opt-tag">需預約</span></b><p>六本松，天神南搭七隈線直達六本松駅（5 站約 8 分），步行 5 分。炭火現烤的<b>銀鮭定食</b>（約 2,500 円）或<b>鰻魚定食</b>，白飯可免費續一次。8:00–14:00（L.O. 13:00）<a href="https://www.google.com/maps/search/?api=1&query=%E7%82%89%E7%AB%AF%E3%83%8E%E3%81%84%E3%81%A8%E3%81%8A%E3%81%8B%E3%81%97%20%E5%85%AD%E6%9C%AC%E6%9D%BE" target="_blank" rel="noopener">Maps ↗</a>　<a href="https://tabelog.com/en/fukuoka/A4001/A400105/40066948/" target="_blank" rel="noopener">食べログ訂位 ↗</a></p><div class="mtl-note">📅 要去請先在食べログ網路預約；去年年末是 12/31 起休，12/30 應該有開，預約時再確認</div></div></div>
         <div class="mtl-item"><div class="mtl-time">09:30</div><div class="mtl-body"><b>天神南森林 退房</b><p>拖行李步行到大丸（天神南駅旁，約 3 分）。</p></div></div>
         <div class="mtl-item"><div class="mtl-time">10:00</div><div class="mtl-body"><b>大丸福岡天神店 — 行李直送機場</b><p>本館 B1「CARGO PASS」櫃台（免稅櫃台旁），<b>10:00–12:00</b> 寄出，當天 14:00–19:30 在<b>福岡機場國際線 1F 入境大廳</b>領取。<a href="https://www.daimaru-fukuoka.jp/info/detail/?cd=001463" target="_blank" rel="noopener">大丸說明 ↗</a><br>寄完可到旁邊 ONE FUKUOKA BLDG. 前廣場看<b>像素樹</b>拍照。</p>
             <div class="plist">
@@ -1102,9 +1103,10 @@ button.tab{font-size:inherit;}
     {ll:[33.589516,130.418503], c:"其他", n:"Shake Shack 博多店", a:"博多駅前（西日本City 大樓 1F）", h:"11:00–22:00", d:"紐約漢堡", q:"Shake Shack 博多"},
     {ll:[33.583843,130.406281], c:"其他", n:"だしいなり 海木 本店", a:"渡辺通（渡辺通駅 2 號出口步行 1 分）", h:"週一–六 11:00 起，賣完為止｜週日、國定假日休", d:"高湯豆皮壽司外帶專門店，現點現做，建議當天 10:00 起先打電話預約取貨時間", q:"だしいなり海木 本店"},
     {ll:[33.578262,130.405426], c:"甜點", n:"白金茶房", a:"白金（藥院駅步行約 8 分）", h:"平日 8:00–17:30（L.O. 16:30）｜週末、假日 8:00–18:30（L.O. 17:30）", d:"招牌經典鬆餅，外酥內軟；可在前一天 17:00 前訂位，週末限時 90 分", q:"白金茶房 薬院"},
-    {ll:[33.571907,130.40538], c:"麵包店", n:"MOROPAIN", a:"南區市崎（西鐵平尾站一帶）", h:"週三–六 7:00–15:00，賣完為止｜週日、一、二休", d:"老屋改建的人氣麵包店；這趟白天能去的只有 12/26（六）、12/30（三）", q:"モロパン 市崎"}
+    {ll:[33.571907,130.40538], c:"麵包店", n:"MOROPAIN", a:"南區市崎（西鐵平尾站一帶）", h:"週三–六 7:00–15:00，賣完為止｜週日、一、二休", d:"老屋改建的人氣麵包店；這趟白天能去的只有 12/26（六）、12/30（三）", q:"モロパン 市崎"},
+    {ll:[33.578838,130.378342], c:"早餐", n:"炉端ノいとおかし", a:"六本松（六本松駅步行 5 分）", h:"8:00–14:00（L.O. 13:00）", d:"炭火現烤銀鮭、鰻魚定食，白飯可續一次；只做早午餐，需網路預約", day:"Day 6", q:"炉端ノいとおかし 六本松"}
   ];
-  const CAT_ICON = {'咖啡':'☕','麵包店':'🥐','拉麵':'🍜','燒肉':'🥩','海鮮':'🐟','居酒屋':'🍢','酒吧':'🍸','甜點':'🍰','明太子':'🌶️','伴手禮':'🎁','其他':'🍽️'};
+  const CAT_ICON = {'早餐':'🍳','咖啡':'☕','麵包店':'🥐','拉麵':'🍜','燒肉':'🥩','海鮮':'🐟','居酒屋':'🍢','酒吧':'🍸','甜點':'🍰','明太子':'🌶️','伴手禮':'🎁','其他':'🍽️'};
   const cats = ['全部', ...Object.keys(CAT_ICON).filter(c => FOOD.some(f => f.c === c))];
   const sheet = document.getElementById('food-sheet');
   const chipsEl = document.getElementById('food-chips');
