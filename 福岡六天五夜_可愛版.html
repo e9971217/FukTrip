@@ -1,0 +1,1389 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0">
+<title>福岡 6天5夜 · 可愛版</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="福岡行程">
+<meta name="theme-color" content="#f7f2e7">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Huninn&family=Noto+Serif+TC:wght@700;900&family=Noto+Sans+TC:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f4f1ec;
+  --card:#ffffff;
+  --ink:#191512;
+  --ink-sub:#6b6058;
+  --ink-mute:#a89a90;
+  --line:#ece5dd;
+  --safe-t:env(safe-area-inset-top,0px);
+  --safe-b:env(safe-area-inset-bottom,0px);
+  --d1:#c0392b; --d1b:#e2725b;
+  --d2:#1f6fa8; --d2b:#4fa0d8;
+  --d3:#0d8a82; --d3b:#3fc4b8;
+  --d4:#3e7a3e; --d4b:#72b06a;
+  --d5:#a05a1c; --d5b:#d68a3c;
+  --d6:#5c5578; --d6b:#8b83ad;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html{background:var(--bg);}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif;
+  max-width:560px;
+  margin:0 auto;
+  min-height:100vh;
+  position:relative;
+  padding-bottom:calc(78px + var(--safe-b));
+}
+img{-webkit-user-drag:none;user-select:none;}
+a{color:inherit;}
+.serif{font-family:'Noto Serif TC',serif;}
+
+/* ══ STICKY HEADER (top bar + stories) ══ */
+.stickyhead{
+  position:sticky;top:0;z-index:50;
+  background:rgba(244,241,236,.86);
+  backdrop-filter:blur(18px) saturate(1.4);
+  -webkit-backdrop-filter:blur(18px) saturate(1.4);
+  border-bottom:1px solid rgba(0,0,0,.06);
+}
+
+/* ══ TOP BAR ══ */
+.topbar{
+  padding:calc(10px + var(--safe-t)) 18px 4px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.topbar-title{display:flex;flex-direction:column;line-height:1.15;}
+.topbar-title b{font-size:16px;font-weight:800;letter-spacing:.02em;}
+.topbar-title span{font-size:10px;color:var(--ink-mute);letter-spacing:.08em;margin-top:1px;}
+.topbar-full{
+  font-size:10.5px;font-weight:700;color:var(--ink-sub);
+  background:var(--card);border:1px solid var(--line);
+  padding:6px 11px;border-radius:100px;text-decoration:none;
+  white-space:nowrap;
+}
+
+/* ══ STORIES ROW (day jump) ══ */
+.stories{
+  display:flex;gap:10px;padding:6px 16px 9px;overflow-x:auto;
+  scrollbar-width:none;
+}
+.stories::-webkit-scrollbar{display:none;}
+.story{
+  flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:4px;
+  text-decoration:none;min-width:54px;
+}
+.story-ring{
+  width:46px;height:46px;border-radius:50%;padding:2px;
+  border:2.5px solid var(--rc2);
+  display:flex;align-items:center;justify-content:center;
+}
+.story-img{
+  width:100%;height:100%;border-radius:50%;
+  background-size:cover;background-position:center;
+}
+.story-label{font-size:9.5px;font-weight:700;color:var(--ink-sub);letter-spacing:.02em;white-space:nowrap;}
+.story-label b{color:var(--ink);}
+
+/* ══ SECTION LABEL ══ */
+.sec-label{
+  scroll-margin-top:150px;
+  padding:6px 18px 2px;font-size:11px;font-weight:800;letter-spacing:.14em;
+  color:var(--ink-mute);text-transform:uppercase;
+}
+
+/* ══ HERO STRIP ══ */
+.hero-strip{padding:6px 16px 4px;}
+.hero-card{
+  position:relative;border-radius:22px;overflow:hidden;
+  aspect-ratio:16/10;background:#111 center/cover no-repeat;
+}
+.hero-card::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(0,0,0,.05) 30%,rgba(0,0,0,.78) 100%);
+}
+.hero-txt{position:absolute;left:18px;right:18px;bottom:16px;z-index:2;color:#fff;}
+.hero-badge{
+  display:inline-block;font-size:10px;font-weight:700;letter-spacing:.14em;
+  background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);
+  padding:3px 10px;border-radius:100px;margin-bottom:8px;backdrop-filter:blur(6px);
+}
+.hero-txt h1{font-size:25px;font-weight:900;line-height:1.25;}
+.hero-txt p{font-size:11.5px;color:rgba(255,255,255,.78);margin-top:6px;line-height:1.6;}
+
+/* ══ QUICK CHIPS ══ */
+.qchips{display:flex;gap:8px;padding:12px 16px 4px;overflow-x:auto;scrollbar-width:none;}
+.qchips::-webkit-scrollbar{display:none;}
+.qchip{
+  flex-shrink:0;display:flex;align-items:center;gap:6px;
+  background:var(--card);border:1px solid var(--line);
+  border-radius:100px;padding:8px 13px;font-size:11.5px;font-weight:700;
+  text-decoration:none;color:var(--ink);
+}
+.qchip .n{font-size:13px;}
+
+/* ══ DAY CARD (feed) ══ */
+.feed{padding:8px 14px 6px;display:flex;flex-direction:column;gap:16px;}
+.dcard{
+  border-radius:26px;overflow:hidden;background:var(--card);
+  box-shadow:0 1px 3px rgba(0,0,0,.04),0 10px 28px -12px rgba(0,0,0,.18);
+  border:1px solid rgba(0,0,0,.04);
+  scroll-margin-top:150px;
+}
+.dcard-media{position:relative;aspect-ratio:4/3;background:#111 center/cover no-repeat;}
+.dcard-media::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(0,0,0,0) 40%,rgba(0,0,0,.72) 100%);
+}
+.dcard-flex-badge{
+  position:absolute;top:14px;right:14px;z-index:2;
+  background:rgba(255,255,255,.22);backdrop-filter:blur(6px);
+  border:1px solid rgba(255,255,255,.35);color:#fff;
+  font-size:10px;font-weight:700;padding:4px 10px;border-radius:100px;letter-spacing:.04em;
+}
+.dcard-num{
+  position:absolute;top:14px;left:14px;z-index:2;color:#fff;
+  font-family:'Noto Serif TC',serif;font-weight:900;font-size:13px;
+  background:rgba(0,0,0,.28);backdrop-filter:blur(6px);
+  padding:4px 11px;border-radius:100px;letter-spacing:.06em;
+}
+.dcard-txt{position:absolute;left:18px;right:18px;bottom:14px;z-index:2;color:#fff;}
+.dcard-date{font-size:10.5px;color:rgba(255,255,255,.7);letter-spacing:.06em;margin-bottom:3px;font-weight:600;}
+.dcard-title{font-size:19px;font-weight:800;line-height:1.3;}
+.dcard-hook{font-size:11.5px;color:rgba(255,255,255,.82);margin-top:5px;line-height:1.55;}
+
+.dcard-tags{display:flex;gap:6px;padding:12px 16px 0;flex-wrap:wrap;}
+.tag{font-size:10.5px;font-weight:700;background:var(--tagbg);color:var(--tagfg);padding:4px 10px;border-radius:100px;}
+
+.dcard-toggle{
+  display:flex;align-items:center;justify-content:center;gap:5px;width:100%;
+  background:none;border:none;padding:13px 16px 10px;
+  font-size:12px;font-weight:700;color:var(--accent);
+  font-family:inherit;cursor:pointer;
+}
+.dcard-toggle svg{width:11px;height:11px;transition:transform .25s;}
+.dcard.open .dcard-toggle svg{transform:rotate(180deg);}
+
+.dcard-detail{
+  max-height:0;overflow:hidden;transition:max-height .35s ease;
+}
+.dcard.open .dcard-detail{max-height:4000px;}
+.dcard-detail-in{padding:2px 18px 20px;}
+
+/* mini timeline */
+.mtl{display:flex;flex-direction:column;gap:0;margin-bottom:14px;}
+.mtl-item{
+  display:flex;gap:11px;padding:10px 0;border-top:1px solid var(--line);
+}
+.mtl-item:first-child{border-top:none;}
+.mtl-time{
+  flex-shrink:0;width:52px;font-size:10.5px;font-weight:700;color:var(--accent);
+  padding-top:1px;
+}
+.mtl-body > b{font-size:13px;font-weight:700;display:block;line-height:1.4;margin-bottom:2px;}
+.mtl-body p{font-size:12px;color:var(--ink-sub);line-height:1.65;}
+.mtl-body a{color:var(--accent);font-weight:700;text-decoration:underline;text-underline-offset:2px;}
+.plist{margin-top:8px;background:var(--bg);border-radius:9px;padding:2px 10px;}
+.prow{display:flex;gap:10px;align-items:center;padding:7px 0;border-top:1px solid var(--line);}
+.prow:first-child{border-top:none;}
+.psz{flex-shrink:0;width:52px;font-size:11px;font-weight:700;color:var(--ink);line-height:1.3;}
+.psz b{display:block;font-size:14px;color:var(--accent);}
+.pdesc{font-size:11px;color:var(--ink-sub);line-height:1.55;}
+/* route steps (station → leg → station) */
+.route{position:relative;margin:8px 0 10px;padding-left:18px;}
+.route::before{content:'';position:absolute;left:5px;top:10px;bottom:10px;width:2px;background:var(--line);}
+.rt-st{position:relative;font-size:12.5px;font-weight:700;color:var(--ink);padding:4px 0;}
+.rt-st::before{content:'';position:absolute;left:-18px;top:8px;width:8px;height:8px;border-radius:50%;background:var(--card);border:2px solid var(--accent);}
+.rt-st small{font-size:10.5px;font-weight:500;color:var(--ink-mute);margin-left:6px;}
+.route a.rt-leg{
+  display:flex;justify-content:space-between;align-items:center;gap:8px;
+  margin:3px 0;padding:8px 11px;background:var(--bg);border-radius:10px;
+  font-size:11.5px;font-weight:500;color:var(--ink-sub);text-decoration:none;
+}
+.rt-leg .go{color:var(--accent);font-weight:700;white-space:nowrap;font-size:11px;}
+.rt-warn{
+  display:flex;gap:6px;align-items:flex-start;margin:3px 0;padding:7px 11px;
+  font-size:11.5px;line-height:1.5;color:#7a5800;background:#fff3cd;border:1px solid #f5c842;border-radius:10px;
+}
+.rt-warn strong{font-weight:800;}
+.mtl-body a.rt-all{
+  display:block;text-align:center;padding:9px;border-radius:10px;
+  border:1.5px solid var(--accent);font-size:12px;text-decoration:none;
+}
+.spots{list-style:none;margin:6px 0;display:flex;flex-direction:column;gap:5px;}
+.spots li{font-size:12px;color:var(--ink-sub);line-height:1.6;background:var(--bg);padding:7px 10px;border-radius:9px;}
+.spots li b{display:block;color:var(--ink);font-size:12.5px;}
+.spots a{white-space:nowrap;}
+.opt-tag{display:inline-block;vertical-align:2px;margin-left:4px;font-size:10px;font-weight:700;color:var(--ink-mute);background:var(--bg);border:1px solid var(--line);padding:1px 7px;border-radius:100px;}
+.opt-h{margin-top:10px;font-size:12px;font-weight:800;color:var(--ink);}
+.opt-h small{display:block;margin-top:1px;font-size:10.5px;font-weight:500;color:var(--ink-mute);}
+.mtl-note{
+  margin-top:6px;font-size:11px;color:var(--ink-sub);
+  background:var(--bg);padding:7px 10px;border-radius:9px;line-height:1.55;
+}
+
+/* mini photo strip inside detail */
+.pshot-row{display:flex;gap:8px;overflow-x:auto;padding:2px 0 14px;scrollbar-width:none;}
+.pshot-row::-webkit-scrollbar{display:none;}
+.pshot{flex-shrink:0;width:104px;text-align:center;}
+.pshot img{width:104px;height:140px;object-fit:cover;border-radius:12px;display:block;border:1px solid var(--line);cursor:pointer;}
+.pshot figcaption{font-size:9.5px;color:var(--ink-mute);margin-top:5px;line-height:1.4;}
+
+/* ══ LIGHTBOX ══ */
+.lightbox{
+  position:fixed;inset:0;z-index:300;
+  background:rgba(0,0,0,.94);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;transition:opacity .2s ease;
+}
+.lightbox.open{opacity:1;pointer-events:auto;}
+.lightbox img{max-width:92vw;max-height:80vh;object-fit:contain;border-radius:10px;touch-action:pan-y;}
+.lightbox-close,.lightbox-nav{
+  position:absolute;display:flex;align-items:center;justify-content:center;
+  width:38px;height:38px;border-radius:50%;
+  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);
+  color:#fff;font-size:18px;line-height:1;cursor:pointer;
+}
+.lightbox-close{top:calc(14px + var(--safe-t));right:16px;font-size:16px;}
+.lightbox-nav{top:50%;transform:translateY(-50%);font-size:22px;}
+.lightbox-prev{left:10px;}
+.lightbox-next{right:10px;}
+.lightbox-count{
+  position:absolute;bottom:calc(18px + var(--safe-b));left:50%;transform:translateX(-50%);
+  color:rgba(255,255,255,.65);font-size:11.5px;letter-spacing:.06em;font-weight:600;
+}
+
+/* info blocks (食/宿/提醒) */
+.iblock{margin-bottom:12px;border-radius:14px;padding:12px 14px;background:var(--bg);}
+.iblock-h{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:800;letter-spacing:.04em;margin-bottom:8px;color:var(--ink);}
+.iblock ul{list-style:none;display:flex;flex-direction:column;gap:6px;}
+.iblock li{display:flex;gap:7px;font-size:12px;color:var(--ink-sub);line-height:1.55;}
+.iblock li::before{content:'·';color:var(--ink-mute);font-weight:900;flex-shrink:0;}
+.iblock li b{color:var(--ink);}
+.iblock li a{color:var(--accent);font-weight:700;text-decoration:underline;text-underline-offset:2px;}
+
+.hotel-card{
+  display:flex;gap:11px;align-items:center;background:var(--bg);
+  border-radius:14px;padding:11px 13px;margin-bottom:12px;
+}
+.hotel-card .hi{font-size:22px;flex-shrink:0;}
+.hotel-card .ht{flex:1;min-width:0;}
+.hotel-card .ht b{font-size:12.5px;font-weight:800;display:block;}
+.hotel-card .ht span{font-size:10.5px;color:var(--ink-mute);}
+.hotel-card a{font-size:10.5px;font-weight:700;color:var(--accent);text-decoration:underline;text-underline-offset:2px;white-space:nowrap;}
+
+/* ══ COMPACT SECTIONS (flights / booking / tips) ══ */
+.csec{margin:0 14px 16px;border-radius:22px;background:var(--card);border:1px solid rgba(0,0,0,.04);box-shadow:0 1px 3px rgba(0,0,0,.04),0 10px 28px -14px rgba(0,0,0,.15);padding:16px 16px 6px;scroll-margin-top:150px;}
+.csec-h{display:flex;align-items:center;gap:7px;font-size:14px;font-weight:800;margin-bottom:12px;}
+.flight-mini{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:12px 4px;border-top:1px solid var(--line);}
+.flight-mini:first-of-type{border-top:none;}
+.flight-mini .fm-l{display:flex;flex-direction:column;gap:2px;}
+.flight-mini .fm-l b{font-size:11px;letter-spacing:.06em;color:var(--ink-mute);font-weight:700;}
+.flight-mini .fm-route{font-size:15px;font-weight:800;}
+.flight-mini .fm-r{text-align:right;font-size:11px;color:var(--ink-sub);line-height:1.5;}
+.flight-mini .fm-r b{color:var(--ink);font-size:12.5px;}
+
+.chk-item{display:flex;gap:10px;align-items:flex-start;padding:11px 4px;border-top:1px solid var(--line);}
+.chk-item:first-of-type{border-top:none;}
+.chk-dot{width:16px;height:16px;border-radius:5px;border:1.5px solid var(--ink-mute);flex-shrink:0;margin-top:2px;}
+.chk-t{font-size:10.5px;color:var(--ink-mute);line-height:1.55;}
+.chk-t b{font-size:12.5px;font-weight:700;display:block;margin-bottom:1px;color:var(--ink);}
+.chk-t span{font-size:10.5px;color:var(--ink-mute);}
+.chk-t .dl{color:var(--d1);font-weight:700;}
+.chk-t a{font-size:10.5px;font-weight:700;color:var(--d2);text-decoration:underline;text-underline-offset:2px;margin-left:4px;}
+
+.tip-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding-bottom:16px;}
+.tip-pill{font-size:11px;color:var(--ink-sub);background:var(--bg);padding:7px 11px;border-radius:11px;line-height:1.5;}
+.tip-pill b{color:var(--ink);}
+.warn-pill{display:flex;align-items:flex-start;gap:6px;font-size:11.5px;font-weight:700;color:#7a5800;background:#fff3cd;border:1px solid #f5c842;padding:8px 12px;border-radius:11px;line-height:1.5;margin-top:8px;}
+/* tips list */
+.tips{display:flex;flex-direction:column;padding-bottom:10px;}
+.tip{display:flex;gap:12px;padding:12px 2px;border-top:1px solid var(--line);}
+.tip:first-child{border-top:none;padding-top:2px;}
+.tip-ic{flex-shrink:0;width:30px;height:30px;border-radius:9px;background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:15px;}
+.tip-b{flex:1;min-width:0;}
+.tip-k{font-size:12.5px;font-weight:800;color:var(--ink);margin-bottom:3px;}
+.tip-v{font-size:11.5px;color:var(--ink-sub);line-height:1.65;}
+.tip-v b{color:var(--ink);}
+.tip-v a{color:var(--d2);font-weight:700;text-decoration:underline;text-underline-offset:2px;}
+.tip-steps{display:flex;flex-direction:column;gap:6px;margin:6px 0 8px;}
+.tip-step{display:flex;gap:9px;align-items:flex-start;background:var(--bg);border-radius:10px;padding:8px 10px;font-size:11.5px;color:var(--ink-sub);line-height:1.5;}
+.tip-step b{color:var(--ink);}
+.tip-step small{font-size:10.5px;color:var(--ink-mute);}
+.tip-step .n{flex-shrink:0;width:20px;height:20px;border-radius:50%;background:var(--d6);color:#fff;font-size:10.5px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:1px;}
+.tip-chips{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-bottom:6px;}
+.tip-chips span{font-size:11px;font-weight:800;color:var(--ink);background:var(--bg);border:1px solid var(--line);padding:3px 10px;border-radius:100px;}
+.tip-chips em{font-style:normal;font-size:10.5px;color:var(--ink-mute);}
+.tip-foot{font-size:11px;}
+.qa-row{padding:9px 0;border-top:1px solid var(--line);}
+.qa-row:first-of-type{border-top:none;padding-top:0;}
+.qa-k{font-size:12px;font-weight:700;color:var(--ink);margin-bottom:3px;}
+.qa-v{font-size:11.5px;color:var(--ink-sub);line-height:1.6;}
+.qa-v b{color:var(--ink);}
+
+/* ══ FOOTER ══ */
+.foot{text-align:center;padding:26px 20px 8px;color:var(--ink-mute);font-size:10.5px;letter-spacing:.08em;}
+
+
+/* ══ FOOD SHEET (opened from tab bar) ══ */
+.food-sheet{position:fixed;inset:0;z-index:250;display:flex;flex-direction:column;justify-content:flex-end;
+  background:rgba(0,0,0,.4);opacity:0;pointer-events:none;transition:opacity .2s ease;}
+.food-sheet.open{opacity:1;pointer-events:auto;}
+.food-panel{width:100%;max-width:560px;margin:0 auto;height:88vh;background:var(--bg);
+  border-radius:22px 22px 0 0;display:flex;flex-direction:column;overflow:hidden;
+  transform:translateY(30px);transition:transform .25s ease;}
+.food-sheet.open .food-panel{transform:none;}
+.food-head{display:flex;align-items:center;justify-content:space-between;padding:16px 18px 6px;}
+.food-head b{font-size:16px;font-weight:800;}
+.food-close{width:32px;height:32px;border-radius:50%;border:1px solid var(--line);background:var(--card);
+  font-size:14px;color:var(--ink-sub);cursor:pointer;font-family:inherit;}
+.food-map-wrap{position:relative;height:34vh;min-height:200px;margin:4px 14px 0;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:#e8e4dc;flex-shrink:0;}
+#food-map{position:absolute;inset:0;}
+.food-locate{position:absolute;right:10px;bottom:10px;z-index:500;border:none;background:#fff;color:#1a73e8;
+  font-family:inherit;font-size:12px;font-weight:800;padding:8px 12px;border-radius:100px;box-shadow:0 2px 8px rgba(0,0,0,.25);cursor:pointer;}
+.food-map-msg{position:absolute;left:10px;right:10px;top:10px;z-index:500;font-size:11px;background:rgba(255,255,255,.95);
+  color:var(--ink-sub);padding:7px 10px;border-radius:10px;display:none;}
+.fpin{width:28px;height:28px;border-radius:50%;background:#fff;border:2px solid var(--ink);display:flex;align-items:center;justify-content:center;font-size:14px;box-shadow:0 1px 4px rgba(0,0,0,.3);}
+.fpin.on{border-color:#d93025;transform:scale(1.2);}
+.leaflet-popup-content{font-family:'Noto Sans TC',sans-serif;font-size:12px;margin:10px 12px;}
+.leaflet-popup-content b{display:block;font-size:13px;margin-bottom:3px;}
+.leaflet-popup-content a{color:#1a5c8a;font-weight:700;}
+.food-card{cursor:pointer;}
+.food-card.on{border-color:var(--ink);}
+.food-chips{display:flex;gap:7px;overflow-x:auto;padding:8px 16px 12px;scrollbar-width:none;flex-shrink:0;}
+.food-chips::-webkit-scrollbar{display:none;}
+.food-chip{flex-shrink:0;border:1px solid var(--line);background:var(--card);color:var(--ink-sub);
+  font-family:inherit;font-size:12px;font-weight:700;padding:7px 12px;border-radius:100px;cursor:pointer;}
+.food-chip.on{background:var(--ink);border-color:var(--ink);color:#fff;}
+.food-list{flex:1;overflow-y:auto;padding:0 14px calc(18px + var(--safe-b));display:flex;flex-direction:column;gap:9px;}
+.food-card{background:var(--card);border:1px solid rgba(0,0,0,.05);border-radius:16px;padding:12px 14px;}
+.food-card .fn{font-size:13.5px;font-weight:800;color:var(--ink);}
+.food-card .fm{font-size:10.5px;color:var(--ink-mute);margin-top:2px;line-height:1.5;}
+.food-card .fd{font-size:11.5px;color:var(--ink-sub);margin-top:5px;line-height:1.6;}
+.food-card .ff{display:flex;align-items:center;gap:6px;margin-top:8px;flex-wrap:wrap;}
+.food-card .fday{font-size:10px;font-weight:800;color:var(--ink);background:var(--bg);border:1px solid var(--line);padding:2px 8px;border-radius:100px;}
+.food-card .fmap{font-size:11px;font-weight:700;color:var(--d2);text-decoration:underline;text-underline-offset:2px;margin-left:auto;}
+.food-note{font-size:10.5px;color:var(--ink-mute);text-align:center;padding:4px 0 2px;}
+button.tab{font-size:inherit;}
+
+/* ══ BOTTOM TAB BAR ══ */
+.tabbar{
+  position:fixed;left:0;right:0;bottom:0;z-index:60;
+  max-width:560px;margin:0 auto;
+  background:rgba(255,255,255,.86);backdrop-filter:blur(20px) saturate(1.5);-webkit-backdrop-filter:blur(20px) saturate(1.5);
+  border-top:1px solid rgba(0,0,0,.07);
+  padding:9px 6px calc(9px + var(--safe-b));
+  display:flex;justify-content:space-around;
+}
+.tab{
+  display:flex;flex-direction:column;align-items:center;gap:3px;
+  background:none;border:none;font-family:inherit;color:var(--ink-mute);
+  padding:2px 6px;cursor:pointer;text-decoration:none;
+}
+.tab svg{width:21px;height:21px;}
+.tab span{font-size:9.5px;font-weight:700;}
+.tab.active{color:var(--ink);}
+
+/* ══ RESPONSIVE (wider = desktop preview) ══ */
+@media(min-width:561px){
+  body{border-left:1px solid var(--line);border-right:1px solid var(--line);}
+}
+</style>
+<style>
+/* ══════ 可愛版 theme override ══════ */
+:root{
+  --bg:#f7f2e7; --card:#fffdf7; --ink:#3b3431; --ink-sub:#6f645c; --ink-mute:#a3968a; --line:#eadfcd;
+  --ol:#3b3431;
+  --d1:#d9654f; --d1b:#f2a491;
+  --d2:#3f8fc0; --d2b:#9ccbe6;
+  --d3:#2f9c8f; --d3b:#93d6cc;
+  --d4:#5f9c4f; --d4b:#b3d9a2;
+  --d5:#cf8434; --d5b:#f2c58c;
+  --d6:#7c70ad; --d6b:#c3bce0;
+  --sun:#f5c95c; --sea:#a9d3e8;
+}
+html,body{background:var(--bg);}
+body,.serif,button,.food-chip{font-family:'Huninn','Noto Sans TC','PingFang TC',sans-serif;}
+.serif{font-weight:400;}
+
+/* header */
+.stickyhead{background:rgba(247,242,231,.92);border-bottom:2.5px solid var(--ol);}
+.topbar-title b{font-weight:400;font-size:17px;}
+.story-ring{border:2.5px solid var(--ol);background:var(--rc2);}
+.story-label,.story-label b{font-weight:400;}
+
+/* hero */
+.cute-hero{margin:12px 14px 6px;border:2.5px solid var(--ol);border-radius:26px;background:var(--card);
+  overflow:hidden;box-shadow:0 5px 0 var(--ol);text-align:center;}
+.cute-hero svg{display:block;width:100%;height:auto;}
+.cute-hero h1{font-weight:400;font-size:clamp(30px,10vw,44px);letter-spacing:.18em;margin:10px 0 4px;padding-left:.18em;color:var(--ink);}
+.cute-hero .date{font-size:14px;letter-spacing:.06em;color:var(--ink-sub);}
+.cute-hero .cd{display:inline-flex;align-items:baseline;gap:8px;margin:14px 0 20px;padding:8px 22px;
+  background:var(--sun);border:2.5px solid var(--ol);border-radius:100px;font-size:14px;color:var(--ink);}
+.cute-hero .cd b{font-size:26px;font-weight:400;line-height:1;}
+.cute-hero .sub{font-size:12px;color:var(--ink-mute);margin:-8px 16px 18px;line-height:1.6;}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-3px) rotate(2deg)}}
+.cute-hero .boat{transform-box:fill-box;transform-origin:50% 100%;animation:bob 3.2s ease-in-out infinite;}
+@keyframes drift{from{transform:translateX(0)}to{transform:translateX(-60px)}}
+.cute-hero .waves{animation:drift 6s linear infinite;}
+@media (prefers-reduced-motion:reduce){.cute-hero .boat,.cute-hero .waves{animation:none;}}
+
+/* chips & labels */
+.qchip{border:2px solid var(--ol);box-shadow:0 3px 0 var(--ol);font-weight:400;}
+.sec-label{font-size:14px;font-weight:400;letter-spacing:.12em;color:var(--ink);padding-top:14px;}
+.sec-label::before{content:'〰 ';color:var(--d2);}
+
+/* day cards */
+.feed{gap:22px;}
+.dcard{border:2.5px solid var(--ol);border-radius:24px;box-shadow:0 5px 0 var(--ol);}
+.dcard-media{aspect-ratio:16/10;border-bottom:2.5px solid var(--ol);}
+.dcard-media::after{background:linear-gradient(180deg,rgba(0,0,0,0) 45%,rgba(40,30,25,.62) 100%);}
+.dcard-num{background:var(--accent);border:2px solid var(--ol);backdrop-filter:none;font-family:inherit;font-weight:400;font-size:14px;}
+.dcard-flex-badge{background:var(--sun);color:var(--ink);border:2px solid var(--ol);backdrop-filter:none;}
+.dcard-title{font-weight:400;font-size:21px;}
+.tag{border:1.5px solid var(--ol);font-weight:400;font-size:11.5px;}
+.dcard-toggle{font-weight:400;font-size:13px;}
+.mtl-body > b{font-weight:400;font-size:14px;}
+.mtl-time{font-weight:400;font-size:11.5px;}
+.mtl-item{border-top:1.5px dashed var(--line);}
+.spots li,.mtl-note,.plist,.route a.rt-leg{border:1.5px solid var(--line);}
+.spots li b{font-weight:400;font-size:13px;}
+.iblock{border:2px solid var(--ol);background:var(--card);}
+.iblock-h{font-weight:400;font-size:13px;}
+.hotel-card{border:2px solid var(--ol);background:var(--card);}
+.pshot img{border:2px solid var(--ol);border-radius:14px;}
+.opt-tag{border:1.5px solid var(--ol);color:var(--ink);font-weight:400;}
+.rt-warn,.warn-pill{border:2px solid var(--ol);background:#fff1c7;color:var(--ink);}
+
+/* sections */
+.csec{border:2.5px solid var(--ol);box-shadow:0 5px 0 var(--ol);border-radius:24px;}
+.csec-h{font-weight:400;font-size:16px;}
+.chk-dot{border:2px solid var(--ol);border-radius:6px;background:var(--card);}
+.chk-t b,.tip-k,.qa-k,.flight-mini .fm-route{font-weight:400;}
+.chk-t .dl{display:inline-block;background:var(--sun);color:var(--ink);border:1.5px solid var(--ol);padding:0 8px;border-radius:100px;margin:2px 4px 2px 0;font-weight:400;}
+.tip-ic{border:2px solid var(--ol);background:var(--card);}
+.foot{font-size:12px;}
+
+/* tab bar & sheet */
+.tabbar{background:var(--card);border-top:2.5px solid var(--ol);backdrop-filter:none;}
+.tab span{font-weight:400;font-size:10.5px;}
+.tab.active{color:var(--d1);}
+.food-panel{border:2.5px solid var(--ol);border-bottom:none;}
+.food-card{border:2px solid var(--ol);}
+.food-chip{border:2px solid var(--ol);font-weight:400;}
+.food-chip.on{background:var(--d2);border-color:var(--ol);}
+.food-map-wrap{border:2px solid var(--ol);}
+.food-card .fn{font-weight:400;font-size:14.5px;}
+@media(min-width:561px){body{border-left:2.5px solid var(--ol);border-right:2.5px solid var(--ol);}}
+</style>
+</head>
+<body>
+
+<!-- ═══ STICKY HEADER ═══ -->
+<div class="stickyhead">
+<div class="topbar">
+  <div class="topbar-title"><b>福岡 六天五夜</b><span>2026.12.25 → 12.30 · FUKUOKA</span></div></div>
+
+<!-- ═══ STORIES (quick jump) ═══ -->
+<div class="stories">
+  <a class="story" href="#sec-flight" style="--rc1:#888;--rc2:#bbb;">
+    <div class="story-ring"><div class="story-img" style="background:#2b2b33 url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22%23fff%22><path d=%22M2.5 19.5l3-1.2 4-.2 3.7-3.7-8-3.3 2-2 9.5 2 4-4c.8-.8 2-.8 2.7 0 .8.8.8 2 0 2.7l-4 4 2 9.5-2 2-3.3-8-3.7 3.7-.2 4-1.2 3z%22/></svg>') center/55% no-repeat;"></div></div>
+    <div class="story-label">✈️ 航班</div>
+  </a>
+  <a class="story" href="#day1" style="--rc1:var(--d1);--rc2:var(--d1b);">
+    <div class="story-ring"><div class="story-img" style="background-image:url('https://commons.wikimedia.org/wiki/Special:FilePath/Nakasu-yatai.JPG?width=200')"></div></div>
+    <div class="story-label"><b>D1</b> 博多</div>
+  </a>
+  <a class="story" href="#day2" style="--rc1:var(--d2);--rc2:var(--d2b);">
+    <div class="story-ring"><div class="story-img" style="background-image:url('https://commons.wikimedia.org/wiki/Special:FilePath/140721_Mojiko_Retro_Kitakyushu_Japan01s3.jpg?width=200')"></div></div>
+    <div class="story-label"><b>D2</b> 門司港</div>
+  </a>
+  <a class="story" href="#day3" style="--rc1:var(--d3);--rc2:var(--d3b);">
+    <div class="story-ring"><div class="story-img" style="background-image:url('https://commons.wikimedia.org/wiki/Special:FilePath/180131_Umi-Jigoku.jpg?width=200')"></div></div>
+    <div class="story-label"><b>D3</b> 別府地獄</div>
+  </a>
+  <a class="story" href="#day4" style="--rc1:var(--d4);--rc2:var(--d4b);">
+    <div class="story-ring"><div class="story-img" style="background-image:url('https://commons.wikimedia.org/wiki/Special:FilePath/Kushidajinjafukuoka01.jpg?width=200')"></div></div>
+    <div class="story-label"><b>D4</b> 天神</div>
+  </a>
+  <a class="story" href="#day5" style="--rc1:var(--d5);--rc2:var(--d5b);">
+    <div class="story-ring"><div class="story-img" style="background-image:url('https://commons.wikimedia.org/wiki/Special:FilePath/Takachiho-kyo%28Gorge%29%20-%20River%20-%20%E5%B7%9D.jpg?width=200')"></div></div>
+    <div class="story-label"><b>D5</b> 高千穗</div>
+  </a>
+  <a class="story" href="#day6" style="--rc1:var(--d6);--rc2:var(--d6b);">
+    <div class="story-ring"><div class="story-img" style="background-image:url('https://commons.wikimedia.org/wiki/Special:FilePath/One%20Fukuoka%20Bldg%20the%20public%20open%20space%20on%20the%20SW%20side%20Tenjin%201-ch%C5%8Dme%20Ch%C5%AB%C5%8D-ku%20Fukuoka%2020250429.jpg?width=200')"></div></div>
+    <div class="story-label"><b>D6</b> 返台</div>
+  </a>
+</div>
+</div>
+
+<!-- ═══ HERO (可愛版) ═══ -->
+<section class="cute-hero" aria-label="福岡 6 天 5 夜">
+  <svg viewBox="0 0 360 150" role="img" aria-label="海上小島與帆船插畫">
+    <rect width="360" height="150" fill="#fdf6e6"/>
+    <circle cx="300" cy="38" r="17" fill="#f5c95c" stroke="#3b3431" stroke-width="3"/>
+    <g fill="#fff" stroke="#3b3431" stroke-width="2.5" stroke-linejoin="round">
+      <path d="M48 44 q0-12 13-12 q5-9 16-5 q12-2 13 10 q9 1 8 9 z"/>
+      <path d="M190 26 q0-9 10-9 q4-7 12-4 q9-1 10 8 q7 1 6 7 z"/>
+    </g>
+    <path d="M18 98 Q42 50 84 64 Q112 46 140 98 Z" fill="#9ccc8a" stroke="#3b3431" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M58 70 l4-8 4 8 M98 62 l4-8 4 8" fill="none" stroke="#3b3431" stroke-width="2" stroke-linecap="round"/>
+    <g class="boat">
+      <path d="M244 56 L244 90" stroke="#3b3431" stroke-width="3" stroke-linecap="round"/>
+      <path d="M246 58 L272 86 L246 86 Z" fill="#fff" stroke="#3b3431" stroke-width="2.5" stroke-linejoin="round"/>
+      <path d="M226 88 L282 88 L274 102 L234 102 Z" fill="#e8836b" stroke="#3b3431" stroke-width="3" stroke-linejoin="round"/>
+    </g>
+    <g class="waves">
+      <path d="M-10 98 q15-12 30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 V160 H-10 Z" fill="#a9d3e8" stroke="#3b3431" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M40 124 q6-5 12 0 M130 134 q6-5 12 0 M220 122 q6-5 12 0 M310 132 q6-5 12 0 M370 124 q6-5 12 0" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
+    </g>
+    <path d="M0 148.5 H360" stroke="#3b3431" stroke-width="3"/>
+  </svg>
+  <h1>福岡 6 天 5 夜</h1>
+  <div class="date">2026・12／25（五）– 12／30（三）</div>
+  <div class="cd" id="cute-cd">出發倒數 <b id="cute-cd-n">–</b> 天</div>
+  <p class="sub">屋台 × 溫泉 × 神社 × 峽谷 · 點卡片看細節</p>
+</section>
+<script>
+(function(){
+  var start=Date.UTC(2026,11,25)-8*3600e3, end=Date.UTC(2026,11,31)-8*3600e3;
+  var now=Date.now(), el=document.getElementById('cute-cd');
+  if(now<start){document.getElementById('cute-cd-n').textContent=Math.ceil((start-now)/864e5);}
+  else if(now<end){el.innerHTML='旅途中 · Day <b>'+(Math.floor((now-start)/864e5)+1)+'</b>';}
+  else{el.innerHTML='旅程完成 <b>✿</b>';}
+})();
+</script>
+
+<!-- quick chips -->
+<div class="qchips">
+  <a class="qchip" href="#sec-flight"><span class="n">✈️</span>CI116 / CI117</a>
+  <a class="qchip" href="#sec-lodging"><span class="n">🏨</span>住宿</a>
+  <a class="qchip" href="#sec-booking"><span class="n">📅</span>預訂備忘</a>
+  <a class="qchip" href="#sec-pretrip"><span class="n">📝</span>行前備忘</a>
+  <a class="qchip" href="#sec-tips"><span class="n">📋</span>整體提醒</a>
+</div>
+
+<!-- ═══ FEED ═══ -->
+<div class="sec-label">六天行程</div>
+<div class="feed">
+
+  <!-- DAY 1 -->
+  <article class="dcard open" id="day1" style="--accent:var(--d1);--tagbg:#fdeceb;--tagfg:#a5321f;">
+    <div class="dcard-media" style="background-image:url('https://commons.wikimedia.org/wiki/Special:FilePath/Nakasu-yatai.JPG?width=800')">
+      <span class="dcard-num serif">DAY 01</span>
+      <div class="dcard-txt">
+        <div class="dcard-date">週五 · 12/25</div>
+        <div class="dcard-title serif">抵達福岡 · 燒肉 × 屋台深夜</div>
+        <div class="dcard-hook">CI116 19:35 落地 → 天神南森林 check-in → 燒肉／鐵板燒／一口餃子／沾麵／屋台 擇一</div>
+      </div>
+    </div>
+    <div class="dcard-tags">
+      <span class="tag">🍜 屋台</span><span class="tag">🥩 燒肉</span><span class="tag">🛬 抵達日</span>
+    </div>
+    <button class="dcard-toggle" onclick="this.closest('.dcard').classList.toggle('open')">
+      行程細節 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 9l7 7 7-7"/></svg>
+    </button>
+    <div class="dcard-detail"><div class="dcard-detail-in">
+
+      <div class="pshot-row">
+        <figure class="pshot"><img src="下飛機轉乘搭車/轉乘_1.jpg" loading="lazy" alt="A3口"><figcaption>① 向前右轉 → A3口</figcaption></figure>
+        <figure class="pshot"><img src="下飛機轉乘搭車/轉乘_2.jpg" loading="lazy" alt="接駁車"><figcaption>② 免費接駁車</figcaption></figure>
+        <figure class="pshot"><img src="下飛機轉乘搭車/轉乘_4.jpg" loading="lazy" alt="地鐵入口"><figcaption>③ 地下鐵入口</figcaption></figure>
+      </div>
+
+      <div class="mtl">
+        <div class="mtl-item">
+          <div class="mtl-time">19:35</div>
+          <div class="mtl-body">
+            <b>機場（接駁車）→ 博多駅（地鐵）→ 渡辺通駅</b>
+            <p>A3 出口搭免費接駁車到國內線，搭地鐵空港線到博多駅，轉七隈線到渡辺通駅（3 站），出站步行約 5 分到住宿。</p>
+          </div>
+        </div>
+        <div class="mtl-item">
+          <div class="mtl-time">20:00<br>–21:00</div>
+          <div class="mtl-body"><b>Check-in — 天神南森林</b><p>放行李輕裝出發，住宿資訊見下方「住宿」。</p><div class="mtl-note">✅ 已跟住宿方確認可以晚到入住，預計 20:00–21:00 辦理，在現場櫃台領鑰匙</div></div>
+        </div>
+        <div class="mtl-item">
+          <div class="mtl-time">21:30</div>
+          <div class="mtl-body">
+            <b>晚餐／消夜（擇一）</b>
+            <ul class="spots">
+              <li><b>🥩 藥院燒肉 NIKUICHI</b>在地人愛去的燒肉激戰區，和牛品質高、價格實在；回住宿搭七隈線 1 站到渡辺通，或步行約 12 分。📅 需提前約 1 個月訂位 — <a href="https://www.google.com/maps/place/%E8%97%A5%E9%99%A2%E7%87%92%E8%82%89NIKUICHI/@33.5823231,130.3987041,16.34z/data=!4m6!3m5!1s0x35419182e2f0cbcb:0xc36848d58d08473e!8m2!3d33.5812387!4d130.3988274!16s%2Fg%2F11b8_x9j_7?entry=ttu" target="_blank" rel="noopener">Maps 訂位 ↗</a>　備案：<a href="https://www.google.com/maps/place/Niku+no+Yamasho/@33.585934,130.3955507,16.91z/data=!3m1!5s0x354191841fd7a791:0xac771c520548c27d!4m6!3m5!1s0x3541911902895b63:0x34e2e451b9e16fd3!8m2!3d33.585964!4d130.3956038!16s%2Fg%2F11stzqjm3l?entry=ttu" target="_blank" rel="noopener">肉の山翔 ↗</a>　／　<a href="https://www.google.com/maps/search/?api=1&query=%E8%82%89%E5%B1%8B%E8%82%89%E4%B8%80%20%E5%8D%9A%E5%A4%9A%E5%BA%97%20%E7%A6%8F%E5%B2%A1%E5%B8%82%E5%8D%9A%E5%A4%9A%E5%8C%BA%E5%8D%9A%E5%A4%9A%E9%A7%85%E5%8D%971-2-18" target="_blank" rel="noopener">肉屋肉一 ↗</a></li>
+              <li><b>🍳 鉄板焼酒場 いくら（天神今泉）</b>人氣鐵板燒居酒屋，常排隊；今泉，西鐵天神站步行約 3 分。晚上 18:00–24:00（L.O. 23:00），不定休，可網路訂位 <a href="https://www.google.com/maps/search/?api=1&query=%E9%89%84%E6%9D%BF%E7%84%BC%E9%85%92%E5%A0%B4%E3%81%84%E3%81%8F%E3%82%89%20%E4%BB%8A%E6%B3%89" target="_blank" rel="noopener">Maps ↗</a>　<a href="https://tabelog.com/en/fukuoka/A4001/A400103/40056457/" target="_blank" rel="noopener">食べログ ↗</a></li>
+              <li><b>🥟 博多一口餃子 たけとら（今泉店）</b>博多名物一口煎餃，手工餃子皮；今泉，天神南駅步行約 3 分。15:00–翌 5:00，可網路訂位 <a href="https://www.google.com/maps/search/?api=1&query=%E5%8D%9A%E5%A4%9A%E4%B8%80%E5%8F%A3%E9%A4%83%E5%AD%90%E3%81%9F%E3%81%91%E3%81%A8%E3%82%89%20%E4%BB%8A%E6%B3%89%E5%BA%97" target="_blank" rel="noopener">Maps ↗</a>　<a href="https://tabelog.com/en/fukuoka/A4001/A400103/40065668/" target="_blank" rel="noopener">食べログ ↗</a></li>
+              <li><b>🍜 麵屋兼虎（天神本店）</b>濃厚魚介豚骨沾麵；渡辺通 4 丁目，天神南駅步行約 3 分。營業到 22:00，<strong>22:00 前要排進隊伍</strong> <a href="https://www.google.com/maps/search/?api=1&query=%E9%BA%BA%E3%82%84%E5%85%BC%E8%99%8E%20%E5%A4%A9%E7%A5%9E%E6%9C%AC%E5%BA%97" target="_blank" rel="noopener">Maps ↗</a>　<a href="https://tabelog.com/en/fukuoka/A4001/A400103/40035453/" target="_blank" rel="noopener">食べログ ↗</a></li>
+              <li><b>🍜 天神 · 中洲屋台</b>露天食攤一字排開，點碗豚骨拉麵配生啤。推薦 <a href="https://www.google.com/maps/search/?api=1&query=%E5%B0%8F%E9%87%91%E3%81%A1%E3%82%83%E3%82%93+%E7%A6%8F%E5%B2%A1%E5%B8%82%E4%B8%AD%E5%A4%AE%E5%8C%BA%E5%A4%A9%E7%A5%9E2%E4%B8%81%E7%9B%AE" target="_blank" rel="noopener">屋台 小金ちゃん ↗</a>：炒拉麵元祖，約 18:15–24:00（週五、六到翌 1:00），週四、日休</li>
+            </ul>
+            <div class="mtl-note">🛒 除了屋台，吃完都可以順路逛西鐵超市（レガネットマルシェ 藥院店），<b>23:00 關門</b>：NIKUICHI 走過去約 4 分，いくら、たけとら、兼虎約 8 分；逛完步行約 10 分回住宿 <a href="https://www.google.com/maps/search/?api=1&query=%E3%83%AC%E3%82%AC%E3%83%8D%E3%83%83%E3%83%88%E3%83%9E%E3%83%AB%E3%82%B7%E3%82%A7%20%E8%96%AC%E9%99%A2" target="_blank" rel="noopener">Maps ↗</a></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="iblock">
+        <div class="iblock-h">🍜 必吃</div>
+        <ul><li><b>博多豚骨拉麵</b> 屋台版，細麵白湯</li><li><b>屋台關東煮</b> 冬天暖身</li></ul>
+      </div>
+      <div class="iblock">
+        <div class="iblock-h">💡 提醒</div>
+        <ul><li>住宿在渡辺通駅旁，七隈線 3 站直達博多駅、1 站到天神南，後幾天都從這出發</li><li>今晚輕鬆，明天 Day2 要早起</li><li>博多站 B1 有置物櫃，晚到可先寄行李</li></ul>
+      </div>
+
+    </div></div>
+  </article>
+
+  <!-- DAY 2 -->
+  <article class="dcard" id="day2" style="--accent:var(--d2);--tagbg:#eaf3fa;--tagfg:#1a5c8a;">
+    <div class="dcard-media" style="background-image:url('https://commons.wikimedia.org/wiki/Special:FilePath/%E5%94%90%E6%88%B8%E5%B8%82%E5%A0%B4202309.jpg?width=800')">
+      <span class="dcard-num serif">DAY 02</span>
+      <div class="dcard-txt">
+        <div class="dcard-date">週六 · 12/26</div>
+        <div class="dcard-title serif">唐戶市場 × 門司港 × Outlet</div>
+        <div class="dcard-hook">跨海一天：現場握河豚壽司、大正浪漫港口、傍晚掃 Outlet</div>
+      </div>
+    </div>
+    <div class="dcard-tags"><span class="tag">🐡 河豚</span><span class="tag">🏯 門司港</span><span class="tag">🛍️ Outlet</span></div>
+    <button class="dcard-toggle" onclick="this.closest('.dcard').classList.toggle('open')">行程細節 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 9l7 7 7-7"/></svg></button>
+    <div class="dcard-detail"><div class="dcard-detail-in">
+
+      <div class="pshot-row">
+        <figure class="pshot"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/%E5%94%90%E6%88%B8%E5%B8%82%E5%A0%B4202309.jpg?width=400" loading="lazy" alt="唐戶市場"><figcaption>唐戶市場 週末現場握壽司</figcaption></figure>
+        <figure class="pshot"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/140721_Mojiko_Retro_Kitakyushu_Japan01s3.jpg?width=400" loading="lazy" alt="門司港懷舊區"><figcaption>門司港懷舊洋館群</figcaption></figure>
+      </div>
+
+      <div class="mtl">
+        <div class="mtl-item"><div class="mtl-time">07:30</div><div class="mtl-body"><b>渡辺通 → 博多 → 小倉 → 門司港</b>
+          <div class="route">
+            <div class="rt-st">渡辺通駅<small>住宿步行約 5 分</small></div>
+            <a class="rt-leg" href="https://www.google.com/maps/dir/?api=1&origin=%E6%B8%A1%E8%BE%BA%E9%80%9A%E9%A7%85&destination=%E5%8D%9A%E5%A4%9A%E9%A7%85&travelmode=transit" target="_blank" rel="noopener"><span>🚇 地鐵七隈線 3 站 · 約 6 分</span><span class="go">導航 ↗</span></a>
+            <div class="rt-st">博多駅</div>
+            <div class="rt-warn">🎫 <span>先買<strong>特急券</strong>（音速號 自由席／指定席）再進站，車資刷 Suica 即可</span></div>
+            <a class="rt-leg" href="https://www.google.com/maps/dir/?api=1&origin=%E5%8D%9A%E5%A4%9A%E9%A7%85&destination=%E5%B0%8F%E5%80%89%E9%A7%85&travelmode=transit" target="_blank" rel="noopener"><span>🚄 JR 特急音速號 · 約 45 分</span><span class="go">導航 ↗</span></a>
+            <div class="rt-st">小倉駅</div>
+            <a class="rt-leg" href="https://www.google.com/maps/dir/?api=1&origin=%E5%B0%8F%E5%80%89%E9%A7%85&destination=%E9%96%80%E5%8F%B8%E6%B8%AF%E9%A7%85&travelmode=transit" target="_blank" rel="noopener"><span>🚃 JR 鹿兒島本線 · 約 15 分</span><span class="go">導航 ↗</span></a>
+            <div class="rt-st">門司港駅<small>大正時代鐵道建築</small></div>
+          </div>
+          <a class="rt-all" href="https://www.google.com/maps/dir/?api=1&origin=%E6%B8%A1%E8%BE%BA%E9%80%9A%E9%A7%85&destination=%E9%96%80%E5%8F%B8%E6%B8%AF%E9%A7%85&travelmode=transit" target="_blank" rel="noopener">🧭 Google 導航全程 ↗</a>
+        </div></div>
+        <div class="mtl-item"><div class="mtl-time">09:30<br>–11:00</div><div class="mtl-body"><b>唐戶市場「活跳跳馬關街」</b><p>門司港棧橋搭<b>關門汽船</b>過海約 5 分到唐戶。週末限定現場握壽司：河豚生魚片、黑鮪魚中腹、鰤魚・鯛魚，配一碗河豚・蟹肉味噌湯。<b>09:30 前到最好</b>，熱門品項 11:30 常售完。</p></div></div>
+        <div class="mtl-item"><div class="mtl-time">11:00<br>–11:40</div><div class="mtl-body"><b>赤間神宮</b><p>從唐戶市場沿海邊步行約 10 分。龍宮城造型的朱紅水天門，供奉壇之浦戰役沉海的安德天皇。逛完走回唐戶棧橋搭關門汽船回門司港。<a href="https://www.google.com/maps/dir/?api=1&origin=%E5%94%90%E6%88%B8%E5%B8%82%E5%A0%B4&destination=%E8%B5%A4%E9%96%93%E7%A5%9E%E5%AE%AE&travelmode=walking" target="_blank" rel="noopener">步行導航 ↗</a></p></div></div>
+        <div class="mtl-item"><div class="mtl-time">12:00</div><div class="mtl-body"><b>午餐 — Princess Pipi 燒咖哩 <span class="opt-tag">備選</span></b><p>門司港駅前，招牌「野菜ソムリエの王様燒咖哩」，建議加點一份<b>河豚炸魚薯條</b>。<a href="https://www.google.com/maps/search/?api=1&query=%E3%83%97%E3%83%AA%E3%83%B3%E3%82%BB%E3%82%B9%E3%83%94%E3%83%94%20%E9%96%80%E5%8F%B8%E6%B8%AF" target="_blank" rel="noopener">Maps ↗</a></p><div class="mtl-note">↪ 或逛完門司港直接去 Outlet 吃（見 15:00）</div></div></div>
+        <div class="mtl-item"><div class="mtl-time">13:00<br>–14:00</div><div class="mtl-body"><b>門司港懷舊區</b><p>舊門司稅關、舊大阪商船等洋館群。</p>
+          <ul class="spots">
+            <li><b>藍翼門司吊橋</b>每日開橋 6 次（10／11／13／14／15／16 點），別錯過 <a href="https://www.google.com/maps/search/?api=1&query=%E3%83%96%E3%83%AB%E3%83%BC%E3%82%A6%E3%82%A3%E3%83%B3%E3%82%B0%E3%82%82%E3%81%98" target="_blank" rel="noopener">Maps ↗</a></li>
+            <li><b>香蕉人（バナナマン）</b>黑、黃兩尊雕像拍照點，門司港是香蕉叫賣發源地 <a href="https://www.google.com/maps/search/?api=1&query=%E3%83%90%E3%83%8A%E3%83%8A%E3%83%9E%E3%83%B3%20%E9%96%80%E5%8F%B8%E6%B8%AF" target="_blank" rel="noopener">Maps ↗</a></li>
+            <li><b>潮風號</b>復古觀光小火車。⚠ 通常只在 3–11 月週末行駛，12 月多半停駛，出發前查官網運行表 <a href="https://www.google.com/maps/search/?api=1&query=%E6%BD%AE%E9%A2%A8%E5%8F%B7%20%E4%B9%9D%E5%B7%9E%E9%89%84%E9%81%93%E8%A8%98%E5%BF%B5%E9%A4%A8%E9%A7%85" target="_blank" rel="noopener">Maps ↗</a></li>
+            <li><b>九州鐵道紀念館</b>門司港駅旁，9:00–17:00（16:30 最後入館），大人 300 円 <a href="https://www.google.com/maps/search/?api=1&query=%E4%B9%9D%E5%B7%9E%E9%89%84%E9%81%93%E8%A8%98%E5%BF%B5%E9%A4%A8" target="_blank" rel="noopener">Maps ↗</a></li>
+          </ul>
+          <p>逛累了到<b>門司港在地啤酒工坊</b>喝一杯（門司港駅步行約 5 分）。<a href="https://www.google.com/maps/search/?api=1&query=%E9%96%80%E5%8F%B8%E6%B8%AF%E5%9C%B0%E3%83%93%E3%83%BC%E3%83%AB%E5%B7%A5%E6%88%BF" target="_blank" rel="noopener">Maps ↗</a></p></div></div>
+        <div class="mtl-item"><div class="mtl-time">15:00<br>–19:00</div><div class="mtl-body"><b>THE OUTLETS KITAKYUSHU</b><p>14:00 從門司港駅搭 JR → 小倉轉車 → 太空世界站（約 40 分），出站步行 2 分，與 AEON MALL 相連（營業至 20:00）。中午沒吃到 Princess Pipi 的話，這裡吃：</p><div class="mtl-note">🍛 <a href="https://www.google.com/maps/search/?api=1&query=%E3%82%AB%E3%83%AC%E3%83%BC%E6%9C%AC%E8%88%97%20THE%20OUTLETS%20KITAKYUSHU" target="_blank" rel="noopener">咖哩本舖 ↗</a> 燒咖哩（1F 美食區）　🍔 <a href="https://www.google.com/maps/search/?api=1&query=%E6%A5%B5%E5%91%B3%E3%82%84%20THE%20OUTLETS%20KITAKYUSHU" target="_blank" rel="noopener">極味屋 ↗</a> 漢堡排</div></div></div>
+        <div class="mtl-item"><div class="mtl-time">19:00</div><div class="mtl-body"><b>太空世界站 → 博多 → 渡辺通</b><p>JR 鹿兒島本線直達博多約 1 小時（刷 Suica）；趕時間可先到小倉轉新幹線約 15 分。到博多先吃晚餐／消夜（見下），再轉地鐵七隈線到渡辺通（3 站）回住宿。</p></div></div>
+        <div class="mtl-item"><div class="mtl-time">~20:00</div><div class="mtl-body"><b>博多駅 晚餐／消夜</b>
+          <ul class="spots">
+            <li><b>🍜 ShinShin（KITTE 博多店）</b>細麵清爽豚骨，博多口出站即到。11:00–24:00（L.O. 23:30）<a href="https://www.google.com/maps/search/?api=1&query=%E5%8D%9A%E5%A4%9A%E3%82%89%E3%83%BC%E3%82%81%E3%82%93%20ShinShin%20KITTE%E5%8D%9A%E5%A4%9A%E5%BA%97" target="_blank" rel="noopener">Maps ↗</a></li>
+            <li><b>🍜 博多一幸舎</b>泡系濃厚豚骨。總本店博多駅步行 5 分（–23:30），或デイトス 2F 博多麵街道分店 <a href="https://www.google.com/maps/search/?api=1&query=%E5%8D%9A%E5%A4%9A%E4%B8%80%E5%B9%B8%E8%88%8E%20%E7%B7%8F%E6%9C%AC%E5%BA%97" target="_blank" rel="noopener">Maps ↗</a></li>
+            <li><b>🍜 麵屋兼虎（デイトス店）</b>濃厚魚介豚骨沾麵，博多駅直通。營業時間出發前確認 <a href="https://www.google.com/maps/search/?api=1&query=%E9%BA%BA%E3%82%84%E5%85%BC%E8%99%8E%20%E5%8D%9A%E5%A4%9A%E3%83%87%E3%82%A4%E3%83%88%E3%82%B9%E5%BA%97" target="_blank" rel="noopener">Maps ↗</a></li>
+            <li><b>🍢 かわ屋（博多駅筑紫口店）</b>招牌雞皮串，筑紫口步行約 4 分。17:00–翌 1:00，週末建議 Hot Pepper 先訂位 <a href="https://www.google.com/maps/search/?api=1&query=%E3%81%8B%E3%82%8F%E5%B1%8B%20%E5%8D%9A%E5%A4%9A%E9%A7%85%20%E7%AD%91%E7%B4%AB%E5%8F%A3%E5%BA%97" target="_blank" rel="noopener">Maps ↗</a></li>
+          </ul>
+        </div></div>
+      </div>
+
+      <div class="iblock">
+        <div class="iblock-h">🐡 必吃</div>
+        <ul><li><b>河豚生魚片</b> 下關名物</li><li><b>黑鮪魚中腹</b> 大塊厚切、油脂豐富</li><li><b>門司港燒咖哩</b> Princess Pipi／備案 Outlet 咖哩本舖</li><li><b>河豚炸魚薯條</b> Princess Pipi</li><li><b>門司港在地啤酒</b> 門司港在地啤酒工坊</li><li><b>極味屋</b> 福岡人氣漢堡排（Outlet 內）</li></ul>
+      </div>
+      <div class="iblock">
+        <div class="iblock-h">💡 提醒</div>
+        <ul><li><span>🎫 <b>博多站先買特急券</b>再搭音速號（車資刷 Suica），12/26 週六建議劃指定席</span></li><li>唐戶市場週末人潮大，準時到最划算</li><li>回程小倉→博多新幹線只需 15 分</li><li>🚨 今晚記得整理行李，明天 Day 3 最晚 7:30 要出門退房，渡辺通搭七隈線直達博多集合</li></ul>
+      </div>
+
+    </div></div>
+  </article>
+
+  <!-- DAY 3 -->
+  <article class="dcard" id="day3" style="--accent:var(--d3);--tagbg:#e4f5f3;--tagfg:#0b6d63;">
+    <div class="dcard-media" style="background-image:url('https://commons.wikimedia.org/wiki/Special:FilePath/180131_Umi-Jigoku.jpg?width=800')">
+      <span class="dcard-num serif">DAY 03</span>
+      <span class="dcard-flex-badge">± 泊</span>
+      <div class="dcard-txt">
+        <div class="dcard-date">週日 · 12/27</div>
+        <div class="dcard-title serif">別府地獄 × 動物公園 KKday → 由布院 → 別府</div>
+        <div class="dcard-hook">跟團玩地獄巡禮＋動物公園，由布院中途脫團自由散策，傍晚接續前往別府泡湯</div>
+      </div>
+    </div>
+    <div class="dcard-tags"><span class="tag">🌋 地獄巡禮</span><span class="tag">🦁 動物公園</span><span class="tag">♨️ 溫泉</span></div>
+    <button class="dcard-toggle" onclick="this.closest('.dcard').classList.toggle('open')">行程細節 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 9l7 7 7-7"/></svg></button>
+    <div class="dcard-detail"><div class="dcard-detail-in">
+
+      <div class="pshot-row">
+        <figure class="pshot"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/180131_Umi-Jigoku.jpg?width=400" loading="lazy" alt="海地獄"><figcaption>海地獄 · 鈷藍色溫泉地獄</figcaption></figure>
+        <figure class="pshot"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Lake_Kinrin.JPG?width=400" loading="lazy" alt="金鱗湖"><figcaption>由布院 · 金鱗湖</figcaption></figure>
+        <figure class="pshot"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Beppu_Montage_2.jpg?width=400" loading="lazy" alt="別府"><figcaption>別府 · 溫泉之都</figcaption></figure>
+      </div>
+
+      <div class="mtl">
+        <div class="mtl-item"><div class="mtl-time">08:15</div><div class="mtl-body"><b>KKday 集合 — 羅森 福岡東方飯店</b><p>博多站築紫口前集合上車，參加《別府地獄與九州自然動物園一日遊》。<a href="https://www.kkday.com/zh-tw/product/175897" target="_blank" rel="noopener">KKday 行程頁 ↗</a></p></div></div>
+        <div class="mtl-item"><div class="mtl-time">10:30</div><div class="mtl-body"><b>① 海地獄</b><p>別府最大地獄之一，泉溫約 98°C，池水呈夢幻鈷藍色（門票約 500 円自理）。</p></div></div>
+        <div class="mtl-item"><div class="mtl-time">11:15</div><div class="mtl-body"><b>② 爐地獄</b><p>以高溫蒸氣噴射景觀聞名，泉溫約 90°C（門票約 500 円自理）。</p></div></div>
+        <div class="mtl-item"><div class="mtl-time">12:25</div><div class="mtl-body"><b>③ 九州自然動物公園</b><p>叢林巴士近距離餵獅子、大象、黑熊；門票 2,600 円＋叢林巴士 1,500 円自理。冬季封路時改去大分海洋宮殿水族館。</p></div></div>
+        <div class="mtl-item"><div class="mtl-time">14:30<br>脫團</div><div class="mtl-body"><b>④ 由布院 — 自由活動 2 小時 20 分</b><p>抵達後<b>此站脫團</b>，不搭原車返博多，改自行前往別府。湯之坪街道（<b>B-Speak</b> 蛋糕卷、和牛可樂餅、由布院釜飯）、金鱗湖、由布院花卉村、貓頭鷹之森都在這一帶。</p></div></div>
+        <div class="mtl-item"><div class="mtl-time">16:50</div><div class="mtl-body"><b>⑤ 前往別府</b><p>由布院駅搭 JR 久大本線或龜之井巴士，約 40 分抵別府。</p></div></div>
+        <div class="mtl-item"><div class="mtl-time">17:30</div><div class="mtl-body"><b>⑥ 別府 Check-in × 溫泉</b><p>辦理入住後先泡湯，再吃飯店晚餐（1F 自助餐 17:30–21:00，<b>20:00 前入場</b>）；18:00 前抵達可順道去友永麵包屋買伴手禮。</p></div></div>
+      </div>
+
+      <div class="hotel-card">
+        <div class="hi">🏨</div>
+        <div class="ht"><b>御宿野乃 別府</b><span>別府駅徒步 1 分 · 15:00 入住／11:00 退房</span></div>
+        <a href="https://www.agoda.com/zh-tw/onyado-nono-beppu-hot-spring/hotel/oita-jp.html" target="_blank" rel="noopener">Agoda ↗</a>
+      </div>
+      <div class="iblock">
+        <div class="iblock-h">🛁 住宿亮點</div>
+        <ul><li><b>13F 天然大浴場</b> 貸切溫泉 7 間各具特色，免預約現場看空位使用（15:00–隔天10:00，每次 45 分，毛巾自備）</li><li><b>消夜拉麵</b> 22:00–23:00 免費供應</li><li><b>晚餐</b> 1F「Tokinoniwa」日西式自助餐，大分料理為主，17:30–21:00（最後入場 20:00）</li><li><b>早餐</b> 約 70 種日西式自助餐，6:30–9:30（最後入場 9:00）</li><li><b>注意</b> 餐廳禁止自帶外食與飲料</li></ul>
+      </div>
+      <div class="iblock">
+        <div class="iblock-h">🍮 必吃</div>
+        <ul><li><b>B-Speak</b> 蛋糕卷必買</li><li><b>和牛可樂餅 / 由布院釜飯</b> 湯之坪街道現吃</li><li><b>友永麵包屋</b> 老字號，小狗麵包、紅豆麵包、蜜瓜麵包</li><li><b>燒肉 円円</b>（備案 Ichiriki）備選消夜</li></ul>
+      </div>
+      <div class="iblock">
+        <div class="iblock-h">💡 提醒</div>
+        <ul><li>KKday 建議提前預約，名額有限</li><li>由布院僅脫團自由行 2 小時 20 分，行程需抓緊</li><li>B-Speak 常常開門不久就售完，抵達後第一件事先去排隊</li></ul>
+      </div>
+
+    </div></div>
+  </article>
+
+  <!-- DAY 4 -->
+  <article class="dcard" id="day4" style="--accent:var(--d4);--tagbg:#eaf5e9;--tagfg:#2e5e2e;">
+    <div class="dcard-media" style="background-image:url('https://commons.wikimedia.org/wiki/Special:FilePath/Kushidajinjafukuoka01.jpg?width=800')">
+      <span class="dcard-num serif">DAY 04</span>
+      <div class="dcard-txt">
+        <div class="dcard-date">週一 · 12/28</div>
+        <div class="dcard-title serif">放鬆回福岡 · 天神午餐 × 博多老街 × 自由逛街</div>
+        <div class="dcard-hook">別府回天神 → 午餐 → 櫛田神社 × 川端通 → 自由逛街 → 大東園燒肉</div>
+      </div>
+    </div>
+    <div class="dcard-tags"><span class="tag">⛩️ 櫛田神社</span><span class="tag">🛍️ 逛街</span><span class="tag">🥩 燒肉</span></div>
+    <button class="dcard-toggle" onclick="this.closest('.dcard').classList.toggle('open')">行程細節 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 9l7 7 7-7"/></svg></button>
+    <div class="dcard-detail"><div class="dcard-detail-in">
+
+      <div class="pshot-row">
+        <figure class="pshot"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Kushidajinjafukuoka01.jpg?width=400" loading="lazy" alt="櫛田神社"><figcaption>櫛田神社</figcaption></figure>
+        <figure class="pshot"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Kawabata_doori_2011.jpg?width=400" loading="lazy" alt="川端通商店街"><figcaption>川端通商店街</figcaption></figure>
+      </div>
+
+      <div class="mtl">
+        <div class="mtl-item"><div class="mtl-time">09:19<br>起</div><div class="mtl-body"><b>別府退房 → 回福岡（二選一）</b>
+          <div class="opt-h">🚌 高速巴士 とよのくに號 → 天神<small>約 2.5 小時 · 約 3,190 円</small></div>
+          <p>別府北浜站上車（別府車站東邊步行約 10 分）<a href="https://www.google.com/maps/dir/?api=1&origin=%E5%BE%A1%E5%AE%BF%E9%87%8E%E4%B9%83%20%E5%88%A5%E5%BA%9C&destination=%E5%88%A5%E5%BA%9C%E5%8C%97%E6%B5%9C%20%E3%83%90%E3%82%B9%E5%81%9C&travelmode=walking" target="_blank" rel="noopener">步行導航 ↗</a></p>
+          <div class="route">
+            <div class="rt-st">09:30 發 → 天神 12:01 到</div>
+            <div class="rt-st">11:00 發 → 天神 13:31 到</div>
+          </div>
+          <div class="opt-h">🚄 特急音速號 → 博多<small>約 2 小時 10 分 · 自由席 6,380 円</small></div>
+          <p>別府車站直達博多，不用轉車</p>
+          <div class="route">
+            <div class="rt-st">09:19 發 → 博多 11:29 到<small>16 號</small></div>
+            <div class="rt-st">09:48 發 → 博多 11:50 到<small>18 號</small></div>
+            <div class="rt-st">10:20 發 → 博多 12:28 到<small>20 號</small></div>
+          </div>
+        </div></div>
+        <div class="mtl-item"><div class="mtl-time">~12:30</div><div class="mtl-body"><b>天神南森林寄行李 → 午餐</b><p>先回住宿寄放行李（入住 15:00 起，請先問櫃台能否提前寄放），再擇一吃午餐：</p>
+          <ul class="spots">
+            <li><b>🥩 牛かつ もと村（福岡天神西通り店）</b>炸牛排，自己在小鐵板上煎到喜歡的熟度，大名（西鐵天神站步行約 5 分）。11:00–22:00，不接受訂位 <a href="https://www.google.com/maps/search/?api=1&query=%E7%89%9B%E3%81%8B%E3%81%A4%20%E3%82%82%E3%81%A8%E6%9D%91%20%E7%A6%8F%E5%B2%A1%E5%A4%A9%E7%A5%9E%E8%A5%BF%E9%80%9A%E3%82%8A%E5%BA%97" target="_blank" rel="noopener">Maps ↗</a></li>
+            <li><b>🥩 博多牛まぶし 武蔵（天神店）</b>黑毛和牛飯，牛肉偏三分熟上桌，附小烤石可以自己加熱；今泉（西鐵天神站步行約 2 分）。午餐 11:00–15:00（L.O. 14:30），無公休 <a href="https://www.google.com/maps/search/?api=1&query=%E5%8D%9A%E5%A4%9A%E7%89%9B%E3%81%BE%E3%81%B6%E3%81%97%20%E6%AD%A6%E8%94%B5%20%E5%A4%A9%E7%A5%9E%E5%BA%97%20%E4%BB%8A%E6%B3%89" target="_blank" rel="noopener">Maps ↗</a></li>
+            <li><b>🐟 黑田飯（大名店）</b>對馬本鮪魚丼、鮪魚茶泡飯，天神南駅步行約 5 分。11:00–20:30（L.O. 20:00），週二休。⚠ 全是生魚丼，沒有熟食可以選 <a href="https://www.google.com/maps/search/?api=1&query=%E3%83%9E%E3%82%B0%E3%83%AD%E3%81%A8%E3%81%94%E9%A3%AF%20%E9%BB%92%E7%94%B0%E9%A3%AF%20%E5%A4%A7%E5%90%8D" target="_blank" rel="noopener">Maps ↗</a></li>
+          </ul>
+        </div></div>
+        <div class="mtl-item"><div class="mtl-time">14:00</div><div class="mtl-body"><b>櫛田神社</b><p>渡辺通搭七隈線 2 站到櫛田神社前。博多總鎮守，可近距離欣賞博多山笠裝飾台車。</p></div></div>
+        <div class="mtl-item"><div class="mtl-time">14:45</div><div class="mtl-body"><b>川端通商店街</b><p>百年拱廊老街，與博多リバレイン相連，順便採購伴手禮。</p></div></div>
+        <div class="mtl-item"><div class="mtl-time">15:30</div><div class="mtl-body"><b>自由逛街</b>
+          <ul class="spots">
+            <li><b>🛕 東長寺</b>地鐵祇園駅旁，日本最大級木造坐佛「福岡大佛」＋大佛下的地獄極樂巡禮（50 円）。9:00–16:45（17:00 閉門），要去請先排這個 <a href="https://www.google.com/maps/search/?api=1&query=%E6%9D%B1%E9%95%B7%E5%AF%BA%20%E7%A6%8F%E5%B2%A1" target="_blank" rel="noopener">Maps ↗</a></li>
+            <li><b>🛍️ 博多運河城</b>川端通旁步行約 5 分，購物中心＋噴水秀 <a href="https://www.google.com/maps/search/?api=1&query=%E3%82%AD%E3%83%A3%E3%83%8A%E3%83%AB%E3%82%B7%E3%83%86%E3%82%A3%E5%8D%9A%E5%A4%9A" target="_blank" rel="noopener">Maps ↗</a></li>
+            <li><b>🛍️ 天神地下街</b>回天神南就到，歐風地下街好逛好買 <a href="https://www.google.com/maps/search/?api=1&query=%E5%A4%A9%E7%A5%9E%E5%9C%B0%E4%B8%8B%E8%A1%97" target="_blank" rel="noopener">Maps ↗</a></li>
+            <li><b>🌳 大濠公園</b>天神搭空港線 2 站，繞湖散步、看夕陽。覺得太遠也可以留到 Day 6（見 Day 6 早上）<a href="https://www.google.com/maps/search/?api=1&query=%E5%A4%A7%E6%BF%A0%E5%85%AC%E5%9C%92" target="_blank" rel="noopener">Maps ↗</a></li>
+          </ul>
+        </div></div>
+        <div class="mtl-item"><div class="mtl-time">18:00</div><div class="mtl-body"><b>晚餐 — 大東園 燒肉</b><p>本店在上川端町，就在川端通商店街旁。平日 11:30–14:30、16:00–23:00（L.O. 22:30），熱門時段常排隊，建議先訂位：<a href="https://booking.ebica.jp/webrsv/search/e014143601/30753" target="_blank" rel="noopener">官網訂位（ebica）↗</a> 或電話 050-1808-7562。<a href="https://www.google.com/maps/search/?api=1&query=%E5%A4%A7%E6%9D%B1%E5%9C%92%20%E6%9C%AC%E5%BA%97%20%E4%B8%8A%E5%B7%9D%E7%AB%AF%E7%94%BA" target="_blank" rel="noopener">Maps ↗</a></p></div></div>
+      </div>
+
+      <div class="iblock">
+        <div class="iblock-h">🍜 必吃</div>
+        <ul><li><b>黑田飯</b> 對馬本鮪魚丼，最後加湯做茶泡飯</li><li><b>大東園</b> 博多老字號燒肉</li></ul>
+      </div>
+      <div class="iblock">
+        <div class="iblock-h">💡 提醒</div>
+        <ul><li>抵天神後先回住宿寄放行李：天神南搭七隈線 1 站到渡辺通，或步行約 15 分</li><li>明天 Day 5 是 KKday 全天行程，今晚早點休息</li></ul>
+      </div>
+
+    </div></div>
+  </article>
+
+  <!-- DAY 5 -->
+  <article class="dcard" id="day5" style="--accent:var(--d5);--tagbg:#f7edE1;--tagfg:#8a4c11;">
+    <div class="dcard-media" style="background-image:url('https://commons.wikimedia.org/wiki/Special:FilePath/Takachiho-kyo%28Gorge%29%20-%20River%20-%20%E5%B7%9D.jpg?width=800')">
+      <span class="dcard-num serif">DAY 05</span>
+      <span class="dcard-flex-badge">全天</span>
+      <div class="dcard-txt">
+        <div class="dcard-date">週二 · 12/29</div>
+        <div class="dcard-title serif">高千穗峽 一日遊 · KKday</div>
+        <div class="dcard-hook">柱狀節理峽谷 × 108 石燈籠神社 × 天照大神神話洞窟</div>
+      </div>
+    </div>
+    <div class="dcard-tags"><span class="tag">🏔 峽谷</span><span class="tag">⛩️ 神話</span><span class="tag">🚌 全程接送</span></div>
+    <button class="dcard-toggle" onclick="this.closest('.dcard').classList.toggle('open')">行程細節 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 9l7 7 7-7"/></svg></button>
+    <div class="dcard-detail"><div class="dcard-detail-in">
+
+      <div class="pshot-row">
+        <figure class="pshot"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Takachiho-kyo%28Gorge%29%20-%20River%20-%20%E5%B7%9D.jpg?width=400" loading="lazy" alt="高千穗峽"><figcaption>高千穗峽 · 真名井の滝</figcaption></figure>
+        <figure class="pshot"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Amanoiwato-west-shrine_(28795304727).jpg?width=400" loading="lazy" alt="天岩戶神社"><figcaption>天岩戶神社</figcaption></figure>
+      </div>
+
+      <div class="mtl">
+        <div class="mtl-item"><div class="mtl-time">早朝</div><div class="mtl-body"><b>博多集合出發（KKday）</b><p>全程含接送，來回各約 3 小時車程。<a href="https://www.kkday.com" target="_blank" rel="noopener">KKday 查看行程 ↗</a></p></div></div>
+        <div class="mtl-item"><div class="mtl-time">①</div><div class="mtl-body"><b>上色見熊野座神社</b><p>108 盞石燈籠沿石階而上，覆滿青苔的杉木森林如夢似幻。</p></div></div>
+        <div class="mtl-item"><div class="mtl-time">②</div><div class="mtl-body"><b>高千穗峽</b><p>柱狀節理峽谷，真名井の滝懸瀉而下，遊船（可選）視角震撼。</p></div></div>
+        <div class="mtl-item"><div class="mtl-time">③④</div><div class="mtl-body"><b>天岩戶神社 × 天安河原</b><p>天照大神藏身洞窟遺址，步行 10 分可達天安河原石塚，燭光搖曳。</p></div></div>
+        <div class="mtl-item"><div class="mtl-time">~19:30</div><div class="mtl-body"><b>晚餐 — 博多炉端 魚男（今泉）<span class="opt-tag">需預約</span></b><p>招牌「元祖階段盛」生魚片拼盤＋爐端燒。今泉 1-4-23，博多駅搭空港線到天神（2 站）步行約 8 分，或七隈線天神南步行約 5 分；吃完走回渡辺通住宿約 15 分。<a href="https://www.google.com/maps/search/?api=1&query=%E5%8D%9A%E5%A4%9A%E7%82%89%E7%AB%AF%20%E9%AD%9A%E7%94%B7%20%E4%BB%8A%E6%B3%89" target="_blank" rel="noopener">Maps ↗</a></p><div class="mtl-note">⏰ KKday 回到博多的時間不一定，訂位抓寬一點（19:30–20:00）。12/29 已進入年末，營業時間與是否休息請上食べログ／IG @fishman_hakatarobata 確認</div></div></div>
+      </div>
+
+      <div class="iblock">
+        <div class="iblock-h">🍖 必吃</div>
+        <ul><li><b>高千穗鄉土料理</b> 地雞南蠻・地雞刺身</li><li><b>博多炉端 魚男</b> 回博多後吃階段盛生魚片</li></ul>
+      </div>
+      <div class="iblock">
+        <div class="iblock-h">💡 提醒</div>
+        <ul><li>KKday 需提前預約，名額有限</li><li>遊船旺季搶手，先確認是否含在行程內</li><li>今晚可留時間整理行李</li></ul>
+      </div>
+
+    </div></div>
+  </article>
+
+  <!-- DAY 6 -->
+  <article class="dcard" id="day6" style="--accent:var(--d6);--tagbg:#eeecf4;--tagfg:#4a4468;">
+    <div class="dcard-media" style="background-image:url('https://commons.wikimedia.org/wiki/Special:FilePath/One%20Fukuoka%20Bldg%20the%20public%20open%20space%20on%20the%20SW%20side%20Tenjin%201-ch%C5%8Dme%20Ch%C5%AB%C5%8D-ku%20Fukuoka%2020250429.jpg?width=800')">
+      <span class="dcard-num serif">DAY 06</span>
+      <div class="dcard-txt">
+        <div class="dcard-date">週三 · 12/30</div>
+        <div class="dcard-title serif">博多最終巡禮 → 返台</div>
+        <div class="dcard-hook">大丸寄行李直送機場 → 最後一碗拉麵 × 伴手禮補貨，空手逛到傍晚</div>
+      </div>
+    </div>
+    <div class="dcard-tags"><span class="tag">🍜 拉麵</span><span class="tag">🎁 伴手禮</span><span class="tag">✈️ 返台</span></div>
+    <button class="dcard-toggle" onclick="this.closest('.dcard').classList.toggle('open')">行程細節 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 9l7 7 7-7"/></svg></button>
+    <div class="dcard-detail"><div class="dcard-detail-in">
+
+
+      <div class="mtl">
+        <div class="mtl-item"><div class="mtl-time">08:00<br><span style="font-weight:400;color:var(--ink-mute);">可選</span></div><div class="mtl-body"><b>早餐 — 炉端ノいとおかし <span class="opt-tag">需預約</span></b><p>六本松，渡辺通搭七隈線直達六本松駅（4 站約 7 分），步行 5 分。炭火現烤的<b>銀鮭定食</b>（約 2,500 円）或<b>鰻魚定食</b>，白飯可免費續一次。8:00–14:00（L.O. 13:00）<a href="https://www.google.com/maps/search/?api=1&query=%E7%82%89%E7%AB%AF%E3%83%8E%E3%81%84%E3%81%A8%E3%81%8A%E3%81%8B%E3%81%97%20%E5%85%AD%E6%9C%AC%E6%9D%BE" target="_blank" rel="noopener">Maps ↗</a>　<a href="https://www.tablecheck.com/ja/robatano-itookashi/reserve/landing" target="_blank" rel="noopener">TableCheck 訂位 ↗</a></p><div class="mtl-note">📅 <b>完全預約制</b>，現場排隊不接待，請在 TableCheck 訂位。用餐限 50 分鐘，準時才帶位，遲到 15 分鐘自動取消。注意別訂成春吉的「魚ト肴いとおかし」</div></div></div>
+        <div class="mtl-item"><div class="mtl-time">~09:00<br><span style="font-weight:400;color:var(--ink-mute);">可選</span></div><div class="mtl-body"><b>大濠公園散步</b><p>吃完早餐從六本松步行約 20 分到大濠公園南側，繞湖走走（一圈約 2 公里，湖邊有星巴克）。<a href="https://www.google.com/maps/dir/?api=1&origin=%E7%82%89%E7%AB%AF%E3%83%8E%E3%81%84%E3%81%A8%E3%81%8A%E3%81%8B%E3%81%97%20%E5%85%AD%E6%9C%AC%E6%9D%BE&destination=%E5%A4%A7%E6%BF%A0%E5%85%AC%E5%9C%92&travelmode=walking" target="_blank" rel="noopener">步行導航 ↗</a>　<a href="https://www.google.com/maps/search/?api=1&query=%E5%A4%A7%E6%BF%A0%E5%85%AC%E5%9C%92" target="_blank" rel="noopener">Maps ↗</a></p><div class="mtl-note">⏰ 10:00 左右離開：大濠公園駅搭空港線到天神（2 站），轉七隈線天神南 → 渡辺通回住宿</div></div></div>
+        <div class="mtl-item"><div class="mtl-time">~10:30</div><div class="mtl-body"><b>天神南森林 退房（11:00 前）</b><p>拖行李到大丸：渡辺通搭七隈線 1 站到天神南，或步行約 15 分。</p></div></div>
+        <div class="mtl-item"><div class="mtl-time">~11:00</div><div class="mtl-body"><b>大丸福岡天神店 — 行李直送機場</b><p>本館 B1「CARGO PASS」櫃台（免稅櫃台旁），<b>10:00–12:00</b> 寄出，當天 14:00–19:30 在<b>福岡機場國際線 1F 入境大廳</b>領取。<a href="https://www.daimaru-fukuoka.jp/info/detail/?cd=001463" target="_blank" rel="noopener">大丸說明 ↗</a><br>寄完可到旁邊 ONE FUKUOKA BLDG. 前廣場看<b>像素樹</b>拍照。</p>
+            <div class="plist">
+              <div class="prow"><div class="psz"><b>S</b>¥550</div><div class="pdesc">行李箱 三邊 &lt;120cm（登機箱）<br>包包・後背包 &lt;10kg</div></div>
+              <div class="prow"><div class="psz"><b>M</b>¥1,100</div><div class="pdesc">行李箱 三邊 120–160cm 且 &lt;20kg<br>包包・後背包 10–20kg</div></div>
+              <div class="prow"><div class="psz"><b>L</b>¥1,650</div><div class="pdesc">行李箱 三邊 ≥160cm 或 ≥20kg<br>包包・後背包 ≥20kg</div></div>
+            </div><div class="mtl-note">⚠ 貴重物品、生鮮、冷藏冷凍品不收；12/30 年末營業出發前再確認</div></div></div>
+        <div class="mtl-item"><div class="mtl-time">12:00</div><div class="mtl-body"><b>博多ラーメン STA.</b><p>出發前最後一碗豚骨。</p></div></div>
+        <div class="mtl-item"><div class="mtl-time">13:00</div><div class="mtl-body"><b>運河城 or 博多駅 — 最後補貨</b><p>博多デイトス伴手禮種類最集中：明太子、通りもん、ひよ子。</p></div></div>
+        <div class="mtl-item"><div class="mtl-time">~18:00</div><div class="mtl-body"><b>前往機場 → 領行李 → 報到</b><p>地鐵空港線到福岡空港駅，轉免費接駁車到國際線；先到 1F CARGO PASS 櫃台領行李（<b>19:30 關</b>），再辦 CI117 報到（20:35 起飛）。</p></div></div>
+      </div>
+
+      <div class="iblock">
+        <div class="iblock-h">🎁 必帶伴手禮</div>
+        <ul><li><b>明太子</b> ふくや／椒房庵／やまや</li><li><b>博多通りもん</b> 白蓮餡和菓子</li><li><b>ひよ子</b> 小雞造型饅頭</li><li><b>一蘭/一風堂</b> 泡麵組</li></ul>
+      </div>
+      <div class="iblock">
+        <div class="iblock-h">💡 提醒</div>
+        <ul><li>明太子冷藏版出發前 2 小時買可托運</li><li>大行李交給大丸 CARGO PASS 直送機場，白天全程空手</li><li>國際線建議提前 2 小時到，距離近很從容</li></ul>
+      </div>
+
+    </div></div>
+  </article>
+
+</div>
+
+<!-- ═══ FLIGHTS ═══ -->
+<div class="sec-label" id="sec-flight">✈️ 航班資訊</div>
+<div class="csec">
+  <div class="flight-mini">
+    <div class="fm-l"><b>去程 · CI116</b><span class="fm-route serif">TPE → FUK</span></div>
+    <div class="fm-r"><b>16:25 → 19:35</b>2026.12.25（五）</div>
+  </div>
+  <div class="flight-mini">
+    <div class="fm-l"><b>回程 · CI117</b><span class="fm-route serif">FUK → TPE</span></div>
+    <div class="fm-r"><b>20:35 → 22:20</b>2026.12.30（三）</div>
+  </div>
+</div>
+
+<!-- ═══ PRE-TRIP NOTES ═══ -->
+<div class="sec-label" id="sec-pretrip">📝 行前備忘錄</div>
+<div class="csec">
+  <div class="tip-row">
+    <div class="tip-pill">💴 帶一點日幣</div>
+    <div class="tip-pill">💳 出發前登入 Visa Japan</div>
+  </div>
+  <div class="iblock">
+    <div class="iblock-h">🚇 地鐵交通卡</div>
+    <div class="qa-row">
+      <div class="qa-k">空港線／箱崎線／七隈線</div>
+      <div class="qa-v">用<b>信用卡</b>感應過閘即可，單日累計 <b>640 円</b>後當日免費，不需另購 IC 卡</div>
+    </div>
+    <div class="qa-row">
+      <div class="qa-k">Day 2 門司港 · Day 3 由布院→別府</div>
+      <div class="qa-v">不在地鐵範圍內，需另購 JR 車票或 SUGOCA IC 卡</div>
+    </div>
+    <div class="warn-pill">⚠ 西瓜卡（Suica）不適用此上限，請避免使用</div>
+  </div>
+</div>
+
+<!-- ═══ LODGING ═══ -->
+<div class="sec-label" id="sec-lodging">🏨 住宿</div>
+<div class="csec">
+  <div class="hotel-card" style="align-items:flex-start;">
+    <div class="hi">🏠</div>
+    <div class="ht"><b>天神南森林旅館（フォレストイン天神南）</b><span>Day 1 → Day 3（2 晚）＋ Day 4 → Day 6（2 晚）· 整間公寓 ×2<br>入住 15:00–20:00／退房 11:00 前 · 在現場櫃台領鑰匙<br>清川 1-13-8（渡辺通駅步行約 5 分）· <a href="https://www.google.com/maps/search/?api=1&query=%E3%83%95%E3%82%A9%E3%83%AC%E3%82%B9%E3%83%88%E3%82%A4%E3%83%B3%E5%A4%A9%E7%A5%9E%E5%8D%97%20%E6%B8%85%E5%B7%9D1-13-8" target="_blank" rel="noopener">Maps ↗</a></span></div>
+  </div>
+  <div class="pshot-row" style="padding-top:0;">
+    <figure class="pshot"><img src="天神南森林/155821113.jpg" loading="lazy" alt="天神南森林 房型"></figure>
+    <figure class="pshot"><img src="天神南森林/155821812.jpg" loading="lazy" alt="天神南森林 房型"></figure>
+    <figure class="pshot"><img src="天神南森林/155821839.jpg" loading="lazy" alt="天神南森林 房型"></figure>
+    <figure class="pshot"><img src="天神南森林/155821849.jpg" loading="lazy" alt="天神南森林 房型"></figure>
+    <figure class="pshot"><img src="天神南森林/155822635.jpg" loading="lazy" alt="天神南森林 房型"></figure>
+    <figure class="pshot"><img src="天神南森林/156031745.jpg" loading="lazy" alt="天神南森林 房型"></figure>
+    <figure class="pshot"><img src="天神南森林/156337909.jpg" loading="lazy" alt="天神南森林 房型"></figure>
+    <figure class="pshot"><img src="天神南森林/156343929.jpg" loading="lazy" alt="天神南森林 房型"></figure>
+    <figure class="pshot"><img src="天神南森林/156343932.jpg" loading="lazy" alt="天神南森林 房型"></figure>
+    <figure class="pshot"><img src="天神南森林/158706110.jpg" loading="lazy" alt="天神南森林 房型"></figure>
+  </div>
+
+  <div class="hotel-card" style="align-items:flex-start;">
+    <div class="hi">♨️</div>
+    <div class="ht"><b>御宿野乃 別府</b><span>Day 3 → Day 4（1 晚）· 15:00 入住／11:00 退房 · 標準房（大床）×2 · 含晚餐・早餐<br>（別府駅徒步 1 分）· <a href="https://www.google.com/maps/search/?api=1&query=%E5%BE%A1%E5%AE%BF%E9%87%8E%E4%B9%83%20%E5%88%A5%E5%BA%9C" target="_blank" rel="noopener">Maps ↗</a> · <a href="https://www.agoda.com/zh-tw/onyado-nono-beppu-hot-spring/hotel/oita-jp.html" target="_blank" rel="noopener">Agoda ↗</a></span></div>
+  </div>
+  <div class="pshot-row" style="padding-top:0;">
+    <figure class="pshot"><img src="D3-D4住宿/503931128.jpg" loading="lazy" alt="御宿野乃別府 房型"></figure>
+    <figure class="pshot"><img src="D3-D4住宿/503932325.jpg" loading="lazy" alt="御宿野乃別府 房型"></figure>
+    <figure class="pshot"><img src="D3-D4住宿/503933064.jpg" loading="lazy" alt="御宿野乃別府 房型"></figure>
+    <figure class="pshot"><img src="D3-D4住宿/503933071.jpg" loading="lazy" alt="御宿野乃別府 房型"></figure>
+    <figure class="pshot"><img src="D3-D4住宿/503935074.jpg" loading="lazy" alt="御宿野乃別府 房型"></figure>
+    <figure class="pshot"><img src="D3-D4住宿/503935141.jpg" loading="lazy" alt="御宿野乃別府 房型"></figure>
+    <figure class="pshot"><img src="D3-D4住宿/503935270.jpg" loading="lazy" alt="御宿野乃別府 房型"></figure>
+    <figure class="pshot"><img src="D3-D4住宿/503935584.jpg" loading="lazy" alt="御宿野乃別府 房型"></figure>
+    <figure class="pshot"><img src="D3-D4住宿/503935640.jpg" loading="lazy" alt="御宿野乃別府 房型"></figure>
+    <figure class="pshot"><img src="D3-D4住宿/503936430.jpg" loading="lazy" alt="御宿野乃別府 房型"></figure>
+    <figure class="pshot"><img src="D3-D4住宿/503936473.jpg" loading="lazy" alt="御宿野乃別府 房型"></figure>
+    <figure class="pshot"><img src="D3-D4住宿/503936519.jpg" loading="lazy" alt="御宿野乃別府 房型"></figure>
+    <figure class="pshot"><img src="D3-D4住宿/503936621.jpg" loading="lazy" alt="御宿野乃別府 房型"></figure>
+    <figure class="pshot"><img src="D3-D4住宿/503936745.jpg" loading="lazy" alt="御宿野乃別府 房型"></figure>
+    <figure class="pshot"><img src="D3-D4住宿/574898412.jpg" loading="lazy" alt="御宿野乃別府 房型"></figure>
+    <figure class="pshot"><img src="D3-D4住宿/901264520.jpg" loading="lazy" alt="御宿野乃別府 房型"></figure>
+    <figure class="pshot"><img src="D3-D4住宿/901264613.jpg" loading="lazy" alt="御宿野乃別府 房型"></figure>
+    <figure class="pshot"><img src="D3-D4住宿/901264633.jpg" loading="lazy" alt="御宿野乃別府 房型"></figure>
+    <figure class="pshot"><img src="D3-D4住宿/901264682.jpg" loading="lazy" alt="御宿野乃別府 房型"></figure>
+    <figure class="pshot"><img src="D3-D4住宿/901264776.jpg" loading="lazy" alt="御宿野乃別府 房型"></figure>
+  </div>
+</div>
+
+<!-- ═══ BOOKING ═══ -->
+<div class="sec-label" id="sec-booking">📅 預訂備忘</div>
+<div class="csec">
+  <div class="chk-item">
+    <div class="chk-dot"></div>
+    <div class="chk-t"><b>大東園 本店 燒肉（Day 4 晚餐）</b><span class="dl">10/29 起</span> 上 ebica 訂 12/28（一）18:00（ebica 約 60 天前開放）<a href="https://booking.ebica.jp/webrsv/search/e014143601/30753" target="_blank" rel="noopener">ebica ↗</a></div>
+  </div>
+  <div class="chk-item">
+    <div class="chk-dot"></div>
+    <div class="chk-t"><b>博多炉端 魚男（Day 5 晚餐）</b><span class="dl">11/1</span> 上 TableCheck 或電話 080-4358-3875 訂 12/29（二）19:30–20:00，順便確認年末有沒有營業<a href="https://www.tablecheck.com/ja/sakanaotoko/reserve/landing" target="_blank" rel="noopener">TableCheck ↗</a></div>
+  </div>
+  <div class="chk-item">
+    <div class="chk-dot"></div>
+    <div class="chk-t"><b>炉端ノいとおかし 早餐（Day 6）</b><span class="dl">11/30 起</span> 上 TableCheck 訂 12/30 早上 8:00（完全預約制，約 1 個月前開放）<a href="https://www.tablecheck.com/ja/robatano-itookashi/reserve/landing" target="_blank" rel="noopener">TableCheck ↗</a></div>
+  </div>
+  <div class="chk-item">
+    <div class="chk-dot"></div>
+    <div class="chk-t"><b>藥院燒肉 NIKUICHI（Day 1 晚餐選項）</b><span class="dl">盡快</span> 上 TableCheck 或電話 092-522-4129 訂 12/25（五）晚上（check-in 後約 21:00），開放時間未公布，現在就去看有沒有位<a href="https://www.tablecheck.com/ja/yakiniku-nikuichi/reserve/message" target="_blank" rel="noopener">TableCheck ↗</a></div>
+  </div>
+  <div class="chk-item">
+    <div class="chk-dot"></div>
+    <div class="chk-t"><b>KKday：別府地獄與九州自然動物園一日遊</b><span class="dl">盡快</span><span>Day 3 · 建議提前預約，於由布院脫團<a href="https://www.kkday.com/zh-tw/product/175897" target="_blank" rel="noopener">KKday ↗</a></span></div>
+  </div>
+  <div class="chk-item">
+    <div class="chk-dot"></div>
+    <div class="chk-t"><b>KKday：高千穗峽一日遊</b><span class="dl">盡快</span><span>Day 5 · 建議提前預約，名額有限</span></div>
+  </div>
+  <div class="chk-item">
+    <div class="chk-dot"></div>
+    <div class="chk-t"><b>音速號 指定席（Day 2 博多 → 小倉）</b><span class="dl">11/26 10:00</span> JR 九州乘車日 1 個月前日本時間 10:00 開賣（台灣 9:00），12/26 週六建議劃位<a href="https://train.yoyaku.jrkyushu.co.jp/" target="_blank" rel="noopener">JR 九州網路預約 ↗</a></div>
+  </div>
+  <div class="chk-item">
+    <div class="chk-dot"></div>
+    <div class="chk-t"><b>天神南森林 ✅ Booking 已預訂</b><span>12/25–12/27、12/28–12/30（共 4 晚）· 入住日 14 天前可免費取消</span></div>
+  </div>
+  <div class="chk-item">
+    <div class="chk-dot"></div>
+    <div class="chk-t"><b>御宿野乃 別府 ✅ Agoda 已預訂</b><span>12/27–12/28（1 晚）· 標準房 ×2 · 含晚餐・早餐</span><a href="https://www.agoda.com/zh-tw/onyado-nono-beppu-hot-spring/hotel/oita-jp.html" target="_blank" rel="noopener">Agoda ↗</a></div>
+  </div>
+</div>
+
+<!-- ═══ TIPS ═══ -->
+<div class="sec-label" id="sec-tips">📋 整體提醒</div>
+<div class="csec">
+  <div class="tips">
+    <div class="tip">
+      <div class="tip-ic">🏨</div>
+      <div class="tip-b">
+        <div class="tip-k">住宿</div>
+        <div class="tip-v">Day 1–2、4–5 <b>天神南森林</b><br>Day 3 <b>別府 御宿野乃</b>（含晚餐・早餐）</div>
+      </div>
+    </div>
+    <div class="tip">
+      <div class="tip-ic">🚇</div>
+      <div class="tip-b">
+        <div class="tip-k">交通</div>
+        <div class="tip-v">福岡市地鐵 NFC 信用卡感應，單日上限 <b>640 円</b><br>Day 2／3／4 另需 JR 或巴士票</div>
+      </div>
+    </div>
+    <div class="tip">
+      <div class="tip-ic">🧳</div>
+      <div class="tip-b">
+        <div class="tip-k">行李</div>
+        <div class="tip-v">各大車站都有置物櫃與行李寄放櫃台</div>
+      </div>
+    </div>
+    <div class="tip">
+      <div class="tip-ic">✈️</div>
+      <div class="tip-b">
+        <div class="tip-k">Day 6 行李直送機場（CARGO PASS）</div>
+        <div class="tip-steps">
+          <div class="tip-step"><span class="n">寄</span><div><b>10:00–12:00</b>　大丸福岡天神店 本館 B1<br><small>免稅櫃台旁 · 天神南駅步行 3 分</small></div></div>
+          <div class="tip-step"><span class="n">領</span><div><b>14:00–19:30</b>　福岡機場國際線 1F 入境大廳<br><small>領完再辦 CI117 報到（20:35 起飛）</small></div></div>
+        </div>
+        <div class="tip-chips"><span>S ¥550</span><span>M ¥1,100</span><span>L ¥1,650</span><em>尺寸對照見 Day 6</em></div>
+        <div class="tip-v tip-foot">⚠ 年末營業與價格出發前再確認<br><a href="https://www.daimaru-fukuoka.jp/info/detail/?cd=001463" target="_blank" rel="noopener">大丸說明 ↗</a>　<a href="https://cargopass.jp/" target="_blank" rel="noopener">CARGO PASS ↗</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="foot">⛵ 福岡六天五夜 · 可愛版 · 2026</div>
+
+<!-- ═══ BOTTOM TAB BAR ═══ -->
+<nav class="tabbar">
+  <a class="tab active" href="#day1">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l2-2 4 4 8-8 4 4"/><path d="M3 19h18"/></svg>
+    <span>行程</span>
+  </a>
+  <a class="tab" href="#sec-flight">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 19.5l3-1.2 4-.2 3.7-3.7-8-3.3 2-2 9.5 2 4-4c.8-.8 2-.8 2.7 0 .8.8.8 2 0 2.7l-4 4 2 9.5-2 2-3.3-8-3.7 3.7-.2 4-1.2 3z"/></svg>
+    <span>航班</span>
+  </a>
+  <a class="tab" href="#sec-lodging">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16"/><path d="M6 19v-5a6 6 0 0112 0v5"/><path d="M9 7c0-1.5 1-2 1-3.5" /><path d="M13 7c0-1.5 1-2 1-3.5"/></svg>
+    <span>住宿</span>
+  </a>
+  <button class="tab tab-food" type="button" aria-label="美食清單">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3v8a2 2 0 002 2v8"/><path d="M5 3v5M9 3v5"/><path d="M17 21V3c-2 0-3.5 2.5-3.5 6s1.5 4 3.5 4"/></svg>
+    <span>美食</span>
+  </button>
+  <a class="tab" href="#sec-tips">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
+    <span>清單</span>
+  </a>
+</nav>
+
+<!-- ═══ FOOD SHEET ═══ -->
+<div class="food-sheet" id="food-sheet" aria-hidden="true">
+  <div class="food-panel" role="dialog" aria-label="美食清單">
+    <div class="food-head"><b>🍴 美食清單</b><button class="food-close" type="button" aria-label="關閉">✕</button></div>
+    <div class="food-map-wrap"><div id="food-map"></div><div class="food-map-msg" id="food-map-msg"></div><button class="food-locate" type="button">📍 我的位置</button></div>
+    <div class="food-chips" id="food-chips"></div>
+    <div class="food-list" id="food-list"></div>
+  </div>
+</div>
+
+<!-- ═══ LIGHTBOX ═══ -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" aria-label="關閉">✕</button>
+  <button class="lightbox-nav lightbox-prev" aria-label="上一張">‹</button>
+  <img id="lightbox-img" alt="">
+  <button class="lightbox-nav lightbox-next" aria-label="下一張">›</button>
+  <div class="lightbox-count" id="lightbox-count"></div>
+</div>
+
+<script>
+(function(){
+  // ── photo lightbox ──
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lightbox-img');
+  const lbCount = document.getElementById('lightbox-count');
+  let group = [], idx = 0;
+
+  function show(i){
+    idx = (i + group.length) % group.length;
+    lbImg.src = group[idx].src;
+    lbImg.alt = group[idx].alt || '';
+    lbCount.textContent = group.length > 1 ? (idx + 1) + ' / ' + group.length : '';
+  }
+  function openLB(imgs, startIdx){
+    group = imgs;
+    show(startIdx);
+    lb.classList.add('open');
+  }
+  function closeLB(){
+    lb.classList.remove('open');
+    lbImg.src = '';
+  }
+  document.querySelectorAll('.pshot-row').forEach(row => {
+    const imgs = Array.from(row.querySelectorAll('img'));
+    imgs.forEach((img, i) => img.addEventListener('click', () => openLB(imgs, i)));
+  });
+  lb.querySelector('.lightbox-close').addEventListener('click', closeLB);
+  lb.addEventListener('click', e => { if (e.target === lb) closeLB(); });
+  lb.querySelector('.lightbox-prev').addEventListener('click', () => show(idx - 1));
+  lb.querySelector('.lightbox-next').addEventListener('click', () => show(idx + 1));
+
+  // swipe left/right to navigate
+  let touchX = null;
+  lb.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, { passive: true });
+  lb.addEventListener('touchend', e => {
+    if (touchX === null) return;
+    const dx = e.changedTouches[0].clientX - touchX;
+    if (Math.abs(dx) > 40) show(idx + (dx < 0 ? 1 : -1));
+    touchX = null;
+  }, { passive: true });
+
+  // ── day tab bar ──
+  const tabs = document.querySelectorAll('.tab[href]');
+  const targets = Array.from(tabs).map(t => document.querySelector(t.getAttribute('href')));
+  tabs.forEach(t => t.addEventListener('click', () => {
+    tabs.forEach(x => x.classList.remove('active'));
+    t.classList.add('active');
+  }));
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const idx = targets.indexOf(e.target);
+      if (idx === -1) return;
+      tabs.forEach(x => x.classList.remove('active'));
+      tabs[idx].classList.add('active');
+    });
+  }, { rootMargin: '-45% 0px -45% 0px' });
+  targets.forEach(el => el && io.observe(el));
+
+
+  // ── food list (bottom sheet) ──
+  // ll: [lat,lng], c: category, n: name, a: area, h: hours, d: note, day: itinerary tag, q: Google Maps query
+  const FOOD = [
+    {ll:[33.59005,130.425034], c:'咖啡', n:'FUGLEN FUKUOKA', a:'博多駅附近', h:'週一–四 7:00–19:30｜週五 7:00–21:30｜週末 8:00–21:30', d:'挪威奧斯陸來的人氣咖啡，淺焙手沖', q:'FUGLEN FUKUOKA'},
+    {ll:[33.589027,130.40416], c:'咖啡', n:'REC COFFEE 天神南店', a:'渡辺通 5 丁目（天神南駅旁）', h:'10:00–22:00（週五、六至 24:00）', d:'福岡代表性精品咖啡', q:'REC COFFEE 天神南店'},
+    {ll:[33.581604,130.403534], c:'咖啡', n:'REC COFFEE 藥院駅前店', a:'藥院', h:'平日 8:00–翌 1:00｜週末 10:00–翌 1:00', d:'REC 的老店，開到很晚', day:'Day 1', q:'REC COFFEE 薬院駅前店'},
+    {ll:[33.576576,130.400223], c:'咖啡', n:'NO COFFEE', a:'平尾（藥院步行約 8 分）', h:'10:00–18:00（公休日看 Instagram）', d:'平尾的街角咖啡站，周邊商品很受歡迎', q:'NO COFFEE 平尾'},
+    {ll:[33.587479,130.419235], c:'麵包店', n:'DACOMECCA', a:'博多駅博多口步行 3 分', h:'7:00–20:00（賣完為止，約 14:00 常售罄）', d:'像美術館的人氣烘焙坊，早上去品項最多', q:'DACOMECCA 博多'},
+    {ll:[33.274574,131.504074], c:'麵包店', n:'友永麵包屋', a:'別府', h:'', d:'老字號，小狗麵包、紅豆麵包、蜜瓜麵包', day:'Day 3', q:'友永パン屋 別府'},
+    {ll:[33.58884,130.419357], c:'拉麵', n:'ShinShin（KITTE 博多店）', a:'博多駅博多口', h:'11:00–24:00（L.O. 23:30）', d:'細麵清爽豚骨', day:'Day 2', q:'博多らーめん ShinShin KITTE博多店'},
+    {ll:[33.588211,130.417114], c:'拉麵', n:'博多一幸舎 總本店', a:'博多駅步行 5 分', h:'11:00–23:30', d:'泡系濃厚豚骨，デイトス 2F 也有分店', day:'Day 2', q:'博多一幸舎 総本店'},
+    {ll:[33.590851,130.396027], c:'拉麵', n:'屋台 小金ちゃん', a:'天神', h:'週四、日休', d:'炒拉麵元祖屋台', day:'Day 1', q:'屋台 小金ちゃん 天神'},
+    {ll:[33.581239,130.398827], c:'燒肉', n:'藥院燒肉 NIKUICHI', a:'藥院', h:'16:00–24:00（L.O. 23:30）', d:'和牛燒肉，需提前約 1 個月訂位', day:'Day 1', q:'薬院焼肉 NIKUICHI'},
+    {ll:[33.59269,130.411545], c:'燒肉', n:'大東園 本店', a:'上川端町（川端通旁）', h:'平日 11:30–14:30、16:00–23:00｜週末 11:30–23:00', d:'1970 年創業的博多老字號燒肉，現點現揉的冷麵很有名；可在官網（ebica）訂位', day:'Day 4', q:'大東園 本店 上川端町'},
+    {ll:[33.585964,130.395604], c:'燒肉', n:'肉の山翔', a:'藥院一帶', h:'', d:'NIKUICHI 備案', day:'Day 1', q:'Niku no Yamasho'},
+    {ll:[33.586266,130.42186], c:'燒肉', n:'肉屋肉一 博多店', a:'博多駅南', h:'', d:'NIKUICHI 備案', day:'Day 1', q:'肉屋肉一 博多店'},
+    {ll:[33.278667,131.504868], c:'燒肉', n:'燒肉 円円', a:'別府北浜（地圖為約略位置）', h:'', d:'別府備選消夜（備案 Ichiriki）', day:'Day 3', q:'焼肉 円円 別府'},
+    {ll:[33.956585,130.943588], c:'海鮮', n:'唐戶市場「活跳跳馬關街」', a:'下關（門司港搭船 5 分）', h:'週末限定', d:'現場握壽司、河豚、蟹肉味噌湯', day:'Day 2', q:'唐戸市場'},
+    {ll:[33.5863,130.395447], c:'海鮮', n:'黑田飯（大名店）', a:'大名（天神南步行 5 分）', h:'11:00–20:30（L.O. 20:00），週二休', d:'對馬本鮪魚丼，最後加湯做茶泡飯。⚠ 全是生魚丼，沒有熟食可以選', day:'Day 4', q:'マグロとご飯 黒田飯 大名'},
+    {ll:[33.590866,130.423752], c:"海鮮", n:"黑田飯（博多店）", a:"博多駅東（筑紫口步行約 5 分）", h:"11:00–15:00、16:00–20:30（L.O. 20:00）｜週四休", d:"長崎本鮪魚丼，2025/10 開的分店。⚠ 幾乎都是生魚，只有鮪魚排丼（3,200 円）可能是熟的", q:"マグロとご飯 黒田飯 博多店"},
+    {ll:[33.58886,130.424103], c:'居酒屋', n:'かわ屋（博多駅筑紫口店）', a:'博多駅筑紫口', h:'17:00–翌 1:00', d:'招牌捲雞皮串，週末建議先訂位', day:'Day 2', q:'かわ屋 博多駅 筑紫口店'},
+    {ll:[33.265888,131.359161], c:'麵包店', n:'B-Speak', a:'由布院', h:'', d:'招牌蛋糕卷，常常一開門就排隊', day:'Day 3', q:'B-speak 由布院'},
+    {ll:[33.589912,130.420395], c:'伴手禮', n:'ふくや', a:'博多・天神多處', h:'', d:'明太子元祖老店', day:'Day 6', q:'ふくや 博多'},
+    {ll:[33.589912,130.420395], c:'伴手禮', n:'椒房庵', a:'博多駅', h:'', d:'久原本家的明太子', day:'Day 6', q:'椒房庵 博多駅'},
+    {ll:[33.589912,130.420395], c:'伴手禮', n:'やまや', a:'博多駅', h:'', d:'人氣明太子品牌', day:'Day 6', q:'やまや 博多駅'},
+    {ll:[33.589912,130.420395], c:'伴手禮', n:'博多デイトス 伴手禮區', a:'博多駅', h:'', d:'博多通りもん、ひよ子、明太子一次買齊', day:'Day 6', q:'博多デイトス みやげもん市場'},
+    {ll:[33.945511,130.96109], c:'其他', n:'Princess Pipi', a:'門司港駅前', h:'', d:'王様燒咖哩、河豚炸魚薯條', day:'Day 2', q:'プリンセスピピ 門司港'},
+    {ll:[33.587162,130.399872], c:'其他', n:'博多牛まぶし 武蔵（天神店）', a:'今泉', h:'午餐 11:00–15:00（L.O. 14:30）', d:'黑毛和牛飯，牛肉偏三分熟上桌，附小烤石可以自己加熱；不能訂位，要現場排隊', day:'Day 4', q:'博多牛まぶし 武蔵 天神店 今泉'},
+    {ll:[33.58746,130.3965], c:"其他", n:"牛かつ もと村（天神西通り店）", a:"大名（西鐵天神站步行約 5 分）", h:"11:00–22:00", d:"炸牛排，自己在小鐵板上煎到想要的熟度，不接受訂位", day:"Day 4", q:"牛かつ もと村 福岡天神西通り店"},
+    {ll:[33.874023,130.810654], c:'其他', n:'極味屋（Outlet）', a:'THE OUTLETS KITAKYUSHU', h:'', d:'福岡人氣漢堡排', day:'Day 2', q:'極味や THE OUTLETS KITAKYUSHU'},
+    {ll:[33.874023,130.810654], c:"其他", n:"咖哩本舖（Outlet）", a:"THE OUTLETS KITAKYUSHU 1F 美食區", h:"依 Outlet 營業時間 10:00–20:00", d:"門司港燒咖哩老店的分店，三種肉燒咖哩", day:"Day 2", q:"カレー本舗 THE OUTLETS KITAKYUSHU店"},
+    {ll:[33.874023,130.810654], c:"拉麵", n:"辛麵屋 桝元（Outlet）", a:"THE OUTLETS KITAKYUSHU 1F 美食區", h:"10:00–20:00", d:"宮崎名物辛麵，辣度可以選", day:"Day 2", q:"辛麺屋桝元 THE OUTLETS KITAKYUSHU店"},
+    {ll:[33.589912,130.420395], c:'拉麵', n:'麵屋兼虎（デイトス店）', a:'博多駅デイトス 2F', h:'9:30–22:00', d:'濃厚魚介豚骨沾麵', day:'Day 2', q:'麺や兼虎 博多デイトス店'},
+    {ll:[33.590847,130.412643], c:"咖啡", n:"FUK COFFEE（祇園）", a:"祇園町（櫛田神社旁）", h:"8:00–20:00", d:"以福岡機場代碼 FUK 為主題的人氣咖啡", day:"Day 4", q:"FUK COFFEE 祇園町"},
+    {ll:[33.594341,130.362411], c:"咖啡", n:"FUK COFFEE Seaside", a:"地行浜 E・ZO FUKUOKA 3F", h:"10:00–21:00", d:"海景分店，在福岡巨蛋旁", q:"FUK COFFEE Seaside"},
+    {ll:[33.580872,130.420929], c:"咖啡", n:"APOC COFFEE 筑紫口店", a:"VIERRA 博多テラス", h:"", d:"2026/9/18 新開，招牌是起司蛋糕；營業時間出發前確認", q:"APOC COFFEE ビエラ博多テラス"},
+    {ll:[33.588818,130.407791], c:"咖啡", n:"NID CAFE", a:"春吉", h:"", d:"食べログ上找到的是「NID CAFE」，只收無現金支付；營業時間出發前確認", q:"NID CAFE 春吉"},
+    {ll:[33.590218,130.412628], c:"麵包店", n:"THE FULL FULL HAKATA", a:"祇園町（櫛田神社前）", h:"10:00–19:00，週二休", d:"招牌明太法國麵包，還能喝葡萄酒", day:"Day 4", q:"THE FULL FULL HAKATA"},
+    {ll:[33.592216,130.397354], c:"麵包店", n:"Full Full パンとワイン", a:"天神 3 丁目", h:"10:00–20:00，週二休", d:"Full Full 天神店，麵包配葡萄酒", q:"Full Full パンとワイン 天神"},
+    {ll:[33.591404,130.403931], c:"麵包店", n:"pain stock 天神店", a:"西中洲", h:"週二–六 8:00–20:00｜週日 8:00–18:30｜週一、第 1・3 個週二休", d:"福岡人氣麵包店，賣完為止", q:"パンストック 天神店"},
+    {ll:[33.591801,130.395462], c:"拉麵", n:"麵屋 最後の一滴", a:"天神 3 丁目", h:"11:30–14:30、18:00–21:00（湯頭賣完為止，不定休）", d:"人氣拉麵店", q:"麺屋 最後の一滴"},
+    {ll:[33.592766,130.396851], c:"拉麵", n:"ShinShin 天神本店", a:"天神 3 丁目", h:"11:00–翌 3:00（公休日各網站寫法不一）", d:"ShinShin 本店，開到半夜", q:"博多らーめん Shin-Shin 天神本店"},
+    {ll:[33.58744,130.401367], c:"拉麵", n:"麵屋兼虎 天神本店", a:"渡辺通 4 丁目（天神南駅步行約 3 分）", h:"平日 10:00–22:00｜假日 9:45–22:00", d:"濃厚魚介豚骨沾麵本店", q:"麺や兼虎 天神本店"},
+    {ll:[33.59042,130.398895], c:"拉麵", n:"麵屋兼虎 福岡 PARCO 店", a:"福岡 PARCO 本館 B1F", h:"10:45–22:00", d:"兼虎天神分店", q:"麺や兼虎 福岡PARCO店"},
+    {ll:[33.580872,130.420929], c:"拉麵", n:"麵屋兼虎 博多駅前店", a:"VIERRA 博多テラス", h:"10:00–21:00", d:"2026/9/18 新開", q:"麺や兼虎 博多駅前店"},
+    {ll:[33.593231,130.404648], c:"拉麵", n:"一蘭 本社總本店", a:"中洲（中洲川端駅旁）", h:"24 小時", d:"一蘭總店，1 樓有屋台風座位與原創菜單", day:"Day 4", q:"一蘭 本社総本店"},
+    {ll:[33.58889,130.396271], c:"拉麵", n:"一蘭 天神西通り店", a:"大名", h:"", d:"限定「釜だれとんこつ」，用四角形重箱碗裝（出發前確認是否還有）", q:"一蘭 天神西通り店"},
+    {ll:[33.589966,130.411606], c:"拉麵", n:"一蘭 キャナルシティ博多店", a:"博多運河城 North Building B1F", h:"11:00–22:00", d:"限定「釜だれとんこつ」，用四角形重箱碗裝（出發前確認是否還有）", day:"Day 4", q:"一蘭 キャナルシティ博多店"},
+    {ll:[33.518932,130.531525], c:"拉麵", n:"一蘭 太宰府參道店", a:"太宰府（太宰府駅步行 1 分）", h:"10:00–18:00", d:"五角形「合格碗」＋合格麵（離市區較遠）", q:"一蘭 太宰府参道店"},
+    {ll:[33.587013,130.392395], c:"燒肉", n:"牛舌燒專門店 ヨコマサ", a:"大名（赤坂駅步行 5 分）", h:"週二–日 11:00–14:00、17:00–23:00｜週一休", d:"牛舌燒專門店，可訂位", q:"牛タン焼専門店 ヨコマサ"},
+    {ll:[33.5866,130.3990], c:"海鮮", n:"博多炉端 魚男", a:"今泉 1-4-23（天神南步行約 5 分，地圖為約略位置）", h:"營業時間出發前確認", d:"招牌「元祖階段盛」生魚片拼盤＋爐端燒；午餐有階段丼定食", day:"Day 5", q:"博多炉端 魚男 今泉"},
+    {ll:[33.58297,130.408401], c:"海鮮", n:"食堂 光", a:"春吉 柳橋連合市場", h:"10:00–14:00、17:30–21:00｜週三、日、國定假日休", d:"市場裡的海鮮食堂，海鮮丼、生魚片定食，中午要排隊；不收信用卡", q:"食堂 光 柳橋連合市場"},
+    {ll:[33.580872,130.420929], c:"居酒屋", n:"ちんぷんかんぷん 博多店", a:"VIERRA 博多テラス", h:"15:00–24:00", d:"牛雜鍋＋燒鳥，2026/9/18 搬到新址", q:"ちんぷんかんぷん 博多店 ビエラ博多テラス"},
+    {ll:[33.586498,130.403839], c:"酒吧", n:"Notime Mixology Bar", a:"渡辺通 5 丁目（天神南步行約 5 分）", h:"14:00–翌 1:00（不定休，看 Instagram）", d:"老公寓裡的隱藏版調酒吧，可訂位", q:"Notime Mixology Bar"},
+    {ll:[33.588314,130.402252], c:"麵包店", n:"I'm donut? 福岡店", a:"渡辺通 5 丁目（天神南步行 2 分）", h:"10:00–20:00", d:"超人氣生甜甜圈，常大排長龍", q:"I'm donut? 福岡"},
+    {ll:[33.580872,130.420929], c:"其他", n:"yellow 博多", a:"VIERRA 博多テラス", h:"11:00–22:00（L.O. 21:00）", d:"東京來的蛋包飯專門店，招牌雙起司漢堡排蛋包飯", q:"yellow 博多"},
+    {ll:[33.589516,130.418503], c:"其他", n:"Shake Shack 博多店", a:"博多駅前（西日本City 大樓 1F）", h:"11:00–22:00", d:"紐約漢堡", q:"Shake Shack 博多"},
+    {ll:[33.583843,130.406281], c:"其他", n:"だしいなり 海木 本店", a:"渡辺通（渡辺通駅 2 號出口步行 1 分）", h:"週一–六 11:00 起，賣完為止｜週日、國定假日休", d:"高湯豆皮壽司外帶專門店，現點現做，建議當天 10:00 起先打電話預約取貨時間", q:"だしいなり海木 本店"},
+    {ll:[33.578262,130.405426], c:"甜點", n:"白金茶房", a:"白金（藥院駅步行約 8 分）", h:"平日 8:00–17:30（L.O. 16:30）｜週末、假日 8:00–18:30（L.O. 17:30）", d:"招牌經典鬆餅，外酥內軟；可在前一天 17:00 前訂位，週末限時 90 分", q:"白金茶房 薬院"},
+    {ll:[33.571907,130.40538], c:"麵包店", n:"MOROPAIN", a:"南區市崎（西鐵平尾站一帶）", h:"週三–六 7:00–15:00，賣完為止｜週日、一、二休", d:"老屋改建的人氣麵包店；這趟白天能去的只有 12/26（六）、12/30（三）", q:"モロパン 市崎"},
+    {ll:[33.578838,130.378342], c:"早餐", n:"炉端ノいとおかし", a:"六本松（六本松駅步行 5 分）", h:"8:00–14:00（L.O. 13:00）", d:"炭火現烤銀鮭、鰻魚定食，白飯可續一次；完全預約制，在 TableCheck 訂位", day:"Day 6", q:"炉端ノいとおかし 六本松"},
+    {ll:[33.586765,130.399872], c:"居酒屋", n:"鉄板焼酒場 いくら（天神今泉）", a:"今泉（西鐵天神站步行約 3 分）", h:"11:30–15:00、18:00–24:00（L.O. 23:00），不定休", d:"人氣鐵板燒居酒屋，常排隊，可網路訂位", day:"Day 1", q:"鉄板焼酒場いくら 今泉"},
+    {ll:[33.586704,130.400833], c:"居酒屋", n:"博多一口餃子 たけとら（今泉店）", a:"今泉（天神南駅步行約 3 分）", h:"15:00–翌 5:00", d:"博多名物一口煎餃，手工餃子皮，開到天亮，可網路訂位", day:"Day 1", q:"博多一口餃子たけとら 今泉店"}
+  ];
+  const CAT_ICON = {'早餐':'🍳','咖啡':'☕','麵包店':'🥐','拉麵':'🍜','燒肉':'🥩','海鮮':'🐟','居酒屋':'🍢','酒吧':'🍸','甜點':'🍰','明太子':'🌶️','伴手禮':'🎁','其他':'🍽️'};
+  const cats = ['全部', ...Object.keys(CAT_ICON).filter(c => FOOD.some(f => f.c === c))];
+  const sheet = document.getElementById('food-sheet');
+  const chipsEl = document.getElementById('food-chips');
+  const listEl = document.getElementById('food-list');
+  let cur = '全部';
+  try { const saved = localStorage.getItem('foodCat'); if (saved && cats.includes(saved)) cur = saved; } catch (e) {}
+
+  const esc = t => String(t).replace(/[&<>"]/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]));
+  function renderFood() {
+    chipsEl.innerHTML = cats.map(c =>
+      `<button class="food-chip${c === cur ? ' on' : ''}" type="button" data-c="${esc(c)}">${c === '全部' ? '全部' : CAT_ICON[c] + ' ' + c}</button>`).join('');
+    const items = FOOD.filter(f => cur === '全部' || f.c === cur);
+    listEl.innerHTML = items.map(f => `
+      <div class="food-card" data-i="${FOOD.indexOf(f)}">
+        <div class="fn">${CAT_ICON[f.c]} ${esc(f.n)}</div>
+        <div class="fm">${esc(f.a)}${f.h ? '｜' + esc(f.h) : ''}</div>
+        <div class="fd">${esc(f.d)}</div>
+        <div class="ff">${f.day ? `<span class="fday">${esc(f.day)}</span>` : ''}<a class="fmap" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(f.q)}" target="_blank" rel="noopener">Maps ↗</a></div>
+      </div>`).join('') + '<div class="food-note">營業時間以食べログ為主，出發前再確認</div>';
+    updateMap(items);
+  }
+  chipsEl.addEventListener('click', e => {
+    const b = e.target.closest('.food-chip'); if (!b) return;
+    cur = b.dataset.c;
+    try { localStorage.setItem('foodCat', cur); } catch (err) {}
+    renderFood(); listEl.scrollTop = 0;
+  });
+
+  // ── map (Leaflet, loaded the first time the sheet opens) ──
+  let map = null, markers = [], meMarker = null, meCircle = null, watchId = null, leafletLoading = null;
+  const msgEl = document.getElementById('food-map-msg');
+  function showMsg(t) { msgEl.textContent = t; msgEl.style.display = t ? 'block' : 'none'; }
+  function loadLeaflet() {
+    if (window.L) return Promise.resolve();
+    if (leafletLoading) return leafletLoading;
+    leafletLoading = new Promise((ok, fail) => {
+      const css = document.createElement('link');
+      css.rel = 'stylesheet'; css.href = 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css';
+      document.head.appendChild(css);
+      const js = document.createElement('script');
+      js.src = 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js';
+      js.onload = ok; js.onerror = fail;
+      document.head.appendChild(js);
+    });
+    return leafletLoading;
+  }
+  function initMap() {
+    if (map) { map.invalidateSize(); return; }
+    map = L.map('food-map', { zoomControl: false, attributionControl: true });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19, attribution: '© OpenStreetMap'
+    }).addTo(map);
+    // shops sharing one address (station buildings) get spread in a small ring so each pin stays tappable
+    const groups = {};
+    FOOD.forEach((f, i) => { (groups[f.ll.join()] = groups[f.ll.join()] || []).push(i); });
+    const pos = [];
+    Object.values(groups).forEach(ids => ids.forEach((i, k) => {
+      const [lat, lng] = FOOD[i].ll;
+      if (ids.length === 1) { pos[i] = [lat, lng]; return; }
+      const a = 2 * Math.PI * k / ids.length, r = 0.00018;
+      pos[i] = [lat + r * Math.cos(a), lng + r * Math.sin(a) / Math.cos(lat * Math.PI / 180)];
+    }));
+    FOOD.forEach((f, i) => {
+      const icon = L.divIcon({ className: '', html: `<div class="fpin">${CAT_ICON[f.c]}</div>`, iconSize: [28, 28], iconAnchor: [14, 14] });
+      const mk = L.marker(pos[i], { icon }).bindPopup(
+        `<b>${esc(f.n)}</b>${esc(f.a)}<br><a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(f.q)}" target="_blank" rel="noopener">Google Maps ↗</a>`);
+      mk.on('click', () => highlightCard(i));
+      markers[i] = mk;
+    });
+  }
+  // Tenjin–Hakata box: used to frame the "全部" view so far-away stops (Beppu, Mojiko) don't zoom the map out
+  const inCity = f => f.ll[0] > 33.575 && f.ll[0] < 33.598 && f.ll[1] > 130.385 && f.ll[1] < 130.43;
+  function updateMap(items) {
+    if (!map) return;
+    markers.forEach((mk, i) => { if (items.includes(FOOD[i])) mk.addTo(map); else mk.remove(); });
+    const frame = cur === '全部' ? items.filter(inCity) : items;
+    const pts = (frame.length ? frame : items).map(f => f.ll);
+    if (pts.length === 1) map.setView(pts[0], 15);
+    else if (pts.length) map.fitBounds(pts, { padding: [24, 24], maxZoom: 15 });
+  }
+  function highlightCard(i) {
+    listEl.querySelectorAll('.food-card.on').forEach(c => c.classList.remove('on'));
+    const card = listEl.querySelector(`.food-card[data-i="${i}"]`);
+    if (card) { card.classList.add('on'); card.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); }
+  }
+  listEl.addEventListener('click', e => {
+    if (e.target.closest('a')) return;
+    const card = e.target.closest('.food-card'); if (!card || !map) return;
+    const i = +card.dataset.i;
+    map.setView(FOOD[i].ll, Math.max(map.getZoom(), 16));
+    markers[i].openPopup();
+    highlightCard(i);
+  });
+  document.querySelector('.food-locate').addEventListener('click', () => {
+    if (!map) return;
+    if (!navigator.geolocation) { showMsg('這個瀏覽器不支援定位'); return; }
+    showMsg('定位中…');
+    let first = true;
+    if (watchId !== null) navigator.geolocation.clearWatch(watchId);
+    watchId = navigator.geolocation.watchPosition(pos => {
+      const ll = [pos.coords.latitude, pos.coords.longitude];
+      if (!meMarker) {
+        meCircle = L.circle(ll, { radius: pos.coords.accuracy, color: '#1a73e8', weight: 1, fillOpacity: .12 }).addTo(map);
+        meMarker = L.circleMarker(ll, { radius: 7, color: '#fff', weight: 2, fillColor: '#1a73e8', fillOpacity: 1 }).addTo(map);
+      } else { meMarker.setLatLng(ll); meCircle.setLatLng(ll).setRadius(pos.coords.accuracy); }
+      if (first) { map.setView(ll, Math.max(map.getZoom(), 15)); first = false; showMsg(''); }
+    }, err => {
+      showMsg(err.code === 1 ? '請在瀏覽器設定允許「位置」權限' : '暫時抓不到位置，稍後再試');
+    }, { enableHighAccuracy: true, maximumAge: 10000, timeout: 15000 });
+  });
+
+  function openFood() {
+    sheet.classList.add('open'); sheet.setAttribute('aria-hidden', 'false'); document.body.style.overflow = 'hidden';
+    renderFood();
+    loadLeaflet().then(() => { initMap(); renderFood(); setTimeout(() => { map.invalidateSize(); renderFood(); }, 300); }).catch(() => showMsg('地圖載入失敗，請確認網路'));
+  }
+  function closeFood() {
+    sheet.classList.remove('open'); sheet.setAttribute('aria-hidden', 'true'); document.body.style.overflow = '';
+    if (watchId !== null) { navigator.geolocation.clearWatch(watchId); watchId = null; }
+  }
+  document.querySelector('.tab-food').addEventListener('click', openFood);
+  sheet.querySelector('.food-close').addEventListener('click', closeFood);
+  sheet.addEventListener('click', e => { if (e.target === sheet) closeFood(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeFood(); });
+
+  // ── open the card you jump to (stories / tab bar) ──
+  document.querySelectorAll('a[href^="#day"]').forEach(a => a.addEventListener('click', () => {
+    const card = document.querySelector(a.getAttribute('href'));
+    if (card) card.classList.add('open');
+  }));
+
+  // ── during the trip (12/25–12/30), open only today's card ──
+  // ?date=2026-12-27 overrides "today" for testing
+  const q = new URLSearchParams(location.search).get('date');
+  const now = q ? new Date(q + 'T12:00:00') : new Date();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const dayNo = Math.round((today - new Date(2026, 11, 25)) / 86400000) + 1;
+  const todayCard = document.getElementById('day' + dayNo);
+  if (dayNo >= 1 && dayNo <= 6 && todayCard) {
+    document.querySelectorAll('.dcard').forEach(c => c.classList.toggle('open', c === todayCard));
+    if (!location.hash) todayCard.scrollIntoView();
+  }
+})();
+</script>
+</body>
+</html>

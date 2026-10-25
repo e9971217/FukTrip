@@ -2,11 +2,12 @@
 
 A single-file HTML travel guide for a 6-day / 5-night trip to Fukuoka, Japan (Dec 25–30).
 
-**Live site:** https://e9971217.github.io/FukTrip/ — redirects to the app-style iPhone version.
+**Live site:** https://e9971217.github.io/FukTrip/ — redirects to the 可愛版 (cute illustrated) version.
 
 **Files:**
-- `福岡六天五夜_手機版.html` — ✅ **the only maintained version** (since 2026-10-14). App-style iPhone layout: image-led day cards, collapsible detail, day "stories" row, bottom tab bar. All itinerary changes go here.
-- `index.html` — tiny redirect to `福岡六天五夜_手機版.html` (keeps the site root working; no content, no syncing needed).
+- `福岡六天五夜_可愛版.html` — ✅ **the only maintained version** (since 2026-10-25). Same content and features as 手機版, restyled: illustrated sea/boat hero, departure countdown, rounded Huninn font, thick-outline cards. All itinerary changes go here.
+- `index.html` — tiny redirect to `福岡六天五夜_可愛版.html` (keeps the site root working; no content, no syncing needed).
+- `福岡六天五夜_手機版.html` — previous app-style iPhone layout (maintained 2026-10-14 → 2026-10-25). ⚠️ No longer maintained; kept for reference.
 - `福岡六天五夜_完整版.html`, `index-iphone_new.html`, `index-iphone.html` — ⚠️ **no longer maintained**, kept for reference only. Their content may be out of date.
 
 ## Itinerary
