@@ -262,8 +262,8 @@ a{color:inherit;}
 .iblock{margin-bottom:12px;border-radius:14px;padding:12px 14px;background:var(--bg);}
 .iblock-h{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:800;letter-spacing:.04em;margin-bottom:8px;color:var(--ink);}
 .iblock ul{list-style:none;display:flex;flex-direction:column;gap:6px;}
-.iblock li{display:flex;gap:7px;font-size:12px;color:var(--ink-sub);line-height:1.55;}
-.iblock li::before{content:'·';color:var(--ink-mute);font-weight:900;flex-shrink:0;}
+.iblock li{position:relative;padding-left:calc(13px + 2em);text-indent:-2em;font-size:12px;color:var(--ink-sub);line-height:1.55;}
+.iblock li::before{content:'·';position:absolute;left:0;top:0;text-indent:0;color:var(--ink-mute);font-weight:900;}
 .iblock li b{color:var(--ink);}
 .iblock li a{color:var(--accent);font-weight:700;text-decoration:underline;text-underline-offset:2px;}
 
@@ -712,11 +712,11 @@ body,.serif,button,.food-chip{font-family:'Huninn','Noto Sans TC','PingFang TC',
       <span class="dcard-flex-badge">± 泊</span>
       <div class="dcard-txt">
         <div class="dcard-date">週日 · 12/27</div>
-        <div class="dcard-title serif">別府地獄 × 動物公園 KKday → 由布院 → 別府</div>
-        <div class="dcard-hook">跟團玩地獄巡禮＋動物公園，由布院中途脫團自由散策，傍晚接續前往別府泡湯</div>
+        <div class="dcard-title serif">動物公園 → 由布院 → 海地獄 Klook → 別府</div>
+        <div class="dcard-hook">跟團玩動物公園＋由布院＋海地獄，最後一站在別府海地獄脫團，直接去飯店泡湯</div>
       </div>
     </div>
-    <div class="dcard-tags"><span class="tag">🌋 地獄巡禮</span><span class="tag">🦁 動物公園</span><span class="tag">♨️ 溫泉</span></div>
+    <div class="dcard-tags"><span class="tag">🦁 動物公園</span><span class="tag">🏘️ 由布院</span><span class="tag">🌋 海地獄</span><span class="tag">♨️ 溫泉</span></div>
     <button class="dcard-toggle" onclick="this.closest('.dcard').classList.toggle('open')">行程細節 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 9l7 7 7-7"/></svg></button>
     <div class="dcard-detail"><div class="dcard-detail-in">
 
@@ -727,18 +727,18 @@ body,.serif,button,.food-chip{font-family:'Huninn','Noto Sans TC','PingFang TC',
       </div>
 
       <div class="mtl">
-        <div class="mtl-item"><div class="mtl-time">08:15</div><div class="mtl-body"><b>KKday 集合 — 羅森 福岡東方飯店</b><p>博多站築紫口前集合上車，參加《別府地獄與九州自然動物園一日遊》。<a href="https://www.kkday.com/zh-tw/product/175897" target="_blank" rel="noopener">KKday 行程頁 ↗</a></p></div></div>
-        <div class="mtl-item"><div class="mtl-time">10:30</div><div class="mtl-body"><b>① 海地獄</b><p>別府最大地獄之一，泉溫約 98°C，池水呈夢幻鈷藍色（門票約 500 円自理）。</p></div></div>
-        <div class="mtl-item"><div class="mtl-time">11:15</div><div class="mtl-body"><b>② 爐地獄</b><p>以高溫蒸氣噴射景觀聞名，泉溫約 90°C（門票約 500 円自理）。</p></div></div>
-        <div class="mtl-item"><div class="mtl-time">12:25</div><div class="mtl-body"><b>③ 九州自然動物公園</b><p>叢林巴士近距離餵獅子、大象、黑熊；門票 2,600 円＋叢林巴士 1,500 円自理。冬季封路時改去大分海洋宮殿水族館。</p></div></div>
-        <div class="mtl-item"><div class="mtl-time">14:30<br>脫團</div><div class="mtl-body"><b>④ 由布院 — 自由活動 2 小時 20 分</b><p>抵達後<b>此站脫團</b>，不搭原車返博多，改自行前往別府。湯之坪街道（<b>B-Speak</b> 蛋糕卷、和牛可樂餅、由布院釜飯）、金鱗湖、由布院花卉村、貓頭鷹之森都在這一帶。</p></div></div>
-        <div class="mtl-item"><div class="mtl-time">16:50</div><div class="mtl-body"><b>⑤ 前往別府</b><p>由布院駅搭 JR 久大本線或龜之井巴士，約 40 分抵別府。</p></div></div>
+        <div class="mtl-item"><div class="mtl-time">07:50</div><div class="mtl-body"><b>Klook 集合 — 羅森 福岡東方飯店</b><p><b>✅ 已預訂</b>《九州自然動物園和湯布院全日野生動物之旅》早鳥方案（不含動物園門票）· 4 位。博多站筑紫口前集合，<b>08:00 發車，請提前 10 分鐘到</b>；司機可能因塞車晚到，稍等即可。12/26 00:00 前可免費取消。</p><p><b>🧳 可以帶行李上車：每人 1 件 28 吋以下</b>（已用微信跟「漫遊日本小松」確認），天神南森林退房後直接帶著走。<a href="https://www.klook.com/zh-TW/activity/95596-kyushu-wildlife-park-african-safari-yufuin-day-tour-from-fukuoka/" target="_blank" rel="noopener">Klook 行程頁 ↗</a></p></div></div>
+        <div class="mtl-item"><div class="mtl-time">10:00</div><div class="mtl-body"><b>① 九州自然動物公園（約 2 小時）</b><p>叢林巴士近距離看獅子、大象、黑熊＋小動物互動區。<b>門票自理：大人 2,600 円</b>。天氣太差閉園時改去海之中道水族館（大人 2,500 円）。行程頁沒寫午餐，可在園內或途中吃。</p></div></div>
+        <div class="mtl-item"><div class="mtl-time">13:30</div><div class="mtl-body"><b>② 由布嶽（車窗觀光）</b><p>6 月起登山口交通管制，只在車上看、不下車。冬天路面結冰或高速封路時取消，改成由布院多玩 30 分鐘。</p></div></div>
+        <div class="mtl-item"><div class="mtl-time">14:00</div><div class="mtl-body"><b>③ 由布院 — 自由活動 2 小時</b><p>湯之坪街道（<b>B-Speak</b> 蛋糕卷、和牛可樂餅、由布院釜飯）、金鱗湖都在這一帶。</p></div></div>
+        <div class="mtl-item"><div class="mtl-time">16:00<br>脫團</div><div class="mtl-body"><b>④ 別府 海地獄（30 分鐘）</b><p>別府最大的地獄溫泉，池水是鈷藍色，旁邊有溫泉蒸蛋可以吃。<b>逛完在這站脫團</b>，不搭原車回福岡。<b>✅ 已用微信跟「漫遊日本小松」確認：不搭車回博多站 OK</b>，當天上車再跟導遊講一次「4 人在海地獄下車」。</p></div></div>
+        <div class="mtl-item"><div class="mtl-time">16:30</div><div class="mtl-body"><b>⑤ 海地獄 → 別府駅</b><p>海地獄前搭龜之井巴士到別府駅約 20 分，或 4 人搭計程車約 15 分（約 2,000 円上下）。飯店就在別府駅旁。</p></div></div>
         <div class="mtl-item"><div class="mtl-time">17:30</div><div class="mtl-body"><b>⑥ 別府 Check-in × 溫泉</b><p><b>🍽️ 御宿野乃 別府已含一泊二食（晚餐＋隔天早餐）</b>，今晚不用另外找餐廳。</p><p>辦理入住後先泡湯，再吃飯店晚餐（1F 自助餐 17:30–21:00，<b>20:00 前入場</b>）；18:00 前抵達可順道去友永麵包屋買伴手禮。</p></div></div>
       </div>
 
       <div class="iblock">
-        <div class="iblock-h">🔄 備選：Klook 動物園＋由布院一日遊（福岡出發）</div>
-        <ul><li><b>11/09 看到早鳥價</b> 每人 NT$725（原價 NT$1,450，5 折，需用優惠碼），4 人 NT$2,900。這是「早鳥限定｜不含動物園門票」方案，優惠倒數到約 11/11</li><li><b>方案</b> 含動物園門票／不含動物園門票／早鳥限定（不含門票）</li><li><b>⚠ 行程內容待確認</b> 集合地點與時間、有沒有去別府地獄、能不能在由布院脫團（今晚住別府，不回福岡）</li><li><a href="https://www.klook.com/zh-TW/activity/95596-kyushu-wildlife-park-african-safari-yufuin-day-tour-from-fukuoka/" target="_blank" rel="noopener">Klook 行程頁 ↗</a></li></ul>
+        <div class="iblock-h">🔄 備案：KKday 別府地獄與九州自然動物園一日遊</div>
+        <ul><li><b>行程</b> 08:15 同樣在羅森 福岡東方飯店集合 → 海地獄、爐地獄 → 九州自然動物公園 → 14:30 由布院脫團（自由活動 2 小時 20 分）→ 自己搭 JR 或龜之井巴士約 40 分到別府</li><li><b>差別</b> 多一個爐地獄，但要在由布院脫團、自己去別府</li><li><b>何時用</b> Klook 團被取消時再訂</li><li><a href="https://www.kkday.com/zh-tw/product/175897" target="_blank" rel="noopener">KKday 行程頁 ↗</a></li></ul>
       </div>
 
       <div class="hotel-card">
@@ -756,7 +756,7 @@ body,.serif,button,.food-chip{font-family:'Huninn','Noto Sans TC','PingFang TC',
       </div>
       <div class="iblock">
         <div class="iblock-h">💡 提醒</div>
-        <ul><li>KKday 建議提前預約，名額有限</li><li>由布院僅脫團自由行 2 小時 20 分，行程需抓緊</li><li>B-Speak 常常開門不久就售完，抵達後第一件事先去排隊</li></ul>
+        <ul><li>動物園門票（2,600 円 ×4）當天現場付，記得帶日幣</li><li>行李每人限 1 件、28 吋以下，超過的要先想辦法（寄放或宅配）</li><li>由布院只有自由活動 2 小時，行程要抓緊</li><li>B-Speak 常常開門不久就售完，抵達後第一件事先去排隊</li></ul>
       </div>
 
     </div></div>
@@ -1017,7 +1017,7 @@ body,.serif,button,.food-chip{font-family:'Huninn','Noto Sans TC','PingFang TC',
   </div>
   <div class="chk-item">
     <div class="chk-dot"></div>
-    <div class="chk-t"><b>KKday：別府地獄與九州自然動物園一日遊</b><span class="dl">盡快</span><span>Day 3 · 建議提前預約，於由布院脫團<a href="https://www.kkday.com/zh-tw/product/175897" target="_blank" rel="noopener">KKday ↗</a></span></div>
+    <div class="chk-t"><b>Klook：九州自然動物園＋由布院一日遊 ✅ 已預訂</b><span>Day 3 · 12/27 08:00 羅森 福岡東方飯店 · 4 位 · 早鳥方案（不含動物園門票）· 12/26 前可免費取消</span><br><span>✅ 微信「漫遊日本小松」已確認：海地獄脫團不回博多 OK、每人可帶 1 件 28 吋以下行李<a href="https://www.klook.com/zh-TW/activity/95596-kyushu-wildlife-park-african-safari-yufuin-day-tour-from-fukuoka/" target="_blank" rel="noopener">Klook ↗</a></span></div>
   </div>
   <div class="chk-item">
     <div class="chk-dot"></div>

@@ -16,7 +16,7 @@ A single-file HTML travel guide for a 6-day / 5-night trip to Fukuoka, Japan (De
 |-----|------|-------|
 | Day 1 | 12/25 (Fri) | Arrive Fukuoka · Check-in · Yakuin Yakiniku · Yatai |
 | Day 2 | 12/26 (Sat) | Karato Market · Mojiko Retro · THE OUTLETS |
-| Day 3 | 12/27 (Sun) | KKday: Beppu Jigoku + African Safari Park → Yufuin (day-trip split) → Beppu Check-in |
+| Day 3 | 12/27 (Sun) | Klook: African Safari Park → Yufuin → Umi Jigoku (leave tour in Beppu) → Beppu Check-in |
 | Day 4 | 12/28 (Mon) | Dazaifu Tenmangu · Umegae Mochi · Back to Hakata |
 | Day 5 | 12/29 (Tue) | Takachiho Gorge · KKday Full-day Tour |
 | Day 6 | 12/30 (Wed) | Kushida Shrine · Shopping · Fly Home |
